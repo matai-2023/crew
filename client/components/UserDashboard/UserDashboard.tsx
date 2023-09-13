@@ -11,17 +11,17 @@ function UserDashboard() {
       <ul>
         {' '}
         MyUserName&lsquo;s Crews
-        <Link to={'/crew'}>
+        <Link to={'/crew-dashboard'}>
           <li>Skydiving</li>
         </Link>
-        <Link to={'/crew'}>
+        <Link to={'/crew-dashboard'}>
           {' '}
           <li>Robot Poetry</li>{' '}
         </Link>
-        <Link to={'/crew'}>
+        <Link to={'/crew-dashboard'}>
           <li>Cheeseburger</li>
         </Link>
-        <Link to={'/crew'}>
+        <Link to={'/crew-dashboard'}>
           <li>Alien Fiesta</li>
         </Link>
       </ul>
