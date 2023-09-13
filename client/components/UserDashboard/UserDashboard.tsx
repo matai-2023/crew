@@ -10,6 +10,7 @@ function UserDashboard() {
 
   return (
     <>
+<<<<<<< HEAD
       {isAuthenticated && (
         <>
           <ul>
@@ -32,6 +33,24 @@ function UserDashboard() {
           <AddCrew />
         </>
       )}
+=======
+      <ul>
+        MyUserName&lsquo;s Crews
+        <Link to={'/crew-dashboard'}>
+          <li>Skydiving</li>
+        </Link>
+        <Link to={'/crew-dashboard'}>
+          <li>Robot Poetry</li>
+        </Link>
+        <Link to={'/crew-dashboard'}>
+          <li>Cheeseburger</li>
+        </Link>
+        <Link to={'/crew-dashboard'}>
+          <li>Alien Fiesta</li>
+        </Link>
+      </ul>
+      <AddCrew />
+>>>>>>> e830026c87eb4559fa194b594be6acd16c2c4bbd
     </>
   )
 }
