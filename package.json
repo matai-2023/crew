@@ -25,40 +25,7 @@
     "build-storybook": "storybook build"
   },
   "eslintConfig": {
-    "extends": [
-      "@",
-      "d",
-      "e",
-      "v",
-      "a",
-      "c",
-      "a",
-      "d",
-      "e",
-      "m",
-      "y",
-      "/",
-      "e",
-      "s",
-      "l",
-      "i",
-      "n",
-      "t",
-      "-",
-      "c",
-      "o",
-      "n",
-      "f",
-      "i",
-      "g",
-      "/",
-      "r",
-      "e",
-      "a",
-      "c",
-      "t",
-      "plugin:storybook/recommended"
-    ],
+    "extends": "@devacademy/eslint-config/react",
     "ignorePatterns": [
       "bundle.js"
     ]

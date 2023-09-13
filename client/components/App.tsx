@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 
 import LandingPage from './LandingPage.tsx'
+import UserDashboard from './UserDashboard/UserDashboard.tsx'
 
 function App() {
   //TODO: Create the routes to UserDashboard, CrewDashboard, EventDetails, etc
@@ -8,7 +9,8 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route></Route>
+        <Route path="/user-dashboard" element={<UserDashboard />} />
+        <Route path="/" />
       </Routes>
     </>
   )
