@@ -29,7 +29,7 @@ export async function seed(knex) {
       time: '8pm-12am',
       location: 'Mission Bay',
       description: 'Grab your blanket and join in this beach burn party! ',
-      date: '27 Dec',
+      date: '27 December',
       img: 'https://images.unsplash.com/photo-1567223238214-7d84610db404?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fEJlYWNoJTIwQnVybnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60',
       crew_id: '',
     },
