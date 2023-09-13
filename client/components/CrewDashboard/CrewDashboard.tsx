@@ -38,7 +38,7 @@ function CrewDashboard() {
         </div>
         <div>
           <Link to={'/event-details'}>
-            <li>Llama Lovers`&lsquo;` Roller Derby</li>
+            <li>Llama Lovers&lsquo; Roller Derby</li>
           </Link>
           <p>15th Oct</p>
         </div>
@@ -51,6 +51,9 @@ function CrewDashboard() {
       </ul>
       <Link to={'/new-event'}>
         <button>Create</button>
+      </Link>
+      <Link to={'/user-dashboard'}>
+        <button>Back to your dashboard</button>
       </Link>
     </>
   )
