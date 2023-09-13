@@ -1,3 +1,5 @@
+// TODO: Check if this component can be useful to our project
+
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 

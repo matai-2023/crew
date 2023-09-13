@@ -1,14 +1,16 @@
 import { Routes, Route } from 'react-router-dom'
 
-import Nav from './Nav.tsx'
-import Fruits from './Fruits.tsx'
+import LandingPage from './LandingPage.tsx'
+import UserDashboard from './UserDashboard/UserDashboard.tsx'
 
 function App() {
+  //TODO: Create the routes to UserDashboard, CrewDashboard, EventDetails, etc
   return (
     <>
-      <Nav />
       <Routes>
-        <Route path="/" element={<Fruits />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/user-dashboard" element={<UserDashboard />} />
+        <Route path="/" />
       </Routes>
     </>
   )
