@@ -13,7 +13,7 @@ function EventDetails() {
         <li>Event description</li>
       </ul>
       <Link to={'/crew-dashboard'}>
-        <button>Go back</button>{' '}
+        <button>Go back</button>
       </Link>
     </>
   )
