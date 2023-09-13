@@ -1,0 +1,10 @@
+
+export async function seed (knex) {
+  // Deletes ALL existing entries
+  await knex('event').del()
+  await knex('event').insert([
+    {id: 1, name: 'Dessert Banquet', time:'2-5pm', location:'12 Morhan st, New Market', description:'Ticket prices: Audult $18 , Children $9 ', date:'3 Oct', img:'https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80', crew_id:'' },
+    {id: 1, name: 'Scorpio Party', time:'7pm-late night', location:'Cordis Hotel', description:'If you are a Scorpio as well, feel free to join this awsome Scorpio party!', date:'20 Nov', img:'https://images.unsplash.com/photo-1485872299829-c673f5194813?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2054&q=80', crew_id:''},
+    {id: 1, name: 'Beach Burn', time:'8pm-12am', location:'Mission Bay', description:'Grab your blanket and join in this beach burn party! ', date:'27 Dec', img:'https://images.unsplash.com/photo-1567223238214-7d84610db404?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fEJlYWNoJTIwQnVybnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60',crew_id:''},
+  ]);
+}
