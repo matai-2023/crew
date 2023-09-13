@@ -1,14 +1,12 @@
 import { Routes, Route } from 'react-router-dom'
 
-import Nav from './Nav.tsx'
-import Fruits from './Fruits.tsx'
+import LandingPage from './LandingPage.tsx'
 
 function App() {
   return (
     <>
-      <Nav />
       <Routes>
-        <Route path="/" element={<Fruits />} />
+        <Route path="/" element={<LandingPage />} />
       </Routes>
     </>
   )
