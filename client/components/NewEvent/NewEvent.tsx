@@ -22,7 +22,7 @@ function NewEvent() {
 
         <button>Add Event</button>
       </form>
-      <Link to={'/crew'}>Cancel</Link>
+      <Link to={'/crew-dashboard'}>Cancel</Link>
     </>
   )
 }

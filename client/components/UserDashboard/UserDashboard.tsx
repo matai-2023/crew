@@ -10,7 +10,7 @@ function UserDashboard() {
     <>
       <ul>
         {' '}
-        MyUserName's Crews
+        MyUserName&lsquo;s Crews
         <Link to={'/crew'}>
           <li>Skydiving</li>
         </Link>
