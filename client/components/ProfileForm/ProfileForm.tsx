@@ -1,4 +1,11 @@
-function ProfileForm() {
+import { Profile, ProfileDraft } from '../../../types/Profile'
+
+interface Props {
+  profile?: Profile
+  handleSubmit: (profile: Profile | ProfileDraft) => void
+}
+
+function ProfileForm(props: Props) {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
