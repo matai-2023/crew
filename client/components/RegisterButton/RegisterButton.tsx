@@ -1,8 +1,20 @@
-function RegisterButton() {
-  // TODO: Import Auth0 and follow rcmndr code
-  // TODO: Create a handleSubmit function to make the button clickable
+import { useAuth0 } from '@auth0/auth0-react'
 
-  return <button>Register</button>
+function RegisterButton() {
+  const { loginWithRedirect } = useAuth0()
+
+  function handleRegister() {
+    loginWithRedirect({
+      authorizationParams: {
+        screen_hint: 'signin',
+        //TODO: Add a profile form component and redirect line 14 to this
+        // This is to add user details to the database
+        redirect_uri: `${window.location.origin}/user-dashboard`,
+      },
+    })
+  }
+
+  return <button onClick={handleRegister}>Register</button>
 }
 
 export default RegisterButton
