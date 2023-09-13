@@ -12,7 +12,7 @@ function EventDetails() {
         <li>Event location</li>
         <li>Event description</li>
       </ul>
-      <Link to={'/crew'}>
+      <Link to={'/crew-dashboard'}>
         <button>Go back</button>{' '}
       </Link>
     </>
