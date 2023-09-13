@@ -1,5 +1,4 @@
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated.tsx'
-import { NavGroup, NavButton } from './Styled.tsx'
 
 function Nav() {
   // TODO: call the useAuth0 hook and destructure user, logout, and loginWithRedirect
@@ -18,15 +17,13 @@ function Nav() {
 
   return (
     <>
-      <NavGroup>
-        <IfAuthenticated>
-          <NavButton onClick={handleSignOut}>Sign out</NavButton>
-          {user && <p>Signed in as: {user?.nickname}</p>}
-        </IfAuthenticated>
-        <IfNotAuthenticated>
-          <NavButton onClick={handleSignIn}>Sign in</NavButton>
-        </IfNotAuthenticated>
-      </NavGroup>
+      <IfAuthenticated>
+        <button onClick={handleSignOut}>Sign out</button>
+        {user && <p>Signed in as: {user?.nickname}</p>}
+      </IfAuthenticated>
+      <IfNotAuthenticated>
+        <button onClick={handleSignIn}>Sign in</button>
+      </IfNotAuthenticated>
       <h1>Fruit FTW!</h1>
     </>
   )
