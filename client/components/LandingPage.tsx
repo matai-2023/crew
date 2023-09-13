@@ -1,5 +1,5 @@
-import LoginButton from './LoginButton'
-import RegisterButton from './RegisterButton'
+import LoginButton from './LoginButton/LoginButton'
+import RegisterButton from './RegisterButton/RegisterButton'
 
 function LandingPage() {
   return (

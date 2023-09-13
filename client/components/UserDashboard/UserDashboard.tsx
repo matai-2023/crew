@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import AddCrew from './AddCrew.tsx'
+import AddCrew from '../AddCrew/AddCrew.js'
 
 function UserDashboard() {
   // TODO: call the useAuth0 hook and destructure getAccessTokenSilently
