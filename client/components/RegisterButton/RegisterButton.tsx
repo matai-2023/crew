@@ -9,7 +9,7 @@ function RegisterButton() {
         screen_hint: 'signin',
         //TODO: Add a profile form component and redirect line 14 to this
         // This is to add user details to the database
-        redirect_uri: `${window.location.origin}/user-dashboard`,
+        redirect_uri: `${window.location.origin}/profile`,
       },
     })
   }

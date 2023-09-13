@@ -2,6 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import ProfileForm from '../../components/ProfileForm/ProfileForm'
 import useProfile from '../../hooks/useProfile'
 import { useEffect } from 'react'
+import { ProfileDraft, Profile } from '../../../types/Profile'
 
 function ProfilePage() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
