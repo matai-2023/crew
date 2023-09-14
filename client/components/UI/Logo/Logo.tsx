@@ -1,10 +1,16 @@
 import { Link } from 'react-router-dom'
 
 function Logo() {
-  const imagePath = process.env.PUBLIC_URL + '../public/logo.png'
+  const imagePath = '../../public/logo.png'
   return (
     <Link to="/">
-      <img src={imagePath} alt="Logo" className="w-16 h-16" />
+      <div className="p-3">
+        <img
+          src={imagePath}
+          alt="Logo"
+          className="w-auto h-auto max-h-16 max-w-16"
+        />
+      </div>
     </Link>
   )
 }

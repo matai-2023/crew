@@ -18,7 +18,7 @@ function LandingPage() {
   return (
     <>
       <Background>
-        {/* <Header /> */}
+        <Header />
         <div className="pt-44 pl-4 flex flex-col gap-4">
           {titles.map((title, i) => (
             <motion.div
