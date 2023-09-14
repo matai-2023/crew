@@ -30,6 +30,7 @@ router.post('/', checkJwt, async (req, res) => {
 
     if (profileResult.success) {
       const profile = { ...profileResult.data, auth0Id }
+      // TODO: Write upsertProfile db function in knex
       await db.upsertProfile(profile)
       res.sendStatus(201)
       return
