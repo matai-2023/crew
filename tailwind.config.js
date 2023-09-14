@@ -15,10 +15,25 @@ export default {
         interReg: ['Inter', 'serif'],
         interBold: ['Inter', 'sans-serif'],
       },
+      boxShadow: {
+        'left-bottom-pink': '5px 5px 0px 0px #FFABF7',
+      },
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.text-uppercase': {
+          textTransform: 'uppercase',
+          color: 'white',
+          fontWeight: 'bold',
+        },
+      }
+
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    },
+  ],
 }
