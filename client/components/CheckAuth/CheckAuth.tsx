@@ -8,7 +8,7 @@ function CheckAuth() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
   //check user with useQuery see if they exist in our database
   // call useQuery user data from db
-  const { data, isLoading } = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
       const accessToken = await getAccessTokenSilently()
@@ -17,11 +17,19 @@ function CheckAuth() {
     },
   })
 
+  // const auth0Stuff = useAuth0()
+  // console.log('auth0Stuff', auth0Stuff)
+  // console.log('data', isLoading, data)
+
   const navigate = useNavigate()
   useEffect(() => {
     //if user is in database navigate to /your-route
     //if not navigate to /profile
     const checkUser = async () => {
+      if (isLoading) {
+        return
+      }
+
       if (data && data.auth0Id === user?.sub) {
         navigate('/user-dashboard')
       } else {
@@ -29,12 +37,12 @@ function CheckAuth() {
       }
     }
 
-    if (isAuthenticated && !isLoading) {
+    if (isAuthenticated) {
       checkUser()
     }
   }, [data, user, isAuthenticated, isLoading, navigate])
 
-  return <>{isLoading && <div>Loading...</div>}</>
+  return <p>Redirecting you</p>
 }
 
 export default CheckAuth

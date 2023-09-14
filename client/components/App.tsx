@@ -5,13 +5,15 @@ import UserDashboard from './UserDashboard/UserDashboard.tsx'
 import CrewDashboard from './CrewDashboard/CrewDashboard.tsx'
 import EventDetails from './EventDetails/EventDetails.tsx'
 import NewEvent from './NewEvent/NewEvent.tsx'
+import CheckAuth from './CheckAuth/CheckAuth.tsx'
 
 function App() {
-  // Profile takes a new registered user to the profile page/form when they finish Auth0 registration
+  // CheckAuth takes a user to dashboard, or to profile depending on if they are existing or new user
   return (
     <>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/check-auth" element={<CheckAuth />} />
         <Route path="/user-dashboard" element={<UserDashboard />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/crew-dashboard" element={<CrewDashboard />} />

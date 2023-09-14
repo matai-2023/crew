@@ -8,7 +8,7 @@ function LoginButton() {
     loginWithRedirect({
       authorizationParams: {
         // redirect URI should be to your root component which handles the authentication check
-        redirect_uri: `${window.location.origin}/user-dashboard`,
+        redirect_uri: `${window.location.origin}/check-auth`,
       },
     })
   }

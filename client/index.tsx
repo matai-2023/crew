@@ -3,6 +3,8 @@ import { Auth0Provider } from '@auth0/auth0-react'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import App from './components/App.tsx'
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+const queryClient = new QueryClient()
 
 document.addEventListener('DOMContentLoaded', () => {
   createRoot(document.getElementById('app') as HTMLElement).render(
@@ -13,12 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
     <Auth0Provider
       domain="matai-2023-hannah.au.auth0.com"
       clientId="v55PJUDa1Pqu5HddSg4jnRCQBpd61alR"
-      redirectUri={window.location.origin}
+      redirectUri={`${window.location.origin}/check-auth`}
       audience="https://crew/api"
     >
-      <Router>
-        <App />
-      </Router>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <App />
+        </Router>
+      </QueryClientProvider>
     </Auth0Provider>
   )
 })

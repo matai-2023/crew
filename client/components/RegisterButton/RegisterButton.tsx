@@ -9,7 +9,7 @@ function RegisterButton() {
       authorizationParams: {
         screen_hint: 'signin',
         // This is to add user details to the database
-        redirect_uri: `${window.location.origin}/profile`,
+        redirect_uri: `${window.location.origin}/check-auth`,
       },
     })
   }
