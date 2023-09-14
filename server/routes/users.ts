@@ -1,12 +1,13 @@
 import express from 'express'
 import * as db from '../db/db.ts'
-import checkJwt from '../auth0.ts'
+import checkJwt, { JwtRequest } from '../auth0.ts'
+import { ProfileDraft } from '../../types/Profile.ts'
 
 const router = express.Router()
 
 // POST /api/v1/users
 // this route is used for both creating and updating a user
-router.post('/', checkJwt, async (req, res) => {
+router.post('/', checkJwt, async (req: JwtRequest, res) => {
   const auth0Id = req.auth?.sub
   const form = req.body
 
@@ -21,17 +22,17 @@ router.post('/', checkJwt, async (req, res) => {
   }
 
   try {
-    const profileResult = profileDraftSchema.safeParse(form)
+    const profileResult = form as ProfileDraft
 
-    if (!profileResult.success) {
+    if (profileResult != form) {
       res.status(400).json({ message: 'Invalid form' })
       return
     }
 
-    if (profileResult.success) {
-      const profile = { ...profileResult.data, auth0Id }
+    if (profileResult === form) {
+      const profile = { ...profileResult, auth0Id }
       // TODO: Write upsertProfile db function in knex
-      await db.upsertProfile(profile)
+      await db.addNewUser(profile)
       res.sendStatus(201)
       return
     }
