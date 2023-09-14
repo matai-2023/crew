@@ -6,7 +6,7 @@ function NewEvent() {
   //TODO: Create a function to handle the Add Event form
   return (
     <>
-      <form action="">
+      <form action="submit">
         <label htmlFor="">
           <input type="text" placeholder="Event name" required></input>
         </label>

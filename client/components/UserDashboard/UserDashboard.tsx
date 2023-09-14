@@ -9,14 +9,12 @@ function UserDashboard() {
   return (
     <>
       <ul>
-        {' '}
         MyUserName&lsquo;s Crews
         <Link to={'/crew-dashboard'}>
           <li>Skydiving</li>
         </Link>
         <Link to={'/crew-dashboard'}>
-          {' '}
-          <li>Robot Poetry</li>{' '}
+          <li>Robot Poetry</li>
         </Link>
         <Link to={'/crew-dashboard'}>
           <li>Cheeseburger</li>
