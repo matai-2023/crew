@@ -40,11 +40,6 @@ function DashboardHeader() {
       <Link to="/" className="absolute top-0 right-0 mt-3 mr-4">
         <Logo />
       </Link>
-         {/* Display username and logout button - to be styled  */}
-         <IfAuthenticated>
-        <Button onClick={handleSignOut}>Sign out</Button>
-        {user && <p>Signed in as: {user?.email}</p>}
-      </IfAuthenticated>
       <div className="mt-3 ml-4">
         <motion.button
           onClick={handleArrowTouch}
