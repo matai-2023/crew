@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import ProfilePage from './ProfilePage.tsx/ProfilePage.tsx'
+import ProfilePage from './ProfilePage/ProfilePage.tsx'
 import LandingPage from './LandingPage.tsx'
 import UserDashboard from './UserDashboard/UserDashboard.tsx'
 import CrewDashboard from './CrewDashboard/CrewDashboard.tsx'
