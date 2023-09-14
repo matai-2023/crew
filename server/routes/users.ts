@@ -19,9 +19,7 @@ router.get('/', checkJwt, async (req: JwtRequest, res) => {
     const user = await db.getUser(auth0Id)
     res.status(200).json(user)
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: 'Unable to retrieve user from database', error })
+    res.status(500).json({ message: 'Unable to retrieve user from database' })
   }
 })
 
