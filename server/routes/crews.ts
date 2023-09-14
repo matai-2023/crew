@@ -13,3 +13,5 @@ router.get('/', checkJwt, async (req, res) => {
     res.status(500).send('Could not find crew list')
   }
 })
+
+export default router

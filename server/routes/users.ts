@@ -60,3 +60,5 @@ router.post('/', checkJwt, async (req: JwtRequest, res) => {
     res.status(500).json({ message: 'Unable to insert new user to database' })
   }
 })
+
+export default router
