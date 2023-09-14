@@ -3,12 +3,17 @@ import * as db from '../db/db.ts'
 
 const router = express.Router()
 
-router.get('/', async(req,res)=>{
-  try{
-    const crews= await db.getCrewList()
+// GET all CREWS by User
+router.get('/:userId', async (req, res) => {
+  try {
+    const userId = Number(req.params.userId)
+    const crews = await db.getCrewList(userId)
     res.json(crews)
-  } catch(err){
+    console.log(userId)
+  } catch (err) {
     console.log(err)
     res.status(500).send('Could not find crew list')
   }
 })
+
+export default router
