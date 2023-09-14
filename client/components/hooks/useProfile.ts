@@ -1,9 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useNavigate } from 'react-router-dom'
-
-import { upsertProfile } from '../apis/user'
-import { getUser } from '../apis/user'
+import { upsertProfile } from '../../apis/api'
+import { getUser } from '../../apis/api'
 import { Profile, ProfileDraft } from '../../../types/Profile'
 
 // This component adds user profile into the database
