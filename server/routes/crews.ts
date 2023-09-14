@@ -20,7 +20,6 @@ router.get('/:id', async (req, res) => {
   try {
     const crewId = Number(req.params.id)
     const eventsList = await db.getEventsbyCrew(crewId)
-    console.log(crewId)
 
     res.json(eventsList)
   } catch (err) {

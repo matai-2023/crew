@@ -3,6 +3,7 @@ import Background from '../UI/Background/Background'
 import DashboardHeader from '../UI/DashboardHeader/DashBoardHeader'
 import { useQuery } from '@tanstack/react-query'
 import { fetchEventList } from '../apis/crews'
+import { useState } from 'react'
 
 interface Props {
   id: number
@@ -13,7 +14,13 @@ function CrewDashboard(props: Props) {
   //TODO: Display a list of events when the page renders
   const crewId = props.id
   const { data, isLoading } = useQuery(['events'], () => fetchEventList(crewId))
+
+  const [displayMembers, setDisplayMembers] = useState(false)
   console.log(data)
+
+  function handleClick() {
+    setDisplayMembers(!displayMembers)
+  }
 
   return (
     <>
@@ -22,14 +29,16 @@ function CrewDashboard(props: Props) {
         <DashboardHeader />
         <div>
           Members
-          <ul>
-            <li>Allan</li>
-            <li>Steve</li>
-            <li>Allan</li>
-            <li>Allan</li>
-            <li>All</li>
-          </ul>
-          <button>Show/Hide</button>
+          {displayMembers && (
+            <ul>
+              <li>Allan</li>
+              <li>Steve</li>
+              <li>Allan</li>
+              <li>Allan</li>
+              <li>All</li>
+            </ul>
+          )}
+          <button onClick={handleClick}>Show/Hide</button>
         </div>
         <ul>
           {data && data.map((even) => <li key={even.id}>{even.name}</li>)}

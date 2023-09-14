@@ -3,6 +3,8 @@ import { Auth0Provider } from '@auth0/auth0-react'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import App from './components/App.tsx'
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+const queryClient = new QueryClient()
 
 document.addEventListener('DOMContentLoaded', () => {
   createRoot(document.getElementById('app') as HTMLElement).render(
@@ -18,9 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
       redirectUri={window.location.origin}
       audience=""
     >
-      <Router>
-        <App />
-      </Router>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <App />
+        </Router>
+      </QueryClientProvider>
     </Auth0Provider>
   )
 })
