@@ -10,8 +10,8 @@ interface Props {
 }
 
 function CrewDashboard(props: Props) {
-  //TODO: Display a list of members when the button is clicked
-  //TODO: Display a list of events when the page renders
+  //TODO: Get the actual data to display USERS
+  //TODO: Get the actual data to display EVENTS
   const crewId = props.id
   const { data, isLoading } = useQuery(['events'], () => fetchEventList(crewId))
 
@@ -31,18 +31,27 @@ function CrewDashboard(props: Props) {
           Members
           {displayMembers && (
             <ul>
-              <li>Allan</li>
-              <li>Steve</li>
-              <li>Allan</li>
-              <li>Allan</li>
-              <li>All</li>
+              {data.map((user) => (
+                <>
+                  <li key={user.id}>{user.name}</li>
+                </>
+              ))}
             </ul>
           )}
           <button onClick={handleClick}>Show/Hide</button>
         </div>
+
         <ul>
-          {data && data.map((even) => <li key={even.id}>{even.name}</li>)}
+          {data &&
+            data.map((even) => (
+              <>
+                <li key={even.id}>{even.name}</li>
+                <li key={even.id}>{even.date}</li>
+                <li key={even.id}>{even.time}</li>
+              </>
+            ))}
         </ul>
+
         <Link to={'/new-event'}>
           <button>Create</button>
         </Link>
