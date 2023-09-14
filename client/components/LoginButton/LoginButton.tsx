@@ -1,3 +1,4 @@
+import Button from '../UI/Button/Button'
 import { useAuth0 } from '@auth0/auth0-react'
 
 function LoginButton() {
@@ -11,7 +12,7 @@ function LoginButton() {
     })
   }
 
-  return <button onClick={handleLogin}>Log in</button>
+  return <Button onClick={handleLogin}>Log in</Button>
 }
 
 export default LoginButton
