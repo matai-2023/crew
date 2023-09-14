@@ -21,3 +21,10 @@ export async function addNewUser(profile: Profile) {
     .onConflict('auth0id')
     .merge()
 }
+
+// get an existing user
+export async function getUser(auth0Id: string) {
+  return await db('users')
+    .where('auth0id', auth0Id)
+    .first('auth0id as auth0Id', 'username', 'email', 'avatar')
+}

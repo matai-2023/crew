@@ -1,4 +1,4 @@
-import request from 'superagent'
+import request, { get } from 'superagent'
 import { Profile, ProfileDraft } from '../../types/Profile'
 
 const rootUrl = '/api/v1'

@@ -5,6 +5,26 @@ import { ProfileDraft } from '../../types/Profile.ts'
 
 const router = express.Router()
 
+// GET /api/v1/users
+// this route is used to fetch a user's data
+router.get('/', checkJwt, async (req: JwtRequest, res) => {
+  const auth0Id = req.auth?.sub
+
+  if (!auth0Id) {
+    res.status(400).json({ message: 'Please provide an id' })
+    return
+  }
+
+  try {
+    const user = await db.getUser(auth0Id)
+    res.status(200).json(user)
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: 'Unable to retrieve user from database', error })
+  }
+})
+
 // POST /api/v1/users
 // this route is used for both creating and updating a user
 router.post('/', checkJwt, async (req: JwtRequest, res) => {
