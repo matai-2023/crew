@@ -30,14 +30,14 @@ function DashboardHeader() {
       <Link to="/" className="absolute top-0 right-0 mt-3 mr-4">
         <Logo />
       </Link>
-      <div className="mt-3 ml-4">
+      <div className="mt-3 ml-4 p-3">
         <motion.button
           onClick={handleArrowTouch}
           initial="untouched"
           animate={isArrowTouched ? 'touched' : 'untouched'}
           variants={arrowScale}
         >
-          <img src="/home/eda/workspace/crew/public/Arrow.png" alt="Back" />
+          <img src="../../public/Arrow.png" alt="Back" />
         </motion.button>
       </div>
     </div>
