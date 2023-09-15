@@ -1,10 +1,19 @@
 import Button from '../UI/Button/Button'
+import { useAuth0 } from '@auth0/auth0-react'
 
 function LoginButton() {
-  // TODO: Import Auth0 and follow rcmndr code
-  // TODO: Create a handleSubmit function to make the button clickable
+  const { loginWithRedirect } = useAuth0()
 
-  return <Button>Log in</Button>
+  async function handleLogin() {
+    await loginWithRedirect({
+      authorizationParams: {
+        screen_hint: 'login',
+        redirect_uri: `${window.location.origin}/user-dashboard`,
+      },
+    })
+  }
+
+  return <Button onClick={handleLogin}>Log in</Button>
 }
 
 export default LoginButton
