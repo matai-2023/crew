@@ -28,7 +28,7 @@ function ProfilePage() {
 
   return (
     <div>
-      <ProfileForm handleSubmit={handleSubmit} profile={data} />
+      {data && <ProfileForm handleSubmit={handleSubmit} profile={data} />}
     </div>
   )
 }

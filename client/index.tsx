@@ -15,8 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     <Auth0Provider
       domain="matai-2023-hannah.au.auth0.com"
       clientId="v55PJUDa1Pqu5HddSg4jnRCQBpd61alR"
-      redirectUri={`${window.location.origin}`}
-      audience="https://crew/api"
+      authorizationParams={{
+        redirect_uri: `${window.location.origin}/user-dashboard`,
+        audience: 'https://crew/api',
+      }}
       cacheLocation="localstorage"
     >
       <QueryClientProvider client={queryClient}>

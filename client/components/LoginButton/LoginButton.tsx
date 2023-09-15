@@ -6,10 +6,9 @@ function LoginButton() {
 
   async function handleLogin() {
     await loginWithRedirect({
-      redirectUri: `${window.location.origin}/user-dashboard`,
-      screen_hint: 'login',
       authorizationParams: {
-        redirectUri: `${window.location.origin}/user-dashboard`,
+        screen_hint: 'login',
+        redirect_uri: `${window.location.origin}/user-dashboard`,
       },
     })
   }
