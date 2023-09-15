@@ -7,6 +7,8 @@ import {
 } from 'react-router-dom'
 
 import App from './components/App.tsx'
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+const queryClient = new QueryClient()
 import UserDashboard from './components/UserDashboard/UserDashboard.tsx'
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -23,9 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
       redirectUri={window.location.origin}
       audience=""
     >
-      <Router>
-        <App />
-      </Router>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <App />
+        </Router>
+      </QueryClientProvider>
     </Auth0Provider>
   )
 })

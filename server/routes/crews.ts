@@ -8,10 +8,10 @@ router.get('/', async (req, res) => {
     //  Todo: replace the hardcode Auth0 with Auth0 function
     const auth0 = 'auth0|6502325ffee50bd6057c4e09'
     const crews = await db.getCrewList(auth0)
-    res.json(crews)
+    res.status(200).json(crews)
   } catch (err) {
     console.log(err)
-    res.status(500).send('Could not find crew list')
+    res.status(500).json({ message: 'Could not find crew list' })
   }
 })
 

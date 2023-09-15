@@ -14,13 +14,20 @@ function UserDashboard() {
   // TODO: call the useAuth0 hook and destructure getAccessTokenSilently
 
   //TODO: Read the database and map through it to display all Crews from user
+  // Note: 'ADD CREW' is just a button for MVP
 
   return (
     <>
       <ul>
-        <h1>Hello</h1>
+        {data &&
+          data.map((p, i) => (
+            <li key={i}>
+              <h1>{p.name}</h1>
+              <img src={p.image} alt={p.name} />
+            </li>
+          ))}
       </ul>
-      <AddCrew />
+      <button>ADD CREW</button>
     </>
   )
 }
