@@ -4,14 +4,8 @@ import { useState } from 'react'
 import Logo from '../Logo/Logo.tsx'
 import Nav from '../Nav/Nav.tsx'
 
-interface Props {
-  toggleMenu: () => void
-  showNav: boolean
-}
-
-function DashboardHeader(props: Props) {
+function DashboardHeader() {
   const [isArrowTouched, setIsArrowTouched] = useState(false)
-  const [isLogoClicked, setIsLogoClicked] = useState(false)
   const navigate = useNavigate()
   const [navOpened, setNavOpened] = useState(false)
 
@@ -37,18 +31,9 @@ function DashboardHeader(props: Props) {
     untouched: { scale: 1 },
   }
 
-  const handleLogoClick = () => {
-    console.log('Logo clicked')
-    setIsLogoClicked(true)
-    toggleMenu()
-  }
-
   return (
     <div className="pl-4 pt-3 pr-4 flex justify-between items-center">
-      <div
-        className="absolute top-0 right-0 mt-3 mr-4"
-        onClick={handleLogoClick}
-      >
+      <div className="absolute top-0 right-0 mt-3 mr-4">
         <Logo toggleMenu={toggleMenu} />
       </div>
       <div className="mt-3 ml-4 p-3">
@@ -61,9 +46,9 @@ function DashboardHeader(props: Props) {
           <img src="../../public/Arrow.png" alt="Back" />
         </motion.button>
       </div>
-      {isLogoClicked && (
+      {navOpened && (
         <div>
-          <Nav toggleMenu={toggleMenu} showNav={props.showNav} />
+          <Nav />
         </div>
       )}
     </div>
