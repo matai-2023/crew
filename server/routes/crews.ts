@@ -1,11 +1,12 @@
 import express from 'express'
 import * as db from '../db/db.ts'
+import checkJwt from '../auth0.ts'
 
 const router = express.Router()
 
-router.get('/', async (req, res) => {
+router.get('/', checkJwt, async (req, res) => {
+  //TODO: replace the hard-coded auth0 with a REAL one!
   try {
-    //  Todo: replace the hardcode Auth0 with Auth0 function
     const auth0 = 'auth0|6502325ffee50bd6057c4e09'
     const crews = await db.getCrewList(auth0)
     res.json(crews)

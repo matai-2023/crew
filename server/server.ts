@@ -2,12 +2,14 @@ import * as Path from 'node:path'
 
 import express from 'express'
 
+import userRoutes from './routes/users.ts'
 import crewRoutes from './routes/crews.ts'
 
 const server = express()
 
 server.use(express.json())
 
+server.use('/api/v1/users', userRoutes)
 server.use('/api/v1/crews', crewRoutes)
 
 if (process.env.NODE_ENV === 'production') {
