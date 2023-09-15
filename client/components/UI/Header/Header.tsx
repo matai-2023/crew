@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Logo from '../Logo/Logo.tsx'
+import Logo from '../Nav/Nav.tsx'
 
 function Header() {
   return (

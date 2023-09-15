@@ -1,17 +1,21 @@
-import { Link } from 'react-router-dom'
+// import React from 'react'
+// import { Link } from 'react-router-dom'
 
-function Logo() {
+interface Props {
+  toggleMenu: () => void
+}
+
+function Logo(props: Props) {
   const imagePath = '../../public/logo.png'
+
   return (
-    <Link to="/">
-      <div className="p-3">
-        <img
-          src={imagePath}
-          alt="Logo"
-          className="w-auto h-auto max-h-16 max-w-16"
-        />
-      </div>
-    </Link>
+    <div className="p-3" onClick={props.toggleMenu}>
+      <img
+        src={imagePath}
+        alt="Logo"
+        className="w-auto h-auto max-h-16 max-w-16"
+      />
+    </div>
   )
 }
 
