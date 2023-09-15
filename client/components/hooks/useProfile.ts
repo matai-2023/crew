@@ -9,16 +9,18 @@ import { Profile, ProfileDraft } from '../../../types/Profile'
 
 function useProfile() {
   const navigate = useNavigate()
-  const { user, getAccessTokenSilently } = useAuth0()
+  const { getAccessTokenSilently, isAuthenticated } = useAuth0()
 
   const queryClient = useQueryClient()
   const { data, isLoading } = useQuery({
-    queryKey: ['user'],
+    queryKey: ['user', isAuthenticated],
     queryFn: async () => {
-      const accessToken = await getAccessTokenSilently()
-      if (user && user.sub) {
+      if (isAuthenticated) {
+        const accessToken = await getAccessTokenSilently()
         const response = await getUser(accessToken)
         return response
+      } else {
+        return null
       }
     },
   })
