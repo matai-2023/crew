@@ -37,6 +37,15 @@ router.post('/', checkJwt, async (req: JwtRequest, res) => {
   try {
     const profileResult = form as ProfileDraft
 
+    // implement zod
+
+    // const profileResult = {
+
+    //   username: form.username,
+    //   email: form.email,
+    //   avatar: form.avatar,
+    // }
+
     // if (profileResult !== form) {
     //   res.status(400).json({ message: 'Invalid form' })
     //   return

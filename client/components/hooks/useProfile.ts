@@ -13,7 +13,7 @@ function useProfile() {
 
   const queryClient = useQueryClient()
   const { data, isLoading } = useQuery({
-    queryKey: ['user', user?.sub],
+    queryKey: ['user'],
     queryFn: async () => {
       const accessToken = await getAccessTokenSilently()
       if (user && user.sub) {
@@ -33,7 +33,7 @@ function useProfile() {
     }) => upsertProfile(form, token),
     onSuccess: () => {
       queryClient.invalidateQueries(['user'])
-      navigate('/crew-dashboard')
+      navigate('/user-dashboard')
     },
   })
 

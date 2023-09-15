@@ -15,16 +15,12 @@ const queryClient = new QueryClient()
 
 document.addEventListener('DOMContentLoaded', () => {
   createRoot(document.getElementById('app') as HTMLElement).render(
-    /**
-     * Auth0Provider is a component that has a hook that provides
-     * all authentication operations
-     */
     <Auth0Provider
       domain="matai-2023-hannah.au.auth0.com"
       clientId="v55PJUDa1Pqu5HddSg4jnRCQBpd61alR"
-      redirectUri={`${window.location.origin}/`}
-      audience="https://crew/api"
       cacheLocation="localstorage"
+      redirectUri={window.location.origin}
+      audience="https://crew/api"
     >
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={routes} />
