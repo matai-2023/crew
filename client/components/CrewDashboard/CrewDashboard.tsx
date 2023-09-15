@@ -33,7 +33,7 @@ function CrewDashboard(props: Props) {
             <ul>
               {data.map((user) => (
                 <li key={user.id} data-testid="crew-member">
-                  {user.name}
+                  {`User: ${user.name}`}
                 </li>
               ))}
             </ul>
@@ -48,7 +48,6 @@ function CrewDashboard(props: Props) {
             data.map((even) => (
               <li key={even.id}>
                 <p>{even.name}</p>
-                <p>{even.date}</p>
                 <p>{even.time}</p>
               </li>
             ))}
