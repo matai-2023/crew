@@ -27,9 +27,8 @@ function DashboardHeader() {
 
   return (
     <div className="pl-4 pt-3 pr-4 flex justify-between items-center">
-      <Link to="/" className="absolute top-0 right-0 mt-3 mr-4">
-        <Logo />
-      </Link>
+      <Link to="/" className="absolute top-0 right-0 mt-3 mr-4"></Link>
+      <Logo />
       <div className="mt-3 ml-4">
         <motion.button
           onClick={handleArrowTouch}

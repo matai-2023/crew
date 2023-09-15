@@ -32,11 +32,9 @@ function CrewDashboard(props: Props) {
           {displayMembers && (
             <ul>
               {data.map((user) => (
-                <>
-                  <li key={user.id} data-testid="crew-member">
-                    {user.name}
-                  </li>
-                </>
+                <li key={user.id} data-testid="crew-member">
+                  {user.name}
+                </li>
               ))}
             </ul>
           )}
@@ -48,11 +46,11 @@ function CrewDashboard(props: Props) {
         <ul>
           {data &&
             data.map((even) => (
-              <>
-                <li key={even.id}>{even.name}</li>
-                <li key={even.id}>{even.date}</li>
-                <li key={even.id}>{even.time}</li>
-              </>
+              <li key={even.id}>
+                <p>{even.name}</p>
+                <p>{even.date}</p>
+                <p>{even.time}</p>
+              </li>
             ))}
         </ul>
 
