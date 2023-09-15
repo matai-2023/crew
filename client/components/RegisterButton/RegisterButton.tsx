@@ -6,10 +6,11 @@ function RegisterButton() {
 
   function handleRegister() {
     loginWithRedirect({
-      appState: {
-        returnTo: '/profile',
-      },
+      redirectUri: `${window.location.origin}/profile`,
       screen_hint: 'signup',
+      authorizationParams: {
+        redirectUri: `${window.location.origin}/profile`,
+      },
     })
   }
 
