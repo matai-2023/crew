@@ -26,9 +26,16 @@ function ProfilePage() {
     mutation.mutate({ form, token })
   }
 
+  const empty: Profile = {
+    auth0Id: user?.sub || '',
+    username: '',
+    email: '',
+    avatar: '',
+  }
+
   return (
     <div>
-      {data && <ProfileForm handleSubmit={handleSubmit} profile={data} />}
+      <ProfileForm handleSubmit={handleSubmit} profile={data || empty} />
     </div>
   )
 }
