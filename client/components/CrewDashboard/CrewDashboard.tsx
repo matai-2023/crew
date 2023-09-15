@@ -33,12 +33,16 @@ function CrewDashboard(props: Props) {
             <ul>
               {data.map((user) => (
                 <>
-                  <li key={user.id}>{user.name}</li>
+                  <li key={user.id} data-testid="crew-member">
+                    {user.name}
+                  </li>
                 </>
               ))}
             </ul>
           )}
-          <button onClick={handleClick}>Show/Hide</button>
+          <button onClick={handleClick} data-testid="display-button">
+            Show/Hide
+          </button>
         </div>
 
         <ul>

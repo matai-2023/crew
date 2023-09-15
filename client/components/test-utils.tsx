@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom'
 import '@testing-library/jest-dom/vitest'
 
-import { routes } from './index'
+import routes from './AppLayout'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 afterEach(cleanup)
