@@ -13,7 +13,7 @@ function useProfile() {
 
   const queryClient = useQueryClient()
   const { data, isLoading } = useQuery({
-    queryKey: ['user'],
+    queryKey: ['user', user?.sub],
     queryFn: async () => {
       const accessToken = await getAccessTokenSilently()
       if (user && user.sub) {
