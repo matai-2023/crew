@@ -20,6 +20,7 @@ function ProfileForm(props: Props) {
     }
 
     props.handleSubmit(form)
+    // TODO: Add redirect to the user-dashboard here
   }
 
   return (
@@ -46,14 +47,9 @@ function ProfileForm(props: Props) {
           ></input>
         </div>
         <div className="space-y-2">
-          <label htmlFor="last-name">Last Name</label>
-          <input
-            type="file"
-            name="avatar"
-            id="avatar"
-            required
-            defaultValue={props.profile?.avatar}
-          ></input>
+          <label htmlFor="avatar">Avatar</label>
+          <input type="file" name="avatar" id="avatar" required></input>
+          <img src={props.profile?.avatar} />
         </div>
         <div className="mx-auto text-center">
           <button>Save</button>
