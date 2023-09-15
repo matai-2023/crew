@@ -1,7 +1,7 @@
 import {
   Outlet,
   Route,
-  createMemoryRouter,
+  createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom'
 
@@ -23,15 +23,15 @@ function AppLayout() {
   )
 }
 
-const routes = createMemoryRouter(
+const routes = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<AppLayout />}>
       <Route index element={<LandingPage />} />
-      <Route path="/user-dashboard" element={<UserDashboard />} />
-      <Route path="/profile" element={<ProfilePage />} />
-      <Route path="/crew-dashboard" element={<CrewDashboard />} />
-      <Route path="/event-details" element={<EventDetails />} />
-      <Route path="/new-event" element={<NewEvent />} />
+      <Route path="user-dashboard" element={<UserDashboard />} />
+      <Route path="profile" element={<ProfilePage />} />
+      <Route path="crew-dashboard" element={<CrewDashboard />} />
+      <Route path="event-details" element={<EventDetails />} />
+      <Route path="new-event" element={<NewEvent />} />
     </Route>
   )
 )
