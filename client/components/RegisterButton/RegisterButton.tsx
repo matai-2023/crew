@@ -6,11 +6,10 @@ function RegisterButton() {
 
   function handleRegister() {
     loginWithRedirect({
-      authorizationParams: {
-        screen_hint: 'signin',
-        // This is to add user details to the database
-        redirect_uri: `${window.location.origin}/check-auth`,
+      appState: {
+        returnTo: '/profile',
       },
+      screen_hint: 'signup',
     })
   }
 
