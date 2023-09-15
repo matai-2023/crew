@@ -12,7 +12,7 @@ interface Props {
 function CrewDashboard(props: Props) {
   //TODO: Get the actual data to display USERS
   //TODO: Get the actual data to display EVENTS
-  const crewId = props.id
+  const crewId = 2
   const { data, isLoading } = useQuery(['events'], () => fetchEventList(crewId))
 
   const [displayMembers, setDisplayMembers] = useState(false)
@@ -48,7 +48,7 @@ function CrewDashboard(props: Props) {
             data.map((even) => (
               <li key={even.id}>
                 <p>{even.name}</p>
-                <p>{even.time}</p>
+                <p>{even.date}</p>
               </li>
             ))}
         </ul>
