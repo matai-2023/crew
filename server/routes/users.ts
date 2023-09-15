@@ -34,22 +34,16 @@ router.post('/', checkJwt, async (req: JwtRequest, res) => {
     return
   }
 
-  if (!form) {
-    res.status(400).json({ message: 'Please provide a form' })
-    return
-  }
-
   try {
     const profileResult = form as ProfileDraft
 
-    if (profileResult != form) {
-      res.status(400).json({ message: 'Invalid form' })
-      return
-    }
+    // if (profileResult !== form) {
+    //   res.status(400).json({ message: 'Invalid form' })
+    //   return
+    // }
 
     if (profileResult === form) {
       const profile = { ...profileResult, auth0Id }
-      // TODO: Write upsertProfile db function in knex
       await db.addNewUser(profile)
       res.sendStatus(201)
       return
