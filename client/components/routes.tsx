@@ -29,7 +29,6 @@ function AppLayout() {
         <IfNotAuthenticated>
           <Header />
         </IfNotAuthenticated>
-        <button onClick={() => logout()}>logout</button>
         <Outlet />
       </Background>
     </>
