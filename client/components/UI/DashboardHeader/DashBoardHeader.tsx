@@ -1,8 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
-import Logo from '../Logo/Logo.tsx'
-import Nav from '../Nav/Nav.tsx'
+import React, { useState } from 'react'
+import { IfAuthenticated } from '../../Authenticated.tsx'
+import Button from '../Button/Button.tsx'
+import { useAuth0 } from '@auth0/auth0-react'
 
 function DashboardHeader() {
   const [isArrowTouched, setIsArrowTouched] = useState(false)
@@ -29,6 +30,13 @@ function DashboardHeader() {
   const arrowScale = {
     touched: { scale: 1.2 },
     untouched: { scale: 1 },
+  }
+
+  const { user, logout } = useAuth0()
+
+  const handleSignOut = () => {
+    console.log('sign out')
+    logout()
   }
 
   return (
