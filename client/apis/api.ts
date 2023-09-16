@@ -1,4 +1,4 @@
-import request, { get } from 'superagent'
+import request from 'superagent'
 import { Profile, ProfileDraft } from '../../types/Profile'
 
 const rootUrl = '/api/v1'
@@ -23,4 +23,14 @@ export async function getUser(token: string) {
     .set('Content-Type', 'application/json')
 
   return res.body as Profile
+}
+
+// GET EVENT details of a Crew
+
+export async function fetchEventDetails(crewId: number, eventId: number) {
+  const res = await request.get(
+    `${rootUrl}/crews/${crewId}/event-details/${eventId}`
+  )
+
+  return res.body
 }

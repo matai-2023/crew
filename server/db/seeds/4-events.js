@@ -13,7 +13,8 @@ export async function seed(knex) {
     description: faker.word.words({
       count: { min: 8, max: 20 },
     }),
-    date: faker.date.future(),
+    date: faker.date.future().toLocaleDateString(),
+    img: './public/images/events/event2.png',
     crew_id: faker.helpers.arrayElement(crewIds),
   }))
 

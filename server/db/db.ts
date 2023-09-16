@@ -18,6 +18,25 @@ export async function getEventsbyCrew(crewId: number) {
     .join('events', 'events.id', 'crew_users.event_id')
     .where('crews.id', crewId)
     .select(
+      'events.id as eventId',
+      'events.name as name',
+      'events.time as time',
+      'events.location as location',
+      'events.description as description',
+      'events.date as date',
+      'events.img as image'
+    )
+}
+
+// Get ONE event of a CREW
+
+export async function getEventDetails(crewId: number, eventId: number) {
+  return db('crew_users')
+    .join('crews', 'crews.id', 'crew_users.crew_id')
+    .join('events', 'events.id', 'crew_users.event_id')
+    .where('crews.id', crewId)
+    .where('events.id', eventId)
+    .select(
       'events.name as name',
       'events.time as time',
       'events.location as location',
