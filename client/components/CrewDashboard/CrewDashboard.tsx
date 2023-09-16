@@ -5,6 +5,7 @@ import DashboardHeader from '../UI/DashboardHeader/DashBoardHeader'
 import { useQuery } from '@tanstack/react-query'
 import { fetchEventList } from '../apis/crews'
 import { useState } from 'react'
+import Button from '../UI/Button/Button'
 
 interface Props {
   id: number
@@ -25,11 +26,9 @@ function CrewDashboard(props: Props) {
 
   return (
     <>
-      {isLoading ? <p>data is loading...</p> : ''}
-      <Background>
-        <DashboardHeader />
-        <div>
-          Members
+      <div className="flex flex-col items-center justify-start min-h-screen mt-10">
+        {isLoading ? <p>data is loading...</p> : ''}
+        <div className="mt-4">
           {displayMembers && (
             <ul>
               {data.map((user) => (
@@ -39,28 +38,34 @@ function CrewDashboard(props: Props) {
               ))}
             </ul>
           )}
-          <button onClick={handleClick} data-testid="display-button">
-            Show/Hide
-          </button>
+          <Button
+            className="mt-4"
+            onClick={handleClick}
+            data-testid="display-button"
+          >
+            View my Crew
+          </Button>
         </div>
 
-        <ul>
+        <ul className="p-5 mt-4">
           {data &&
             data.map((even) => (
               <li key={even.id}>
-                <p>{even.name}</p>
-                <p>{even.date}</p>
+                <div className="bg-white p-3 mb-4 rounded-lg shadow-left-bottom-pink">
+                  <div className="flex flex-col items-center justify-center">
+                    <p className="font-interBold font-bold">{even.name}</p>
+                    <p className="font-interReg">{even.date}</p>
+                  </div>
+                </div>
               </li>
             ))}
         </ul>
-
-        <Link to={'/new-event'}>
-          <button>Create</button>
-        </Link>
-        <Link to={'/user-dashboard'}>
-          <button>Back to your dashboard</button>
-        </Link>
-      </Background>
+        <div className="mt-4">
+          <Link to={'/new-event'}>
+            <Button className="">Create Event</Button>
+          </Link>
+        </div>
+      </div>
     </>
   )
 }
