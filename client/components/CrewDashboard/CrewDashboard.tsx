@@ -1,3 +1,4 @@
+import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router-dom'
 import Background from '../UI/Background/Background'
 import DashboardHeader from '../UI/DashboardHeader/DashBoardHeader'
