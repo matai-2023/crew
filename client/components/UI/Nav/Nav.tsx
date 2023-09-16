@@ -17,9 +17,9 @@ function Nav() {
   return (
     <nav className="fixed top-0 left-0 w-full bg-gray-800 bg-opacity-90 text-white font-inter text-right p-4">
       <ul className="text-3xl">
-        <li>
-          <button onClick={() => goTo('/Create Crew')}>Create Crew</button>
-        </li>
+        {/* <li>
+          <button onClick={() => goTo('/Create Crew')}>Log Out</button>
+        </li> */}
         <li>
           {isAuthenticated && <button onClick={handleSignOut}>Log out</button>}
         </li>
