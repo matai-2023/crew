@@ -1,7 +1,7 @@
 import { Profile } from '../../types/Profile.js'
 import db from './connection.js'
 
-// Get all CREWS from a User
+// Get all CREWS of a User
 export async function getCrewList(auth0id: string) {
   return db('crew_users')
     .join('crews', 'crews.id', 'crew_users.crew_id')
@@ -10,13 +10,32 @@ export async function getCrewList(auth0id: string) {
     .select('crews.name', 'crews.image')
 }
 
-// Get all EVENTS from a Crew
+// Get all EVENTS of a Crew
 
 export async function getEventsbyCrew(crewId: number) {
   return db('crew_users')
     .join('crews', 'crews.id', 'crew_users.crew_id')
     .join('events', 'events.id', 'crew_users.event_id')
     .where('crews.id', crewId)
+    .select(
+      'events.id as eventId',
+      'events.name as name',
+      'events.time as time',
+      'events.location as location',
+      'events.description as description',
+      'events.date as date',
+      'events.img as image'
+    )
+}
+
+// Get ONE event of a CREW
+
+export async function getEventDetails(crewId: number, eventId: number) {
+  return db('crew_users')
+    .join('crews', 'crews.id', 'crew_users.crew_id')
+    .join('events', 'events.id', 'crew_users.event_id')
+    .where('crews.id', crewId)
+    .where('events.id', eventId)
     .select(
       'events.name as name',
       'events.time as time',
