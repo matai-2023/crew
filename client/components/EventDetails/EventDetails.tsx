@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
-import { fetchEventDetails } from '../../apis/api'
+import { fetchEventDetails } from '../../apis/api.ts'
 
 function EventDetails() {
   //TODO: Create logic to display the properties of an event

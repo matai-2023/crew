@@ -1,14 +1,19 @@
-import { Link } from 'react-router-dom'
-import AddCrew from '../AddCrew/AddCrew.js'
 import { useQuery } from '@tanstack/react-query'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useState } from 'react'
 import { fetchCrewList } from '../../apis/api.ts'
+import CrewDashboard from '../CrewDashboard/CrewDashboard.tsx'
+import { Link, useNavigate } from 'react-router-dom'
+
+interface crews {
+  id: number
+  name: string
+  image: string
+}
 
 function UserDashboard() {
-  // TODO: call the useAuth0 hook and destructure getAccessTokenSilently
-  //TODO: Read the database and map through it to display all Crews from user
   // Note: 'ADD CREW' is just a button for MVP
+  const [uniqueName, setUniqueName] = useState([] as crews[])
 
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
   const { data, isLoading } = useQuery({
@@ -23,20 +28,11 @@ function UserDashboard() {
     },
   })
 
-  const [uniqueName, setUniqueName] = useState([] as crews[])
-
-  console.log('data', data)
-
   useEffect(() => {
     if (!isLoading) {
       setUniqueName(filterDuplicatedName(data))
     }
   }, [data, isLoading])
-
-  interface crews {
-    name: string
-    image: string
-  }
 
   function filterDuplicatedName(array: crews[]) {
     // const mySet = new Set()
@@ -48,20 +44,23 @@ function UserDashboard() {
         }, [])
       : []
   }
-
+  const navigate = useNavigate()
   return (
     <>
       <p>{isLoading ? 'please wait' : ''}</p>
-      <ul>
-        {isAuthenticated &&
-          uniqueName &&
-          uniqueName.map((p, i) => (
-            <li key={i}>
-              <h1>{p.name}</h1>
-              <img src={p.image} alt={p.name} />
-            </li>
-          ))}
-      </ul>
+      {isAuthenticated &&
+        uniqueName &&
+        uniqueName.map((crew, i) => (
+          <div key={i} onClick={() => navigate(`/crew-dashboard/${crew.id}`)}>
+            <ul>
+              <li>
+                <h1>{crew.name}</h1>
+                <img src={crew.image} alt={crew.name} />
+              </li>
+            </ul>
+          </div>
+        ))}
+
       <button>ADD CREW</button>
     </>
   )

@@ -32,7 +32,24 @@ export async function fetchCrewList(token: string) {
   return response.body
 }
 
-export async function fetchEventList(crewId: number) {
-  const response = await request.get(`/api/v1/crews/${crewId}`)
+// GET EVENTS of a Crew of an authorized user
+export async function fetchEventList(token: string, crewId: number) {
+  const response = await request
+    .get(`/api/v1/crews/${crewId}`)
+    .set('Authorization', `Bearer ${token}`)
   return response.body
+}
+
+// GET EVENT details of a Crew of an authorized user
+
+export async function fetchEventDetails(
+  token: string,
+  crewId: number,
+  eventId: number
+) {
+  const res = await request
+    .get(`${rootUrl}/crews/${crewId}/event-details/${eventId}`)
+    .set('Authorization', `Bearer ${token}`)
+
+  return res.body
 }
