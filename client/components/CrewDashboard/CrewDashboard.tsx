@@ -12,7 +12,7 @@ function CrewDashboard() {
   //TODO: Get the actual data to display USERS
   //TODO: Get the actual data to display EVENTS
   const { crewId } = useParams()
-  console.log({ crewId })
+  const newId = Number(crewId)
 
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
   const { data, isLoading } = useQuery({
@@ -20,7 +20,7 @@ function CrewDashboard() {
     queryFn: async () => {
       const accessToken = await getAccessTokenSilently()
       if (user && user.sub) {
-        const response = await fetchEventList(accessToken, crewId.id)
+        const response = await fetchEventList(accessToken, newId)
         return response
       }
     },
