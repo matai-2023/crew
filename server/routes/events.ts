@@ -8,9 +8,7 @@ router.get('/:crewId/event-details/:eventId', async (req, res) => {
   try {
     const crewId = Number(req.params.crewId)
     const eventId = Number(req.params.eventId)
-    console.log(crewId)
 
-    console.log(eventId)
     const events = await db.getEventDetails(crewId, eventId)
     res.json(events)
   } catch (err) {
