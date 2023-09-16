@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Background from '../UI/Background/Background'
 import DashboardHeader from '../UI/DashboardHeader/DashBoardHeader'
 import { useQuery } from '@tanstack/react-query'
-import { fetchEventList } from '../apis/crews'
+import { fetchEventList } from '../../apis/api.ts'
 import { useState } from 'react'
 
 interface Props {

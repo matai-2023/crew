@@ -1,14 +1,20 @@
 import express from 'express'
 import * as db from '../db/db.ts'
-import checkJwt from '../auth0.ts'
+import checkJwt, { JwtRequest } from '../auth0.ts'
 
 const router = express.Router()
 
-router.get('/', async (req, res) => {
+router.get('/', checkJwt, async (req: JwtRequest, res) => {
   try {
     //  Todo: replace the hardcode Auth0 with Auth0 function
-    const auth0 = 'auth0|6502325ffee50bd6057c4e09'
-    const crews = await db.getCrewList(auth0)
+    const auth0Id = req.auth?.sub
+
+    if (!auth0Id) {
+      res.status(400).json({ message: 'Please provide an id' })
+      return
+    }
+
+    const crews = await db.getCrewList(auth0Id)
     res.status(200).json(crews)
   } catch (err) {
     console.log(err)

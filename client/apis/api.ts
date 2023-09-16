@@ -24,3 +24,15 @@ export async function getUser(token: string) {
 
   return res.body as Profile
 }
+
+export async function fetchCrewList(token: string) {
+  const response = await request
+    .get('/api/v1/crews/')
+    .set('Authorization', `Bearer ${token}`)
+  return response.body
+}
+
+export async function fetchEventList(crewId: number) {
+  const response = await request.get(`/api/v1/crews/${crewId}`)
+  return response.body
+}
