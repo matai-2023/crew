@@ -1,64 +1,66 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router-dom'
+import Background from '../UI/Background/Background'
+import DashboardHeader from '../UI/DashboardHeader/DashBoardHeader'
+import { useQuery } from '@tanstack/react-query'
+import { fetchEventList } from '../apis/crews'
+import { useState } from 'react'
 
+interface Props {
+  id: number
+}
 
-function CrewDashboard() {
+function CrewDashboard(props: Props) {
+  //TODO: Get the actual data to display USERS
+  //TODO: Get the actual data to display EVENTS
+  const crewId = 2
+  const { data, isLoading } = useQuery(['events'], () => fetchEventList(crewId))
 
-  const { isAuthenticated, getAccessTokenSilently } = useAuth0()
-  //TODO: Display a list of members when the button is clicked
-  //TODO: Display a list of events when the page renders
+  const [displayMembers, setDisplayMembers] = useState(false)
+  console.log(data)
+
+  function handleClick() {
+    setDisplayMembers(!displayMembers)
+  }
+
   return (
     <>
-      <div>
-        Members
+      {isLoading ? <p>data is loading...</p> : ''}
+      <Background>
+        <DashboardHeader />
+        <div>
+          Members
+          {displayMembers && (
+            <ul>
+              {data.map((user) => (
+                <li key={user.id} data-testid="crew-member">
+                  {`User: ${user.name}`}
+                </li>
+              ))}
+            </ul>
+          )}
+          <button onClick={handleClick} data-testid="display-button">
+            Show/Hide
+          </button>
+        </div>
+
         <ul>
-          <li>Allan</li>
-          <li>Steve</li>
-          <li>Allan</li>
-          <li>Allan</li>
-          <li>All</li>
+          {data &&
+            data.map((even) => (
+              <li key={even.id}>
+                <p>{even.name}</p>
+                <p>{even.date}</p>
+              </li>
+            ))}
         </ul>
-        <button>Show/Hide</button>
-      </div>
-      <ul>
-        This crew&lsquo;s events
-        <div>
-          <Link to={'/event-details'}>
-            <li>Pirate Yoga Retreat</li>
-          </Link>
-          <p>7th Sep</p>
-        </div>
-        <div>
-          <Link to={'/event-details'}>
-            <li>Time-Traveling Karaoke Circus</li>
-          </Link>
-          <p>10th Sep</p>
-        </div>
-        <div>
-          <Link to={'/event-details'}>
-            <li>Underwater Pumpkin Carving</li>
-          </Link>
-          <p>20th Sep</p>
-        </div>
-        <div>
-          <Link to={'/event-details'}>
-            <li>Llama Lovers&lsquo; Roller Derby</li>
-          </Link>
-          <p>15th Oct</p>
-        </div>
-        <div>
-          <Link to={'/event-details'}>
-            <li>Haunted Ice Cream Social</li>
-            <p>25th Oct</p>
-          </Link>
-        </div>
-      </ul>
-      <Link to={'/new-event'}>
-        <button>Create</button>
-      </Link>
-      <Link to={'/user-dashboard'}>
-        <button>Back to your dashboard</button>
-      </Link>
+
+        <Link to={'/new-event'}>
+          <button>Create</button>
+        </Link>
+        <Link to={'/user-dashboard'}>
+          <button>Back to your dashboard</button>
+        </Link>
+      </Background>
     </>
   )
 }
