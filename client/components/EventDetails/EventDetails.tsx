@@ -1,8 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import { fetchEventDetails } from '../../apis/api'
-import Background from '../UI/Background/Background'
-import DashboardHeader from '../UI/DashboardHeader/DashBoardHeader'
 
 function EventDetails() {
   //TODO: Create logic to display the properties of an event
@@ -17,26 +15,26 @@ function EventDetails() {
   return (
     <>
       {isLoading ? <p>data is loading...</p> : ''}
-      <Background>
-        <DashboardHeader />
-        {data &&
-          data.map((eventDetails) => (
-            <>
-              <div>{eventDetails.image}</div>
-              <p>Event Details</p>
-              <li key={eventDetails.id}>
-                <p>{eventDetails.name}</p>
-                <p>{eventDetails.time}</p>
-                <p>{eventDetails.location}</p>
-                <p>{eventDetails.date}</p>
-              </li>
-            </>
-          ))}
 
-        <Link to={'/crew-dashboard'}>
-          <button>Go back</button>
-        </Link>
-      </Background>
+      {data &&
+        data.map((eventDetails) => (
+          <>
+            <div>
+              <img src={eventDetails.image} alt={eventDetails.name} />
+            </div>
+            <p>Event Details</p>
+            <li key={eventDetails.id}>
+              <p>{eventDetails.name}</p>
+              <p>{eventDetails.time}</p>
+              <p>{eventDetails.location}</p>
+              <p>{eventDetails.date}</p>
+            </li>
+          </>
+        ))}
+
+      <Link to={'/crew-dashboard'}>
+        <button>Go back</button>
+      </Link>
     </>
   )
 }
