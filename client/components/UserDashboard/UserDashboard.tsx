@@ -52,7 +52,7 @@ function UserDashboard() {
   return (
     <>
       <p>{isLoading ? 'please wait' : ''}</p>
-      <ul>
+      <ul data-testid="user-dashboard">
         {isAuthenticated &&
           uniqueName &&
           uniqueName.map((p, i) => (
