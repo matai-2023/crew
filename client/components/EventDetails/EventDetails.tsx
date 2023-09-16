@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import { fetchEventDetails } from '../../apis/api'
+import Button from '../UI/Button/Button'
 
 function EventDetails() {
   //TODO: Create logic to display the properties of an event
@@ -22,18 +23,20 @@ function EventDetails() {
             <div>
               <img src={eventDetails.image} alt={eventDetails.name} />
             </div>
-            <p>Event Details</p>
-            <li key={eventDetails.id}>
-              <p>{eventDetails.name}</p>
-              <p>{eventDetails.time}</p>
-              <p>{eventDetails.location}</p>
-              <p>{eventDetails.date}</p>
-            </li>
+            <div>
+              <p>Event Details</p>
+              <li key={eventDetails.id}>
+                <p>{eventDetails.name}</p>
+                <p>{eventDetails.time}</p>
+                <p>{eventDetails.location}</p>
+                <p>{eventDetails.date}</p>
+              </li>
+            </div>
           </>
         ))}
 
-      <Link to={'/crew-dashboard'}>
-        <button>Go back</button>
+      <Link className="py-2 px-4" to={'/crew-dashboard'}>
+        <Button>Message the event crew</Button>
       </Link>
     </>
   )
