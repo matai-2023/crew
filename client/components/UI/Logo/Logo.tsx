@@ -1,8 +1,12 @@
-function Logo() {
+interface Props {
+  toggleMenu: () => void
+}
+
+function Logo(props: Props) {
   const imagePath = '../../public/logo.png'
 
   return (
-    <div className="p-3">
+    <div className="p-3" onClick={props.toggleMenu}>
       <img
         src={imagePath}
         alt="Logo"
