@@ -34,3 +34,13 @@ export async function fetchEventDetails(crewId: number, eventId: number) {
 
   return res.body
 }
+
+export async function fetchCrewList() {
+  const response = await request.get('/api/v1/crews/')
+  return response.body
+}
+
+export async function fetchEventList(crewId: number) {
+  const response = await request.get(`/api/v1/crews/${crewId}`)
+  return response.body
+}

@@ -25,7 +25,7 @@ function ProfileForm(props: Props) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="space-y-4 p-4">
+      <form onSubmit={(e) => handleSubmit(e)} className="space-y-4 p-4">
         <div className="space-y-2">
           <label htmlFor="username">Username *</label>
           <input
@@ -49,7 +49,7 @@ function ProfileForm(props: Props) {
         <div className="space-y-2">
           <label htmlFor="avatar">Avatar</label>
           <input type="file" name="avatar" id="avatar" required></input>
-          <img src={props.profile?.avatar} />
+          <img src={props.profile?.avatar} alt={props.profile?.username} />
         </div>
         <div className="mx-auto text-center">
           <button>Save</button>

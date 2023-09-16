@@ -23,3 +23,5 @@ document.addEventListener('DOMContentLoaded', () => {
     </Auth0Provider>
   )
 })
+export { routes }
+
