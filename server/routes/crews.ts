@@ -1,5 +1,6 @@
 import express from 'express'
 import * as db from '../db/db.ts'
+import checkJwt from '../auth0.ts'
 
 const router = express.Router()
 
@@ -12,6 +13,19 @@ router.get('/', async (req, res) => {
   } catch (err) {
     console.log(err)
     res.status(500).json({ message: 'Could not find crew list' })
+  }
+})
+
+//GET EVENTS to be displayed at a certain CREW
+router.get('/:id', async (req, res) => {
+  try {
+    const crewId = Number(req.params.id)
+    const eventsList = await db.getEventsbyCrew(crewId)
+
+    res.json(eventsList)
+  } catch (err) {
+    console.log(err)
+    res.status(500).send('Could not find event list')
   }
 })
 

@@ -1,50 +1,26 @@
-import request from 'superagent'
-import { Fruit, NewFruit } from '../models/fruit.ts'
+import request, { get } from 'superagent'
+import { Profile, ProfileDraft } from '../../types/Profile'
 
 const rootUrl = '/api/v1'
 
-export function getFruits(): Promise<Fruit[]> {
-  return request
-    .get(`${rootUrl}/fruits`)
-    .then((res) => res.body.fruits)
-    .catch(logError)
-}
-
-export function addFruit(fruit: NewFruit, token: string): Promise<Fruit[]> {
-  return request
-    .post(`${rootUrl}/fruits`)
+// POST new user data to users db
+export async function upsertProfile(
+  form: ProfileDraft | Profile,
+  token: string
+) {
+  await request
+    .post(`${rootUrl}/users`)
     .set('Authorization', `Bearer ${token}`)
-    .send({ fruit })
-    .then((res) => res.body.fruits)
-    .catch(logError)
+    .set('Content-Type', 'application/json')
+    .send(form)
 }
 
-export function updateFruit(fruit: Fruit, token: string): Promise<Fruit[]> {
-  return request
-    .put(`${rootUrl}/fruits`)
+// GET user data from users db and set authorization token
+export async function getUser(token: string) {
+  const res = await request
+    .get(`${rootUrl}/users`)
     .set('Authorization', `Bearer ${token}`)
-    .send({ fruit })
-    .then((res) => res.body.fruits)
-    .catch(logError)
-}
+    .set('Content-Type', 'application/json')
 
-export function deleteFruit(id: number, token: string): Promise<Fruit[]> {
-  return request
-    .delete(`${rootUrl}/fruits/${id}`)
-    .set('Authorization', `Bearer ${token}`)
-    .then((res) => res.body.fruits)
-    .catch(logError)
-}
-
-function logError(err: Error) {
-  if (err.message === 'Username Taken') {
-    throw new Error('Username already taken - please choose another')
-  } else if (err.message === 'Forbidden') {
-    throw new Error(
-      'Only the user who added the fruit may update and delete it'
-    )
-  } else {
-    console.error('Error consuming the API (in client/api.js):', err.message)
-    throw err
-  }
+  return res.body as Profile
 }
