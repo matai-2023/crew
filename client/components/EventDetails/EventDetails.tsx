@@ -22,7 +22,7 @@ function EventDetails() {
         {data &&
           data.map((eventDetails) => (
             <>
-              <div>{eventDetails.img}</div>
+              <div>{eventDetails.image}</div>
               <p>Event Details</p>
               <li key={eventDetails.id}>
                 <p>{eventDetails.name}</p>
