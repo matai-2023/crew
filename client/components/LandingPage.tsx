@@ -26,10 +26,12 @@ function LandingPage() {
               animate={{ opacity: 1, translateX: 0 }}
               transition={{ duration: 0.5, delay: i * 0.5 }}
             >
-              <p className="text-4xl text-white">{title.title}</p>
+              <p className="text-4xl text-white font-interBold font-bold">
+                {title.title}
+              </p>
             </motion.div>
           ))}
-          <div className="flex gap-2">
+          <div className="flex gap-4 mt-9">
             <LoginButton />
             <RegisterButton />
           </div>

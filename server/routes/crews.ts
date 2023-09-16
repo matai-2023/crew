@@ -5,6 +5,7 @@ import checkJwt from '../auth0.ts'
 const router = express.Router()
 
 router.get('/', checkJwt, async (req, res) => {
+  //TODO: replace the hard-coded auth0 with a REAL one!
   try {
     const auth0 = 'auth0|6502325ffee50bd6057c4e09'
     const crews = await db.getCrewList(auth0)
