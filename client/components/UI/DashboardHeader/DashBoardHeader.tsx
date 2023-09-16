@@ -58,7 +58,7 @@ function DashboardHeader() {
       </div>
       {navOpened && (
         <div>
-          <Nav />
+          <Nav props={navOpened, setNavOpened}/>
         </div>
       )}
     </div>
