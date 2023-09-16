@@ -1,14 +1,24 @@
 import { Link, useNavigate } from 'react-router-dom'
-import Logo from '../Logo/Logo.tsx'
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
+import { IfAuthenticated } from '../../Authenticated.tsx'
+import Button from '../Button/Button.tsx'
+import { useAuth0 } from '@auth0/auth0-react'
+import Logo from '../Logo/Logo.tsx'
+import Nav from '../Nav/Nav.tsx'
 
 function DashboardHeader() {
   const [isArrowTouched, setIsArrowTouched] = useState(false)
   const navigate = useNavigate()
+  const [navOpened, setNavOpened] = useState(false)
+  const { isAuthenticated } = useAuth0()
 
-  const goBack = () => {
-    navigate(-1)
+  // const goBack = () => {
+  //   navigate(-1)
+  // }
+
+  function toggleMenu() {
+    setNavOpened(() => !navOpened)
   }
 
   const handleArrowTouch = () => {
@@ -25,22 +35,54 @@ function DashboardHeader() {
     untouched: { scale: 1 },
   }
 
+  // const { user, logout } = useAuth0()
+
+  // const handleSignOut = () => {
+  //   console.log('sign out')
+  //   logout()
+  // }
+
   return (
-    <div className="pl-4 pt-3 pr-4 flex justify-between items-center">
-      <Link to="/" className="absolute top-0 right-0 mt-3 mr-4">
-        <Logo />
-      </Link>
-      <div className="mt-3 ml-4">
-        <motion.button
-          onClick={handleArrowTouch}
-          initial="untouched"
-          animate={isArrowTouched ? 'touched' : 'untouched'}
-          variants={arrowScale}
-        >
-          <img src="/home/eda/workspace/crew/public/Arrow.png" alt="Back" />
-        </motion.button>
-      </div>
-    </div>
+    <>
+      {!navOpened && (
+        <nav className="pl-4 pt-3 pr-4 flex justify-between items-center">
+          <div
+            onClick={toggleMenu}
+            className="absolute top-0 right-0 mt-3 mr-4"
+          >
+            <Logo />
+          </div>
+          <div className="mt-3 ml-4 p-3">
+            <motion.button
+              onClick={handleArrowTouch}
+              initial="untouched"
+              animate={isArrowTouched ? 'touched' : 'untouched'}
+              variants={arrowScale}
+            >
+              <img src="../../public/Arrow.png" alt="Back" />
+            </motion.button>
+          </div>
+        </nav>
+      )}
+
+      {navOpened && (
+        <>
+          <nav
+            className={`fixed left-0 py-8 h-full w-full bg-gray-800 backdrop-filter backdrop-blur-md bg-opacity-5 shadow-transparent transition-all ease-in-out duration-200 ${
+              navOpened ? 'opacity-100' : 'hidden'
+            }`}
+          >
+            <button
+              onClick={toggleMenu}
+              className="text-white absolute top-0 right-0 mt-3 mr-4"
+            >
+              X
+            </button>
+            <Nav toggleMenu={toggleMenu} />
+          </nav>
+        </>
+      )}
+    </>
   )
 }
 
