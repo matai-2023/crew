@@ -21,6 +21,7 @@ function ProfileForm(props: Props) {
 
     props.handleSubmit(form)
     // TODO: Add redirect to the user-dashboard here
+    // TODO: Fix issue with image going to db as empty object instead of string
   }
 
   return (
