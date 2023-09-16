@@ -21,7 +21,7 @@ function Nav(props: Props) {
   }
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-gray-800 bg-opacity-90 text-white font-inter text-right p-4">
+    <nav className="fixed top-0 left-0 w-full max-h-full bg-gray-800 bg-opacity-90 text-white font-inter text-right p-4">
       <ul className="text-3xl">
         <li>
           {/* <button onClick={() => goTo('/create crew')}>Create crew</button> */}
