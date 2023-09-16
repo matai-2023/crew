@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import { IfAuthenticated } from '../../Authenticated.tsx'
 import Button from '../Button/Button.tsx'
 import { useAuth0 } from '@auth0/auth0-react'
+import Logo from '../Logo/Logo.tsx'
+import Nav from '../Nav/Nav.tsx'
 
 function DashboardHeader() {
   const [isArrowTouched, setIsArrowTouched] = useState(false)
