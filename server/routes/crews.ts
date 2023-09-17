@@ -1,23 +1,35 @@
 import express from 'express'
 import * as db from '../db/db.ts'
-import checkJwt from '../auth0.ts'
+import checkJwt, { JwtRequest } from '../auth0.ts'
 
 const router = express.Router()
 
-router.get('/', checkJwt, async (req, res) => {
-  //TODO: replace the hard-coded auth0 with a REAL one!
+router.get('/', checkJwt, async (req: JwtRequest, res) => {
   try {
-    const auth0 = 'auth0|6502325ffee50bd6057c4e09'
-    const crews = await db.getCrewList(auth0)
-    res.json(crews)
+    //  Todo: replace the hardcode Auth0 with Auth0 function
+    const auth0Id = req.auth?.sub
+
+    if (!auth0Id) {
+      res.status(400).json({ message: 'Please provide an id' })
+      return
+    }
+
+    const crews = await db.getCrewList(auth0Id)
+    res.status(200).json(crews)
   } catch (err) {
     console.log(err)
-    res.status(500).send('Could not find crew list')
+    res.status(500).json({ message: 'Could not find crew list' })
   }
 })
 
 //GET EVENTS to be displayed at a certain CREW
-router.get('/:id', async (req, res) => {
+router.get('/:id', checkJwt, async (req: JwtRequest, res) => {
+  const auth0Id = req.auth?.sub
+
+  if (!auth0Id) {
+    res.status(400).json({ message: 'Please provide an id' })
+    return
+  }
   try {
     const crewId = Number(req.params.id)
     const eventsList = await db.getEventsbyCrew(crewId)
