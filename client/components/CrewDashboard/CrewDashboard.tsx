@@ -1,20 +1,31 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { Link } from 'react-router-dom'
-import Background from '../UI/Background/Background'
-import DashboardHeader from '../UI/DashboardHeader/DashBoardHeader'
+import { Link, useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { fetchEventList } from '../apis/crews'
+import { fetchEventList } from '../../apis/api.ts'
 import { useState } from 'react'
+import Button from '../UI/Button/Button'
 
-interface Props {
-  id: number
-}
+// interface Props {
+//   id: number
+// }
 
-function CrewDashboard(props: Props) {
+function CrewDashboard() {
   //TODO: Get the actual data to display USERS
   //TODO: Get the actual data to display EVENTS
-  const crewId = 2
-  const { data, isLoading } = useQuery(['events'], () => fetchEventList(crewId))
+  const { crewId } = useParams()
+  const newId = Number(crewId)
+
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
+  const { data, isLoading } = useQuery({
+    queryKey: ['events'],
+    queryFn: async () => {
+      const accessToken = await getAccessTokenSilently()
+      if (user && user.sub) {
+        const response = await fetchEventList(accessToken, newId)
+        return response
+      }
+    },
+  })
 
   const [displayMembers, setDisplayMembers] = useState(false)
   console.log(data)
@@ -25,42 +36,48 @@ function CrewDashboard(props: Props) {
 
   return (
     <>
-      {isLoading ? <p>data is loading...</p> : ''}
-      <Background>
-        <DashboardHeader />
-        <div>
-          Members
-          {displayMembers && (
-            <ul>
-              {data.map((user) => (
+       <div className="flex flex-col items-center justify-start min-h-screen mt-10">
+        {isLoading ? <p>data is loading...</p> : ''}
+        <div className="mt-4">
+        {displayMembers && (
+          <ul>
+            {isAuthenticated &&
+              data &&
+              data.map((user) => (
                 <li key={user.id} data-testid="crew-member">
                   {`User: ${user.name}`}
                 </li>
               ))}
             </ul>
           )}
-          <button onClick={handleClick} data-testid="display-button">
-            Show/Hide
-          </button>
+          <Button
+            className="mt-4"
+            onClick={handleClick}
+            data-testid="display-button"
+          >
+            View my Crew
+          </Button>
         </div>
 
-        <ul>
+        <ul className="p-5 mt-4">
           {data &&
             data.map((even) => (
               <li key={even.id}>
-                <p>{even.name}</p>
-                <p>{even.date}</p>
+                <div className="bg-white p-3 mb-4 rounded-lg shadow-left-bottom-pink">
+                  <div className="flex flex-col items-center justify-center">
+                    <p className="font-interBold font-bold">{even.name}</p>
+                    <p className="font-interReg">{even.date}</p>
+                  </div>
+                </div>
               </li>
             ))}
         </ul>
-
-        <Link to={'/new-event'}>
-          <button>Create</button>
-        </Link>
-        <Link to={'/user-dashboard'}>
-          <button>Back to your dashboard</button>
-        </Link>
-      </Background>
+        <div className="mt-4">
+          <Link to={'/new-event'}>
+            <Button className="">Create Event</Button>
+          </Link>
+        </div>
+      </div>
     </>
   )
 }
