@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import AddCrew from '../AddCrew/AddCrew.js'
 import { useAuth0 } from '@auth0/auth0-react'
 
 function UserDashboard() {
@@ -29,7 +28,6 @@ function UserDashboard() {
               <li>Alien Fiesta</li>
             </Link>
           </ul>
-          {/* <AddCrew /> */}
         </>
       )}
     </>
