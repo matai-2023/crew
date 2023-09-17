@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { fetchEventList } from '../../apis/api.ts'
 import { useState } from 'react'
+import Button from '../UI/Button/Button'
 
 // interface Props {
 //   id: number
@@ -35,10 +36,9 @@ function CrewDashboard() {
 
   return (
     <>
-      {isLoading ? <p>data is loading...</p> : ''}
-
-      <div>
-        Members
+       <div className="flex flex-col items-center justify-start min-h-screen mt-10">
+        {isLoading ? <p>data is loading...</p> : ''}
+        <div className="mt-4">
         {displayMembers && (
           <ul>
             {isAuthenticated &&
@@ -48,29 +48,36 @@ function CrewDashboard() {
                   {`User: ${user.name}`}
                 </li>
               ))}
-          </ul>
-        )}
-        <button onClick={handleClick} data-testid="display-button">
-          Show/Hide
-        </button>
+            </ul>
+          )}
+          <Button
+            className="mt-4"
+            onClick={handleClick}
+            data-testid="display-button"
+          >
+            View my Crew
+          </Button>
+        </div>
+
+        <ul className="p-5 mt-4">
+          {data &&
+            data.map((even) => (
+              <li key={even.id}>
+                <div className="bg-white p-3 mb-4 rounded-lg shadow-left-bottom-pink">
+                  <div className="flex flex-col items-center justify-center">
+                    <p className="font-interBold font-bold">{even.name}</p>
+                    <p className="font-interReg">{even.date}</p>
+                  </div>
+                </div>
+              </li>
+            ))}
+        </ul>
+        <div className="mt-4">
+          <Link to={'/new-event'}>
+            <Button className="">Create Event</Button>
+          </Link>
+        </div>
       </div>
-
-      <ul>
-        {data &&
-          data.map((even) => (
-            <li key={even.id}>
-              <p>{even.name}</p>
-              <p>{even.date}</p>
-            </li>
-          ))}
-      </ul>
-
-      <Link to={'/new-event'}>
-        <button>Create</button>
-      </Link>
-      <Link to={'/user-dashboard'}>
-        <button>Back to your dashboard</button>
-      </Link>
     </>
   )
 }
