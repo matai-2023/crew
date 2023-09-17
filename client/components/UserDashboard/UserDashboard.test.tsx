@@ -1,7 +1,9 @@
 //@vitest-environment jsdom
 
 import * as auth0 from '@auth0/auth0-react'
+import '@testing-library/jest-dom/vitest'
 import { describe, it, expect, vi } from 'vitest'
+import { screen } from '@testing-library/react'
 import { renderComponent } from '../../test-utils'
 import UserDashboard from './UserDashboard'
 import userEvent from '@testing-library/user-event'
@@ -15,7 +17,15 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom'
 
-const user = userEvent.setup()
+vi.mock('@auth0/auth0-react')
+;(auth0 as auth0.User).useAuth0 = vi.fn().mockReturnValue({
+  isAuthenticated: true,
+  isLoading: false,
+  user: {
+    sub: 'auth0|123',
+  },
+  getAccessTokenSilently: vi.fn(),
+})
 
 describe('UserDashboard', () => {
   it('should render a crew list of logged user when user logged in', async () => {
@@ -35,20 +45,26 @@ describe('UserDashboard', () => {
       ])
 
     const queryClient = new QueryClient()
-    const screen = render(
+    render(
       <QueryClientProvider client={queryClient}>
         <RouterProvider
           router={createMemoryRouter(
             createRoutesFromElements(
-              <Route path="user-dashboard" element={<UserDashboard />}></Route>
-            )
+              <Route path="/user-dashboard" element={<UserDashboard />}></Route>
+            ),
+            {
+              initialEntries: ['/', '/user-dashboard'],
+              initialIndex: 1,
+            }
           )}
         />
       </QueryClientProvider>
     )
     await waitFor(() => expect(scope.isDone()).toBeTruthy())
 
-    const list = screen.getByTestId('user-dashboard')
+    const list = screen.getByRole('heading', {
+      name: 'Quality-focused non-volatile emulation',
+    })
 
     expect(list).toBeInTheDocument()
   })

@@ -52,11 +52,11 @@ function UserDashboard() {
   return (
     <>
       <p>{isLoading ? 'please wait' : ''}</p>
-      <ul data-testid="user-dashboard">
+      <ul>
         {isAuthenticated &&
           uniqueName &&
           uniqueName.map((p, i) => (
-            <li key={i}>
+            <li key={i} data-testid="user-dashboard">
               <h1>{p.name}</h1>
               <img src={p.image} alt={p.name} />
             </li>
