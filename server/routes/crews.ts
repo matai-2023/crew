@@ -23,7 +23,13 @@ router.get('/', checkJwt, async (req: JwtRequest, res) => {
 })
 
 //GET EVENTS to be displayed at a certain CREW
-router.get('/:id', async (req, res) => {
+router.get('/:id', checkJwt, async (req: JwtRequest, res) => {
+  const auth0Id = req.auth?.sub
+
+  if (!auth0Id) {
+    res.status(400).json({ message: 'Please provide an id' })
+    return
+  }
   try {
     const crewId = Number(req.params.id)
     const eventsList = await db.getEventsbyCrew(crewId)
