@@ -5,6 +5,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useState } from 'react'
 import { fetchCrewList } from '../../apis/api.ts'
 import { useNavigate } from 'react-router-dom'
+import { Crew } from '../../../types/Crew.ts'
 
 interface crews {
   id: number
@@ -24,7 +25,7 @@ function UserDashboard() {
 
       if (user && user.sub) {
         const response = await fetchCrewList(accessToken)
-        return response
+        return response as Crew[]
       }
     },
   })
