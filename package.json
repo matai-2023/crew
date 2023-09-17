@@ -19,7 +19,8 @@
     "build:client": "vite build",
     "build:server": "esbuild --packages=external --platform=node --format=esm --outfile=dist/server.js --bundle server/index.ts",
     "build:css": "tailwindcss -i client/styles/input.css -o public/output.css",
-    "test": "vitest",
+    "test": "NODE_ENV=test vitest",
+
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "format": "prettier -w '**/*.{js,jsx,ts,tsx}'",
     "storybook": "storybook dev -p 6006",

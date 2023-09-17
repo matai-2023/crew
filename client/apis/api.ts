@@ -29,6 +29,7 @@ export async function fetchCrewList(token: string) {
   const response = await request
     .get('/api/v1/crews/')
     .set('Authorization', `Bearer ${token}`)
+  console.log('api', response.body)
   return response.body
 }
 
