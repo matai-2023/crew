@@ -2,8 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useState } from 'react'
 import { fetchCrewList } from '../../apis/api.ts'
-import CrewDashboard from '../CrewDashboard/CrewDashboard.tsx'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 interface crews {
   id: number
