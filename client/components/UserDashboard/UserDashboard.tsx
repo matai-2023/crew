@@ -48,19 +48,16 @@ function UserDashboard() {
   return (
     <>
       <p>{isLoading ? 'please wait' : ''}</p>
-      {isAuthenticated &&
-        uniqueName &&
-        uniqueName.map((crew, i) => (
-          <div key={i} onClick={() => navigate(`/crew-dashboard/${crew.id}`)}>
-            <ul>
-              <li>
-                <h1>{crew.name}</h1>
-                <img src={crew.image} alt={crew.name} />
-              </li>
-            </ul>
-          </div>
-        ))}
-
+      <ul data-testid="user-dashboard">
+        {isAuthenticated &&
+          uniqueName &&
+          uniqueName.map((p, i) => (
+            <li key={i} onClick={() => navigate(`/crew-dashboard/${p.id}`)}>
+              <h1>{p.name}</h1>
+              <img src={p.image} alt={p.name} />
+            </li>
+          ))}
+      </ul>
       <button>ADD CREW</button>
     </>
   )

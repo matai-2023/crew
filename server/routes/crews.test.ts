@@ -1,4 +1,5 @@
 import { vi, describe, it, expect } from 'vitest'
+import { getMockToken } from './mockToken.ts'
 import request from 'supertest'
 import server from '../server'
 import * as db from '../db/db.ts'
@@ -9,6 +10,7 @@ describe('GET/api/v1/crews/', () => {
   it('it shold return 200 with an array', async () => {
     const fakeCrews = [
       {
+        auth0_id: 'auth0|6502325ffee50bd6057c4e09',
         name: 'abc',
         image:
           'https://images.unsplash.com/photo-1608048608029-99c772d199ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80',
@@ -20,14 +22,18 @@ describe('GET/api/v1/crews/', () => {
       },
     ]
     vi.mocked(db.getCrewList).mockResolvedValue(fakeCrews)
-    const response = await request(server).get('/api/v1/crews/')
+    const response = await request(server)
+      .get('/api/v1/crews/')
+      .set('authorization', `Bearer ${getMockToken()}`)
     expect(response.status).toBe(200)
     expect(response.body).toEqual(fakeCrews)
   })
 
   it('it should return 500 when no crew list is passed ', async () => {
     vi.mocked(db.getCrewList).mockRejectedValue(new Error('test'))
-    const response = await request(server).get('/api/v1/crews/')
+    const response = await request(server)
+      .get('/api/v1/crews/')
+      .set('authorization', `Bearer ${getMockToken()}`)
     expect(response.status).toBe(500)
     expect(response.body).toEqual({ message: 'Could not find crew list' })
   })
