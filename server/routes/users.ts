@@ -28,14 +28,17 @@ router.get('/', checkJwt, async (req: JwtRequest, res) => {
 // this route is used for both creating and updating a user
 router.post(
   '/',
-  upload.single('avatar'),
+  upload.single('image'),
   checkJwt,
   async (req: JwtRequest, res) => {
     const auth0Id = req.auth?.sub
-    const form = req.body
-    const file = req.file?.sub
-
-    const data = { ...form }
+    const data = {
+      username: req.body.username,
+      email: req.body.email,
+      avatar: req.file?.filename as string,
+    }
+    console.log(req.body)
+    console.log('data', data)
 
     if (!auth0Id) {
       res.status(400).json({ message: 'Missing auth0 id' })

@@ -1,7 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import ProfileForm from '../ProfileForm/ProfileForm'
 import useProfile from '../../components/hooks/useProfile'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { ProfileDraft, Profile } from '../../../types/Profile'
 
 function ProfilePage() {
@@ -32,7 +32,7 @@ function ProfilePage() {
     username: '',
     email: '',
     avatar: '',
-    selectedFile: null,
+    image: null,
   }
 
   return (

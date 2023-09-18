@@ -7,33 +7,12 @@ interface Props {
 }
 
 function ProfileForm(props: Props) {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null)
-
-  function handleFileChange(e) {
-    const file = e.target.files[0]
-    setSelectedFile(file)
-  }
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
     const formData = new FormData(e.currentTarget)
-    const username = formData.get('username') as string
-    const email = formData.get('email') as string
-    const avatar = formData.get('avatar') as File
-    if (selectedFile) {
-      formData.append('avatar', selectedFile)
-    }
 
-    const form = {
-      username: username,
-      email: email,
-      avatar: avatar.name,
-      selectedFile: selectedFile,
-    }
-
-    console.log(form)
-
-    props.handleSubmit(form)
+    props.handleSubmit(formData)
     // TODO: Add redirect to the user-dashboard here
   }
 
@@ -66,12 +45,7 @@ function ProfileForm(props: Props) {
         </div>
         <div className="space-y-2">
           <label htmlFor="avatar">Avatar</label>
-          <input
-            type="file"
-            name="avatar"
-            id="avatar"
-            onChange={handleFileChange}
-          ></input>
+          <input type="file" name="image" id="avatar" accept="images/*"></input>
           <img src={props.profile?.avatar} alt={props.profile?.username} />
         </div>
         <div className="mx-auto text-center">

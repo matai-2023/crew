@@ -10,17 +10,12 @@ export async function upsertProfile(
   form: ProfileDraft | Profile,
   token: string
 ) {
-  const reader = new FileReader()
-  console.log(form.selectedFile)
-  if (form.selectedFile) {
-    const file = await reader.readAsArrayBuffer(form.selectedFile)
-    console.log('api', file)
-    await request
-      .post(`${rootUrl}/users`)
-      .set('Authorization', `Bearer ${token}`)
-      .send({ username: form.username, email: form.email, avatar: form.avatar })
-    // .attach('avatar')
-  }
+  console.log('form avatar', form.avatar)
+  console.log('form img', form.image)
+  await request
+    .post(`${rootUrl}/users`)
+    .set('Authorization', `Bearer ${token}`)
+    .send(form)
 }
 
 // GET user data from users db and set authorization token
