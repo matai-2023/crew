@@ -4,9 +4,9 @@ import checkJwt, { JwtRequest } from '../auth0.ts'
 
 const router = express.Router()
 
+// GET all crews
 router.get('/', checkJwt, async (req: JwtRequest, res) => {
   try {
-    //  Todo: replace the hardcode Auth0 with Auth0 function
     const auth0Id = req.auth?.sub
 
     if (!auth0Id) {
@@ -38,6 +38,19 @@ router.get('/:id', checkJwt, async (req: JwtRequest, res) => {
   } catch (err) {
     console.log(err)
     res.status(500).send('Could not find event list')
+  }
+})
+
+//GET  MEMBERS to be displayed at a certain CREW
+router.get('/:id/members', checkJwt, async (req: JwtRequest, res) => {
+  try {
+    const crewId = Number(req.params.id)
+    const membersList = await db.getAllCrewMembers(crewId)
+
+    res.json(membersList)
+  } catch (err) {
+    console.log(err)
+    res.status(500).send('Could not find members list')
   }
 })
 

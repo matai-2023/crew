@@ -29,6 +29,7 @@ function AppLayout() {
         <IfNotAuthenticated>
           <Header />
         </IfNotAuthenticated>
+        <button onClick={() => logout()}>logout</button>
         <Outlet />
       </Background>
     </>
@@ -44,7 +45,7 @@ const routes = createBrowserRouter(
       <Route path="user-dashboard" element={<UserDashboard />} />
       <Route path="profile" element={<ProfilePage />} />
       <Route path="crew-dashboard/:crewId" element={<CrewDashboard />} />
-      <Route path="event-details" element={<EventDetails />} />
+      <Route path="event-details/:eventId" element={<EventDetails />} />
       <Route path="new-event" element={<NewEvent />} />
     </Route>
   )

@@ -8,6 +8,7 @@ export async function getCrewList(auth0id: string) {
     .join('users', 'users.id', 'crew_users.user_id')
     .where('auth0id', auth0id)
     .select('crews.id', 'crews.name', 'crews.image')
+    .distinct()
 }
 
 // Get all EVENTS of a Crew
@@ -26,6 +27,7 @@ export async function getEventsbyCrew(crewId: number) {
       'events.date as date',
       'events.img as image'
     )
+    .distinct()
 }
 
 // Get ONE event of a CREW
@@ -67,4 +69,14 @@ export async function getUser(auth0Id: string) {
   return await db('users')
     .where('auth0id', auth0Id)
     .first('auth0id as auth0Id', 'username', 'email', 'avatar')
+}
+
+// GET ALL Members of a CREW
+
+export async function getAllCrewMembers(crewId: number) {
+  return await db('crew_users')
+    .join('crews', 'crews.id', 'crew_users.crew_id')
+    .join('users', 'users.id', 'crew_users.user_id')
+    .where('crews.id', crewId)
+    .select('users.id as userId', 'users.username')
 }

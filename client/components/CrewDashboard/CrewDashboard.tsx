@@ -1,53 +1,56 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { fetchEventList } from '../../apis/api.ts'
+import { fetchCrewMembers, fetchEventList } from '../../apis/api.ts'
 import { useState } from 'react'
 import Button from '../UI/Button/Button'
 
-// interface Props {
-//   id: number
-// }
-
 function CrewDashboard() {
-  //TODO: Get the actual data to display USERS
-  //TODO: Get the actual data to display EVENTS
   const { crewId } = useParams()
   const newId = Number(crewId)
 
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
   const { data, isLoading } = useQuery({
-    queryKey: ['events'],
+    queryKey: ['events', newId],
     queryFn: async () => {
       const accessToken = await getAccessTokenSilently()
-      if (user && user.sub) {
-        const response = await fetchEventList(accessToken, newId)
-        return response
-      }
+      const response = await fetchEventList(accessToken, newId)
+      return response
     },
   })
 
   const [displayMembers, setDisplayMembers] = useState(false)
-  console.log(data)
+  const [crewMembers, setCrewMembers] = useState([])
 
-  function handleClick() {
-    setDisplayMembers(!displayMembers)
+  async function allCrewMembers() {
+    const accessToken = await getAccessTokenSilently()
+    const response = await fetchCrewMembers(accessToken, newId)
+    setCrewMembers(response)
   }
 
+  async function handleClick() {
+    if (!displayMembers) {
+      await allCrewMembers()
+    }
+    setDisplayMembers(!displayMembers)
+  }
+  console.log(crewMembers)
+
+  const navigate = useNavigate()
   return (
     <>
-       <div className="flex flex-col items-center justify-start min-h-screen mt-10">
+      <div className="flex flex-col items-center justify-start min-h-screen mt-10">
         {isLoading ? <p>data is loading...</p> : ''}
         <div className="mt-4">
-        {displayMembers && (
-          <ul>
-            {isAuthenticated &&
-              data &&
-              data.map((user) => (
-                <li key={user.id} data-testid="crew-member">
-                  {`User: ${user.name}`}
-                </li>
-              ))}
+          {displayMembers && (
+            <ul>
+              {isAuthenticated &&
+                crewMembers &&
+                crewMembers.map((crewMember) => (
+                  <li key={crewMember.userId} data-testid="crew-member">
+                    {`User: ${crewMember.username}`}
+                  </li>
+                ))}
             </ul>
           )}
           <Button
@@ -62,8 +65,11 @@ function CrewDashboard() {
         <ul className="p-5 mt-4">
           {data &&
             data.map((even) => (
-              <li key={even.id}>
-                <div className="bg-white p-3 mb-4 rounded-lg shadow-left-bottom-pink">
+              <li key={even.eventId}>
+                <div
+                  className="bg-white p-3 mb-4 rounded-lg shadow-left-bottom-pink"
+                  onClick={() => navigate(`/event-details/${even.id}`)}
+                >
                   <div className="flex flex-col items-center justify-center">
                     <p className="font-interBold font-bold">{even.name}</p>
                     <p className="font-interReg">{even.date}</p>
