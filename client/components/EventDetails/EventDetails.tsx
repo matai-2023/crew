@@ -28,9 +28,6 @@ function EventDetails() {
       return response as NewEvent[]
     },
   })
-  if (data) {
-    console.log('Event Details data: ', data)
-  }
 
   return (
     <>
@@ -50,7 +47,7 @@ function EventDetails() {
               </div>
             </div>
             <div>
-              <li key={eventDetails.eventId}>
+              <li key={eventDetails.eventId} className="list-none">
                 <p className=" text-white py-2 px-4 text-uppercase font-interBold text-xl">
                   {eventDetails.name}
                 </p>
@@ -85,7 +82,7 @@ function EventDetails() {
 
       <Link
         className="flex flex-col items-center h-screen"
-        to={'/crew-dashboard'}
+        to={`/crew-dashboard/${newCrewId}`}
       >
         <Button>Message crew</Button>
       </Link>

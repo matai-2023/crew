@@ -57,7 +57,6 @@ export async function fetchEventDetails(
     .get(`${rootUrl}/crews/${crewId}/event-details/${eventId}`)
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
-  console.log('APIIIIIII: ', res.body)
 
   return res.body
 }
