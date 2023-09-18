@@ -42,7 +42,7 @@ router.get('/:id', checkJwt, async (req: JwtRequest, res) => {
 })
 
 //GET  MEMBERS to be displayed at a certain CREW
-router.get('/:id', checkJwt, async (req: JwtRequest, res) => {
+router.get('/:id/members', checkJwt, async (req: JwtRequest, res) => {
   try {
     const crewId = Number(req.params.id)
     const membersList = await db.getAllCrewMembers(crewId)

@@ -49,8 +49,8 @@ function CrewDashboard() {
               {isAuthenticated &&
                 crewMembers &&
                 crewMembers.map((crewMember) => (
-                  <li key={crewMember.id} data-testid="crew-member">
-                    {`User: ${crewMember.name}`}
+                  <li key={crewMember.userId} data-testid="crew-member">
+                    {`User: ${crewMember.username}`}
                   </li>
                 ))}
             </ul>
