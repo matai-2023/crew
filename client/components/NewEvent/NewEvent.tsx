@@ -11,7 +11,7 @@ function NewEvent() {
     <>
       <form action="submit">
         <div className="mb-4 p-3">
-          <label htmlFor="eventName" className="block text-white">
+          <label htmlFor="eventName" className="block text-white font-interReg">
             Event name
           </label>
           <input
@@ -22,7 +22,7 @@ function NewEvent() {
           />
         </div>
         <div className="mb-4 p-3">
-          <label htmlFor="eventDate" className="block text-white">
+          <label htmlFor="eventDate" className="block text-white font-interReg">
             Event date
           </label>
           <input
@@ -33,7 +33,10 @@ function NewEvent() {
           />
         </div>
         <div className="mb-4 p-3">
-          <label htmlFor="eventLocation" className="block text-white">
+          <label
+            htmlFor="eventLocation"
+            className="block text-white font-interReg"
+          >
             Event location
           </label>
           <input
@@ -44,7 +47,10 @@ function NewEvent() {
           />
         </div>
         <div className="mb-4 p-3">
-          <label htmlFor="eventDetails" className="block text-white">
+          <label
+            htmlFor="eventDetails"
+            className="block text-white font-interReg"
+          >
             Event Details
           </label>
           <input
@@ -55,9 +61,12 @@ function NewEvent() {
           />
         </div>
       </form>
-      <div className="mt-4 flex flex-col space-y-4 p-9">
+      <div className="mt-4 flex flex-col space-y-4 p-9"> 
         <Button>Create Event</Button>
-        <Link to={'/crew-dashboard'} className="text-center text-white">
+        <Link
+          to={'/crew-dashboard'}
+          className="text-center text-white font-interReg"
+        >
           Cancel
         </Link>
       </div>

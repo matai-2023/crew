@@ -40,8 +40,14 @@ function EventDetails() {
         data &&
         data.map((eventDetails) => (
           <>
-            <div>
-              <img src={eventDetails.img} alt={eventDetails.name} />
+            <div className="relative h-[300px] w-full overflow-hidden">
+              <div className="absolute inset-0">
+                <img
+                  src={eventDetails.img}
+                  alt={eventDetails.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
             <div>
               <li key={eventDetails.eventId}>
