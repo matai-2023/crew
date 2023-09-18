@@ -1,8 +1,13 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { useNavigate } from 'react-router-dom'
 
-function Nav() {
+interface Props {
+  toggleMenu: () => void
+}
+
+function Nav(props: Props) {
   const { user, isAuthenticated, logout } = useAuth0()
+  // const { toggleMenu } = props
   const navigate = useNavigate()
 
   const handleSignOut = () => {
@@ -11,15 +16,19 @@ function Nav() {
   }
 
   function goTo(link: string) {
+    props.toggleMenu()
     navigate(link)
   }
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-gray-800 bg-opacity-90 text-white font-inter text-right p-4">
+    <nav className=" text-white font-interReg text-right p-4">
       <ul className="text-3xl">
-        {/* <li>
-          <button onClick={() => goTo('/Create Crew')}>Log Out</button>
-        </li> */}
+        <li>
+          <button onClick={() => goTo('/user-dashboard')}>My dashboard</button>
+        </li>
+        <li>
+          <button onClick={() => goTo('/profile')}>Edit profile</button>
+        </li>
         <li>
           {isAuthenticated && <button onClick={handleSignOut}>Log out</button>}
         </li>

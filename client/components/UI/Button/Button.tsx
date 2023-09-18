@@ -11,7 +11,7 @@ function Button({ children, className, ...rest }: ButtonProps) {
         className,
         'text-uppercase'
       )}
-      style={{ fontFamily: 'Inter, sans-serif' }}
+      style={{ fontFamily: 'InterReg, sans-serif' }}
       {...rest}
     >
       {children}
