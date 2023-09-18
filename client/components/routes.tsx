@@ -19,7 +19,6 @@ import Background from './UI/Background/Background.tsx'
 // import ErrorPage from './ErrorPage/ErrorPage.tsx'
 
 function AppLayout() {
-  const { logout } = useAuth0()
   return (
     <>
       <Background>
@@ -29,7 +28,6 @@ function AppLayout() {
         <IfNotAuthenticated>
           <Header />
         </IfNotAuthenticated>
-        <button onClick={() => logout()}>logout</button>
         <Outlet />
       </Background>
     </>

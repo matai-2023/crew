@@ -46,6 +46,7 @@ export async function getEventDetails(crewId: number, eventId: number) {
       'events.date as date',
       'events.img as img'
     )
+    .distinct()
 }
 
 // USERS
@@ -79,4 +80,5 @@ export async function getAllCrewMembers(crewId: number) {
     .join('users', 'users.id', 'crew_users.user_id')
     .where('crews.id', crewId)
     .select('users.id as userId', 'users.username')
+    .distinct()
 }
