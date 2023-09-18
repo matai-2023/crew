@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { fetchEventDetails } from '../../apis/api'
 import Button from '../UI/Button/Button'
 import { useAuth0 } from '@auth0/auth0-react'
+import { NewEvent } from '../../../types/Event'
 
 function EventDetails() {
   const timePath = '../../public/time.png'
@@ -25,11 +26,11 @@ function EventDetails() {
           newCrewId,
           newEventId
         )
-        return response
+        return response as NewEvent[]
       }
     },
   })
-  console.log(data)
+  // console.log('Event Details data: ', { crewId, eventId })
 
   return (
     <>
@@ -40,10 +41,10 @@ function EventDetails() {
         data.map((eventDetails) => (
           <>
             <div>
-              <img src={eventDetails.image} alt={eventDetails.name} />
+              <img src={eventDetails.img} alt={eventDetails.name} />
             </div>
             <div>
-              <li key={eventDetails.id}>
+              <li key={eventDetails.eventId}>
                 <p className=" text-white py-2 px-4 text-uppercase font-interBold text-xl">
                   {eventDetails.name}
                 </p>

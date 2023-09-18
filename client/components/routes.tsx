@@ -45,7 +45,10 @@ const routes = createBrowserRouter(
       <Route path="user-dashboard" element={<UserDashboard />} />
       <Route path="profile" element={<ProfilePage />} />
       <Route path="crew-dashboard/:crewId" element={<CrewDashboard />} />
-      <Route path="event-details/:eventId" element={<EventDetails />} />
+      <Route
+        path="crew-dashboard/:crewId/event-details/:eventId"
+        element={<EventDetails />}
+      />
       <Route path="new-event" element={<NewEvent />} />
     </Route>
   )
