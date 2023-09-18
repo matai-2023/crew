@@ -1,10 +1,10 @@
-
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useState } from 'react'
 import { fetchCrewList } from '../../apis/api.ts'
 import { useNavigate } from 'react-router-dom'
+import Button from '../UI/Button/Button.tsx'
 
 interface crews {
   id: number
@@ -54,12 +54,24 @@ function UserDashboard() {
           uniqueName &&
           uniqueName.map((p, i) => (
             <li key={i} onClick={() => navigate(`/crew-dashboard/${p.id}`)}>
-              <h1>{p.name}</h1>
-              <img src={p.image} alt={p.name} />
+              <div className="bg-white p-3 mb-4 m-6 rounded-lg shadow-left-bottom-pink">
+                <div className="flex flex-col items-center justify-center">
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    className="w-80 h-32 object-cover"
+                  />
+                  <p className=" text-black text-center mt-2 font-interBold text-sm">
+                    {p.name}
+                  </p>
+                </div>
+              </div>
             </li>
           ))}
       </ul>
-      <button>ADD CREW</button>
+      <div className="flex justify-center items-center p-7">
+        <Button data-testid="display-button">ADD CREW</Button>
+      </div>
     </>
   )
 }
