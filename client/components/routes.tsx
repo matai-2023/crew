@@ -34,7 +34,7 @@ function AppLayout() {
         <Outlet />
         <Footer />
       </Background>
-    </>
+    </> 
   )
 }
 
