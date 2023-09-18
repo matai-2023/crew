@@ -58,7 +58,7 @@ export async function addNewUser(profile: Profile) {
       auth0id: profile.auth0Id,
       username: profile.username,
       email: profile.email,
-      avatar: profile.avatar,
+      avatar: `images/avatars/${profile.avatar}`,
     })
     // This part means that if an auth0id is already detected in the db, the user details associated with that auth0id will be updated
     .onConflict('auth0id')

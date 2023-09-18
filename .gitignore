@@ -5,3 +5,4 @@ bundle.*
 .env
 /dist
 output.css
+public/images/avatars
