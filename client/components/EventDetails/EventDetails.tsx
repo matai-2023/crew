@@ -30,7 +30,9 @@ function EventDetails() {
       }
     },
   })
-  // console.log('Event Details data: ', { crewId, eventId })
+  if (data) {
+    console.log('Event Details data: ', data)
+  }
 
   return (
     <>
