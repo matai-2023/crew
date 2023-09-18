@@ -9,4 +9,5 @@ export interface ProfileDraft {
   username: string
   email: string
   avatar: string
+  selectedFile: File | null | Blob
 }

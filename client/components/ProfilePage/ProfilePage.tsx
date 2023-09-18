@@ -1,7 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import ProfileForm from '../ProfileForm/ProfileForm'
 import useProfile from '../../components/hooks/useProfile'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { ProfileDraft, Profile } from '../../../types/Profile'
 
 function ProfilePage() {
@@ -23,6 +23,7 @@ function ProfilePage() {
 
   async function handleSubmit(form: ProfileDraft | Profile) {
     const token = await getAccessTokenSilently()
+
     mutation.mutate({ form, token })
   }
 
@@ -31,6 +32,7 @@ function ProfilePage() {
     username: '',
     email: '',
     avatar: '',
+    selectedFile: null,
   }
 
   return (
