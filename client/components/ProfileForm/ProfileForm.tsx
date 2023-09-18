@@ -25,7 +25,12 @@ function ProfileForm(props: Props) {
         className="space-y-4 p-4"
       >
         <div className="mb-4 p-3 mt-9">
-          <label htmlFor="username" className="block text-white font-interReg mb-3">Username *</label>
+          <label
+            htmlFor="username"
+            className="block text-white font-interReg mb-3"
+          >
+            Username *
+          </label>
           <input
             type="text"
             name="username"
@@ -52,12 +57,19 @@ function ProfileForm(props: Props) {
           ></input>
         </div>
         <div className="mb-4 p-3">
-          <label htmlFor="avatar" className="block text-white font-interReg mb-3">Avatar</label>
-          <input type="file" name="image" id="avatar" accept="images/*" className="border rounded-md w-full px-3 py-2 text-black font-interReg"></input>
-          <img src={props.profile?.avatar} alt={props.profile?.username} />
-        </div>
-
-        <div>
+          <label
+            htmlFor="avatar"
+            className="block text-white font-interReg mb-3"
+          >
+            Avatar
+          </label>
+          <input
+            type="file"
+            name="image"
+            id="avatar"
+            accept="images/*"
+            className="border rounded-md w-full px-3 py-2 text-black font-interReg"
+          ></input>
           <img
             src={props.profile?.avatar}
             className="rounded-full w-32 h-32 mx-auto mt-8"
