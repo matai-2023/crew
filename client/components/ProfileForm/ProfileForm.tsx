@@ -1,4 +1,5 @@
 import { Profile, ProfileDraft } from '../../../types/Profile'
+import Button from '../UI/Button/Button'
 
 interface Props {
   profile?: Profile
@@ -25,34 +26,67 @@ function ProfileForm(props: Props) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="space-y-4 p-4">
-        <div className="space-y-2">
-          <label htmlFor="username">Username *</label>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4 p-3 mt-9">
+          <label
+            htmlFor="username"
+            className="block text-white font-interReg mb-3"
+          >
+            Username *
+          </label>
           <input
             type="text"
             name="username"
             id="username"
+            className="border rounded-md w-full px-3 py-2 text-black font-interReg"
             required
             defaultValue={props.profile?.username}
           ></input>
         </div>
-        <div className="space-y-1">
-          <label htmlFor="email">Email *</label>
+        <div className="mb-4 p-3">
+          <label
+            htmlFor="email"
+            className="block text-white font-interReg mb-3"
+          >
+            Email *
+          </label>
           <input
             type="text"
             name="email"
             id="email"
+            className="border rounded-md w-full px-3 py-2 text-black font-interReg"
             required
             defaultValue={props.profile?.email}
           ></input>
         </div>
-        <div className="space-y-2">
-          <label htmlFor="avatar">Avatar</label>
-          <input type="file" name="avatar" id="avatar" required></input>
-          <img src={props.profile?.avatar} />
+
+        {/* Avatar */}
+        <div className="mb-4 p-3">
+          <label
+            htmlFor="avatar"
+            className="block text-white font-interReg mb-3"
+          >
+            Avatar *
+          </label>
+          <input
+            type="file"
+            name="avatar"
+            id="avatar"
+            className="border rounded-md w-full px-3 py-2 text-black font-interReg"
+            required
+          ></input>
         </div>
-        <div className="mx-auto text-center">
-          <button>Save</button>
+
+        <div>
+          <img
+            src={props.profile?.avatar}
+            className="rounded-full w-32 h-32 mx-auto mt-8"
+            alt="User Avatar"
+          />
+        </div>
+
+        <div className="mx-auto text-center mt-8">
+          <Button>Save</Button>
         </div>
       </form>
     </div>

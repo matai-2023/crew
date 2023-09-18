@@ -61,7 +61,7 @@ function NewEvent() {
           />
         </div>
       </form>
-      <div className="mt-4 flex flex-col space-y-4 p-9">
+      <div className="mt-4 flex flex-col space-y-4 p-9"> 
         <Button>Create Event</Button>
         <Link
           to={'/crew-dashboard'}
