@@ -57,9 +57,21 @@ function DashboardHeader() {
         </motion.button>
       </div>
       {navOpened && (
-        <div>
-          <Nav />
-        </div>
+        <>
+          <nav
+            className={`fixed left-0 py-8 h-full w-full bg-gray-800 backdrop-filter backdrop-blur-md bg-opacity-5 shadow-transparent transition-all ease-in-out duration-200 ${
+              navOpened ? 'opacity-100' : 'hidden'
+            }`}
+          >
+            <button
+              onClick={toggleMenu}
+              className="text-white absolute top-0 right-0 mt-3 mr-4 text-xl font-bold"
+            >
+              x
+            </button>
+            <Nav toggleMenu={toggleMenu} />
+          </nav>
+        </>
       )}
     </div>
   )
