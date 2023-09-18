@@ -1,5 +1,6 @@
 import request from 'superagent'
 import { Profile, ProfileDraft } from '../../types/Profile'
+import { Crew } from '../../types/Crew'
 
 const rootUrl = '/api/v1'
 
@@ -29,8 +30,9 @@ export async function fetchCrewList(token: string) {
   const response = await request
     .get('/api/v1/crews/')
     .set('Authorization', `Bearer ${token}`)
+    .set('Content-Type', 'application/json')
   console.log('api', response.body)
-  return response.body
+  return response.body as Crew[]
 }
 
 // GET EVENTS of a Crew of an authorized user
@@ -38,6 +40,7 @@ export async function fetchEventList(token: string, crewId: number) {
   const response = await request
     .get(`/api/v1/crews/${crewId}`)
     .set('Authorization', `Bearer ${token}`)
+    .set('Content-Type', 'application/json')
   return response.body
 }
 
@@ -51,6 +54,7 @@ export async function fetchEventDetails(
   const res = await request
     .get(`${rootUrl}/crews/${crewId}/event-details/${eventId}`)
     .set('Authorization', `Bearer ${token}`)
+    .set('Content-Type', 'application/json')
 
   return res.body
 }

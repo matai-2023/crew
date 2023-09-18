@@ -8,6 +8,7 @@ export async function getCrewList(auth0id: string) {
     .join('users', 'users.id', 'crew_users.user_id')
     .where('auth0id', auth0id)
     .select('crews.id', 'crews.name', 'crews.image')
+    .distinct()
 }
 
 // Get all EVENTS of a Crew

@@ -74,9 +74,9 @@ function DashboardHeader() {
           >
             <button
               onClick={toggleMenu}
-              className="text-white absolute top-0 right-0 mt-3 mr-4"
+              className="text-white absolute top-0 right-0 mt-3 mr-4 text-xl font-bold"
             >
-              X
+              x
             </button>
             <Nav toggleMenu={toggleMenu} />
           </nav>
