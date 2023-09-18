@@ -83,18 +83,6 @@ export async function getAllCrewMembers(crewId: number) {
     .distinct()
 }
 
-// GET ALL crew member rsvps to an event
-
-// export async function getAllRSVPs(crewId: number, eventId: number) {
-//   return await db('rsvps')
-//     .join('crew_users', 'crew_users_id', 'crew_users.id')
-//     .join('users', 'user_id', 'users.id')
-//     .join('events', 'event_id', 'events.id')
-//     .where('crew_id', crewId)
-//     .where('events.id', eventId)
-//     .select('users.id as userId', 'attending')
-// }
-
 export async function getAllRSVPs(crewId: number, eventId: number) {
   return await db('rsvps')
     .join('crew_users as cu', 'crew_users_id', 'cu.id')

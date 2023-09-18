@@ -61,6 +61,21 @@ export async function fetchEventDetails(
   return res.body
 }
 
+// GET all RSVPs to an event
+
+export async function fetchAllRSVPs(
+  token: string,
+  crewId: number,
+  eventId: number
+) {
+  const res = await request
+    .get(`${rootUrl}/crews/${crewId}/event-details/${eventId}/attending`)
+    .set('Authorization', `Bearer ${token}`)
+    .set('Content-Type', 'application/json')
+
+  return res.body
+}
+
 // GET CREW Members list
 export async function fetchCrewMembers(token: string, crewId: number) {
   const response = await request

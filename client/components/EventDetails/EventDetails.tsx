@@ -4,6 +4,7 @@ import { fetchEventDetails } from '../../apis/api'
 import Button from '../UI/Button/Button'
 import { useAuth0 } from '@auth0/auth0-react'
 import { NewEvent } from '../../../types/Event'
+import RSVPs from '../RSVPs/RSVPs'
 
 function EventDetails() {
   const timePath = '/time.png'
@@ -47,6 +48,9 @@ function EventDetails() {
               </div>
             </div>
             <div>
+              <div>
+                <RSVPs eventId={newEventId} crewId={newCrewId} />
+              </div>
               <li key={eventDetails.eventId} className="list-none">
                 <p className=" text-white py-2 px-4 text-uppercase font-interBold text-xl">
                   {eventDetails.name}
