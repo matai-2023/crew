@@ -68,3 +68,13 @@ export async function getUser(auth0Id: string) {
     .where('auth0id', auth0Id)
     .first('auth0id as auth0Id', 'username', 'email', 'avatar')
 }
+
+// GET ALL Members of a CREW
+
+export async function getAllCrewMembers(crewId: number) {
+  return await db('crew_users')
+    .join('crews', 'crews.id', 'crew_users.crew_id')
+    .join('users', 'users.id', 'crew_users.user_id')
+    .where('crews.id', crewId)
+    .select('users.id as userId', 'users.username')
+}

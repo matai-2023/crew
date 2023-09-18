@@ -54,3 +54,11 @@ export async function fetchEventDetails(
 
   return res.body
 }
+
+// GET CREW Members list
+export async function fetchCrewMembers(token: string, crewId: number) {
+  const response = await request
+    .get(`/api/v1/crews/${crewId}`)
+    .set('Authorization', `Bearer ${token}`)
+  return response.body
+}

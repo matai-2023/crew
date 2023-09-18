@@ -41,4 +41,17 @@ router.get('/:id', checkJwt, async (req: JwtRequest, res) => {
   }
 })
 
+//GET  MEMBERS to be displayed at a certain CREW
+router.get('/:id', checkJwt, async (req: JwtRequest, res) => {
+  try {
+    const crewId = Number(req.params.id)
+    const membersList = await db.getAllCrewMembers(crewId)
+
+    res.json(membersList)
+  } catch (err) {
+    console.log(err)
+    res.status(500).send('Could not find members list')
+  }
+})
+
 export default router
