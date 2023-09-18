@@ -21,7 +21,7 @@ function Nav(props: Props) {
   }
 
   return (
-    <nav className=" text-white font-interReg text-right p-4">
+    <nav className=" text-white font-interReg text-right py-8 p-4">
       <ul className="text-3xl">
         <li>
           <button onClick={() => goTo('/user-dashboard')}>My dashboard</button>

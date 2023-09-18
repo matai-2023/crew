@@ -68,13 +68,13 @@ function DashboardHeader() {
       {navOpened && (
         <>
           <nav
-            className={`fixed left-0 py-8 h-full w-full backdrop-filter backdrop-blur-md bg-opacity-5 shadow-transparent transition-all ease-in-out duration-200 ${
+            className={`fixed inset-0 backdrop-filter backdrop-blur-md bg-primaryBackground bg-opacity-50 shadow-lg transition-all ease-in-out duration-200 ${
               navOpened ? 'opacity-100' : 'hidden'
             }`}
           >
             <button
               onClick={toggleMenu}
-              className="text-white absolute top-0 right-0 mt-3 mr-4 text-xl font-bold"
+              className="text-white absolute top-0 right-0 mt-3 mr-4 py text-xl font-bold"
             >
               x
             </button>
