@@ -44,7 +44,7 @@ export async function getEventDetails(crewId: number, eventId: number) {
       'events.location as location',
       'events.description as description',
       'events.date as date',
-      'events.img as image'
+      'events.img as img'
     )
 }
 
