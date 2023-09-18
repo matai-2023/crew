@@ -31,7 +31,7 @@ export async function fetchCrewList(token: string) {
     .get('/api/v1/crews/')
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
-  console.log('api', response.body)
+
   return response.body as Crew[]
 }
 
@@ -57,4 +57,12 @@ export async function fetchEventDetails(
     .set('Content-Type', 'application/json')
 
   return res.body
+}
+
+// GET CREW Members list
+export async function fetchCrewMembers(token: string, crewId: number) {
+  const response = await request
+    .get(`/api/v1/crews/${crewId}/members`)
+    .set('Authorization', `Bearer ${token}`)
+  return response.body
 }

@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { fetchEventDetails } from '../../apis/api'
 import Button from '../UI/Button/Button'
+import { useAuth0 } from '@auth0/auth0-react'
 
 function EventDetails() {
   const timePath = '../../public/time.png'
@@ -9,20 +10,33 @@ function EventDetails() {
   const detailsPath = '../../public/details.png'
   const calendarPath = '../../public/calendar.png'
 
-  //TODO: Create logic to display the properties of an event
-  //TODO: Display the event banner
-  const crewId = 1
-  const eventId = 2
-  const { data, isLoading } = useQuery(['events'], () =>
-    fetchEventDetails(crewId, eventId)
-  )
+  const { crewId, eventId } = useParams()
+  const newEventId = Number(eventId)
+  const newCrewId = Number(crewId)
+
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
+  const { data, isLoading } = useQuery({
+    queryKey: ['events'],
+    queryFn: async () => {
+      const accessToken = await getAccessTokenSilently()
+      if (user && user.sub) {
+        const response = await fetchEventDetails(
+          accessToken,
+          newCrewId,
+          newEventId
+        )
+        return response
+      }
+    },
+  })
   console.log(data)
 
   return (
     <>
       {isLoading ? <p>data is loading...</p> : ''}
 
-      {data &&
+      {isAuthenticated &&
+        data &&
         data.map((eventDetails) => (
           <>
             <div>
