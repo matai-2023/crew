@@ -37,9 +37,6 @@ function CrewDashboard() {
     }
     setDisplayMembers(!displayMembers)
   }
-  console.log('Crew Members: ', crewMembers)
-
-  console.log('Event data:', data)
 
   const navigate = useNavigate()
   return (

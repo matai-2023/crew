@@ -31,7 +31,6 @@ function EventDetails() {
     },
   })
   if (data) {
-    console.log('Event Details data: ', data)
   }
 
   return (
