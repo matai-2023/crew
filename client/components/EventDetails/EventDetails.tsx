@@ -4,6 +4,8 @@ import { fetchEventDetails } from '../../apis/api'
 import Button from '../UI/Button/Button'
 import { useAuth0 } from '@auth0/auth0-react'
 import { NewEvent } from '../../../types/Event'
+import request from 'superagent'
+import Location from './Location'
 
 function EventDetails() {
   const timePath = '/time.png'
@@ -62,6 +64,7 @@ function EventDetails() {
                 <p className="flex items-center text-white py-2 px-4 text-sm">
                   <img src={locationPath} alt="Event Time" className="mr-2" />
                   <span className="font-interReg">{eventDetails.location}</span>
+                  <Location location={eventDetails.location} />
                 </p>
                 <div className="border-t border-white my-2"></div>
 
