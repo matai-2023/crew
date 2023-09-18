@@ -11,13 +11,11 @@ function CrewDashboard() {
 
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
   const { data, isLoading } = useQuery({
-    queryKey: ['events'],
+    queryKey: ['events', newId],
     queryFn: async () => {
       const accessToken = await getAccessTokenSilently()
-      if (user && user.sub) {
-        const response = await fetchEventList(accessToken, newId)
-        return response
-      }
+      const response = await fetchEventList(accessToken, newId)
+      return response
     },
   })
 
@@ -67,7 +65,7 @@ function CrewDashboard() {
         <ul className="p-5 mt-4">
           {data &&
             data.map((even) => (
-              <li key={even.id}>
+              <li key={even.eventId}>
                 <div
                   className="bg-white p-3 mb-4 rounded-lg shadow-left-bottom-pink"
                   onClick={() => navigate(`/event-details/${even.id}`)}

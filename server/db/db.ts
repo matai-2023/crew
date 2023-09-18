@@ -27,6 +27,7 @@ export async function getEventsbyCrew(crewId: number) {
       'events.date as date',
       'events.img as image'
     )
+    .distinct()
 }
 
 // Get ONE event of a CREW
