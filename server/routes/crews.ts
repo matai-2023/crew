@@ -4,9 +4,9 @@ import checkJwt, { JwtRequest } from '../auth0.ts'
 
 const router = express.Router()
 
+// GET all crews
 router.get('/', checkJwt, async (req: JwtRequest, res) => {
   try {
-    //  Todo: replace the hardcode Auth0 with Auth0 function
     const auth0Id = req.auth?.sub
 
     if (!auth0Id) {
