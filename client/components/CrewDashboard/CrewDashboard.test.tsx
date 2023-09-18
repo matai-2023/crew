@@ -1,4 +1,4 @@
-//@vitest-environment jsdom
+//@vitest -environment jsdom
 
 import { describe, it, expect, vi } from 'vitest'
 import { renderComponent, renderWithRouter } from '../../test-utils'
