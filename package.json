@@ -20,7 +20,6 @@
     "build:server": "esbuild --packages=external --platform=node --format=esm --outfile=dist/server.js --bundle server/index.ts",
     "build:css": "tailwindcss -i client/styles/input.css -o public/output.css",
     "test": "NODE_ENV=test vitest",
-
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "format": "prettier -w '**/*.{js,jsx,ts,tsx}'",
     "storybook": "storybook dev -p 6006",
@@ -89,7 +88,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
     "regenerator-runtime": "^0.13.7",
-    "storybook": "^7.4.0",
+    "storybook": "^7.4.2",
     "styled-components": "^5.3.1",
     "superagent": "7.1.1",
     "supertest": "^6.2.2",
