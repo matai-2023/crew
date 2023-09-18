@@ -25,4 +25,5 @@ export default checkJwt
 export interface JwtRequest<TReq = any, TRes = any>
   extends Request<ParamsDictionary, TRes, TReq> {
   auth?: JwtPayload
+  file?: JwtPayload
 }

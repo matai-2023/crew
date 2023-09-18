@@ -1,39 +1,31 @@
+import { useState } from 'react'
 import { Profile, ProfileDraft } from '../../../types/Profile'
 import Button from '../UI/Button/Button'
 
 interface Props {
   profile?: Profile
-  handleSubmit: (profile: Profile | ProfileDraft) => void
+  handleSubmit: (form: Profile | ProfileDraft) => void
 }
 
 function ProfileForm(props: Props) {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+
     const formData = new FormData(e.currentTarget)
-    const username = formData.get('username') as string
-    const email = formData.get('email') as string
-    const avatar = formData.get('avatar') as string
 
-    const form = {
-      username: username,
-      email: email,
-      avatar: avatar,
-    }
-
-    props.handleSubmit(form)
+    props.handleSubmit(formData)
     // TODO: Add redirect to the user-dashboard here
   }
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        className="space-y-4 p-4"
+      >
         <div className="mb-4 p-3 mt-9">
-          <label
-            htmlFor="username"
-            className="block text-white font-interReg mb-3"
-          >
-            Username *
-          </label>
+          <label htmlFor="username" className="block text-white font-interReg mb-3">Username *</label>
           <input
             type="text"
             name="username"
@@ -59,22 +51,10 @@ function ProfileForm(props: Props) {
             defaultValue={props.profile?.email}
           ></input>
         </div>
-
-        {/* Avatar */}
         <div className="mb-4 p-3">
-          <label
-            htmlFor="avatar"
-            className="block text-white font-interReg mb-3"
-          >
-            Avatar *
-          </label>
-          <input
-            type="file"
-            name="avatar"
-            id="avatar"
-            className="border rounded-md w-full px-3 py-2 text-black font-interReg"
-            required
-          ></input>
+          <label htmlFor="avatar" className="block text-white font-interReg mb-3">Avatar</label>
+          <input type="file" name="image" id="avatar" accept="images/*" className="border rounded-md w-full px-3 py-2 text-black font-interReg"></input>
+          <img src={props.profile?.avatar} alt={props.profile?.username} />
         </div>
 
         <div>
