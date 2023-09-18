@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchCrewMembers, fetchEventList } from '../../apis/api.ts'
 import { useState } from 'react'
 import Button from '../UI/Button/Button'
+import { NewEvent } from '../../../types/Event.ts'
 
 function CrewDashboard() {
   const { crewId } = useParams()
@@ -15,7 +16,9 @@ function CrewDashboard() {
     queryFn: async () => {
       const accessToken = await getAccessTokenSilently()
       const response = await fetchEventList(accessToken, newId)
-      return response
+      console.log('THE RESPONSE: ', response)
+
+      return response as NewEvent[]
     },
   })
 
@@ -34,7 +37,9 @@ function CrewDashboard() {
     }
     setDisplayMembers(!displayMembers)
   }
-  console.log(crewMembers)
+  console.log('Crew Members: ', crewMembers)
+
+  console.log('Event data:', data)
 
   const navigate = useNavigate()
   return (
