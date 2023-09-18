@@ -7,3 +7,7 @@ export interface Event {
   img: string
   crew_id: number
 }
+
+export interface NewEvent extends Event {
+  eventId: number
+}

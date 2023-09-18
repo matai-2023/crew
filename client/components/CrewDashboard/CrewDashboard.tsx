@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchCrewMembers, fetchEventList } from '../../apis/api.ts'
 import { useState } from 'react'
 import Button from '../UI/Button/Button'
+import { NewEvent } from '../../../types/Event.ts'
 
 function CrewDashboard() {
   const { crewId } = useParams()
@@ -15,7 +16,8 @@ function CrewDashboard() {
     queryFn: async () => {
       const accessToken = await getAccessTokenSilently()
       const response = await fetchEventList(accessToken, newId)
-      return response
+
+      return response as NewEvent[]
     },
   })
 
@@ -34,7 +36,6 @@ function CrewDashboard() {
     }
     setDisplayMembers(!displayMembers)
   }
-  console.log(crewMembers)
 
   const navigate = useNavigate()
   return (
@@ -64,15 +65,15 @@ function CrewDashboard() {
 
         <ul className="p-5 mt-4">
           {data &&
-            data.map((even) => (
-              <li key={even.eventId}>
+            data.map((event) => (
+              <li key={event.eventId}>
                 <div
                   className="bg-white p-3 mb-4 rounded-lg shadow-left-bottom-pink"
-                  onClick={() => navigate(`/event-details/${even.id}`)}
+                  onClick={() => navigate(`event-details/${event.eventId}`)}
                 >
                   <div className="flex flex-col items-center justify-center">
-                    <p className="font-interBold font-bold">{even.name}</p>
-                    <p className="font-interReg">{even.date}</p>
+                    <p className="font-interBold font-bold">{event.name}</p>
+                    <p className="font-interReg">{event.date}</p>
                   </div>
                 </div>
               </li>

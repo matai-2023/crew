@@ -9,13 +9,6 @@ router.get(
   '/:crewId/event-details/:eventId',
   checkJwt,
   async (req: JwtRequest, res) => {
-    const auth0Id = req.auth?.sub
-
-    if (!auth0Id) {
-      res.status(400).json({ message: 'Please provide an id' })
-      return
-    }
-
     try {
       const crewId = Number(req.params.crewId)
       const eventId = Number(req.params.eventId)
