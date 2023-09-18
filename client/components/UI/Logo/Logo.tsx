@@ -1,5 +1,5 @@
 function Logo() {
-  const imagePath = '../../public/logo.png'
+  const imagePath = '/logo.png'
 
   return (
     <button className="p-3">

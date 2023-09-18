@@ -6,10 +6,10 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { NewEvent } from '../../../types/Event'
 
 function EventDetails() {
-  const timePath = '../../public/time.png'
-  const locationPath = '../../public/location.png'
-  const detailsPath = '../../public/details.png'
-  const calendarPath = '../../public/calendar.png'
+  const timePath = '/time.png'
+  const locationPath = '/location.png'
+  const detailsPath = '/details.png'
+  const calendarPath = '/calendar.png'
 
   const { crewId, eventId } = useParams()
   const newEventId = Number(eventId)
@@ -20,14 +20,12 @@ function EventDetails() {
     queryKey: ['events'],
     queryFn: async () => {
       const accessToken = await getAccessTokenSilently()
-      if (user && user.sub) {
-        const response = await fetchEventDetails(
-          accessToken,
-          newCrewId,
-          newEventId
-        )
-        return response as NewEvent[]
-      }
+      const response = await fetchEventDetails(
+        accessToken,
+        newCrewId,
+        newEventId
+      )
+      return response as NewEvent[]
     },
   })
   if (data) {
