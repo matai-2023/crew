@@ -46,6 +46,7 @@ export async function getEventDetails(crewId: number, eventId: number) {
       'events.date as date',
       'events.img as img'
     )
+    .distinct()
 }
 
 // USERS

@@ -59,7 +59,7 @@ function DashboardHeader() {
               animate={isArrowTouched ? 'touched' : 'untouched'}
               variants={arrowScale}
             >
-              <img src="../../public/Arrow.png" alt="Back" />
+              <img src="/Arrow.png" alt="Back" />
             </motion.button>
           </div>
         </nav>
