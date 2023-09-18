@@ -22,4 +22,21 @@ router.get(
   }
 )
 
+router.get(
+  '/:crewId/event-details/:eventId/attending',
+  checkJwt,
+  async (req: JwtRequest, res) => {
+    try {
+      const crewId = Number(req.params.crewId)
+      const eventId = Number(req.params.eventId)
+
+      const rsvps = await db.getAllRSVPs(crewId, eventId)
+      res.json(rsvps)
+    } catch (err) {
+      console.log(err)
+      res.status(500).send('Could not find rsvps')
+    }
+  }
+)
+
 export default router

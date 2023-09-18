@@ -82,3 +82,39 @@ export async function getAllCrewMembers(crewId: number) {
     .select('users.id as userId', 'users.username')
     .distinct()
 }
+
+// GET ALL crew member rsvps to an event
+
+// export async function getAllRSVPs(crewId: number, eventId: number) {
+//   return await db('rsvps')
+//     .join('crew_users', 'crew_users_id', 'crew_users.id')
+//     .join('users', 'user_id', 'users.id')
+//     .join('events', 'event_id', 'events.id')
+//     .where('crew_id', crewId)
+//     .where('events.id', eventId)
+//     .select('users.id as userId', 'attending')
+// }
+
+export async function getAllRSVPs(crewId: number, eventId: number) {
+  return await db('rsvps')
+    .join('crew_users as cu', 'crew_users_id', 'cu.id')
+    .join('crews ', 'cu.crew_id', 'crews.id')
+    .join('users', 'user_id', 'users.id')
+    .join('events as e', 'rsvps.event_id', 'e.id')
+    .where('crewId', crewId)
+    .where('e.id', eventId)
+    .select(
+      'rsvps.id as rsvpId',
+      'users.id as userId',
+      'crews.id as crewId',
+      'users.username',
+      'users.email',
+      'e.name as eventName',
+      'e.time',
+      'e.location',
+      'e.description',
+      'e.date',
+      'e.img',
+      'attending'
+    )
+}
