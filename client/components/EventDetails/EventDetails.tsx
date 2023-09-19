@@ -36,6 +36,25 @@ function EventDetails() {
     setIframeUrl(url)
   }
 
+  function formatEventDate(dateValue: number) {
+    if (!dateValue) {
+      return 'Invalid Date'
+    }
+
+    const date = new Date(dateValue)
+    if (isNaN(date.getTime())) {
+      return 'Invalid Date'
+    }
+
+    const day = date.getDate()
+    const month = date
+      .toLocaleString('default', { month: 'short' })
+      .toUpperCase()
+    const year = date.toLocaleString('default', { year: 'numeric' })
+
+    return `${day} ${month} ${year}`
+  }
+
   return (
     <>
       {isLoading ? <p>data is loading...</p> : ''}
@@ -67,7 +86,9 @@ function EventDetails() {
 
                 <p className="flex items-center text-white py-2 px-4 text-sm">
                   <img src={calendarPath} alt="Event Time" className="mr-2" />
-                  <span className="font-interReg">{eventDetails.date}</span>
+                  <span className="font-interReg">
+                    {formatEventDate(eventDetails.date)}
+                  </span>
                 </p>
 
                 <p className="flex items-center text-white py-2 px-4 text-sm">
