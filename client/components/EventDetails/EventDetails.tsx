@@ -31,11 +31,6 @@ function EventDetails() {
       return response as NewEvent[]
     },
   })
-  // if (data) {
-  //   console.log('Event Details data: ', data)
-  // }
-
-  // }
 
   function locationClicked(url: string) {
     setIframeUrl(url)
@@ -49,9 +44,6 @@ function EventDetails() {
         data &&
         data.map((eventDetails) => (
           <>
-            <div>
-              <img src={eventDetails.img} alt={eventDetails.name} />
-            </div>
             <div>
               <li key={eventDetails.eventId}>
                 <p className=" text-white py-2 px-4 text-uppercase font-interBold text-xl">
@@ -70,7 +62,7 @@ function EventDetails() {
 
                 <p className="flex items-center text-white py-2 px-4 text-sm">
                   <img
-                    onClick={locationClicked(eventDetails.location)}
+                    onClick={() => locationClicked(eventDetails.location)}
                     src={locationPath}
                     alt="Event Time"
                     className="mr-2"
