@@ -6,20 +6,20 @@ import { useState } from 'react'
 import Button from '../UI/Button/Button'
 import { NewEvent } from '../../../types/Event.ts'
 
-function formatEventDate(dateString) {
-  if (!dateString) {
-    return 'Invalid Date';
+function formatEventDate(dateValue: number) {
+  if (!dateValue) {
+    return 'Invalid Date'
   }
 
-  const date = new Date(dateString);
+  const date = new Date(dateValue)
   if (isNaN(date.getTime())) {
-    return 'Invalid Date';
+    return 'Invalid Date'
   }
 
-  const day = date.getDate();
-  const month = date.toLocaleString('default', { month: 'short' });
+  const day = date.getDate()
+  const month = date.toLocaleString('default', { month: 'short' }).toUpperCase()
 
-  return `${day} ${month}`;
+  return `${day} ${month}`
 }
 
 function CrewDashboard() {
@@ -58,7 +58,7 @@ function CrewDashboard() {
     <>
       <div className="flex flex-col items-center justify-start min-h-screen mt-10">
         {isLoading ? <p>data is loading...</p> : ''}
-        <div>{newId }</div>
+        <div>{newId}</div>
 
         <ul className="p-5 mt-4">
           {data &&
@@ -66,7 +66,6 @@ function CrewDashboard() {
               <li key={event.eventId}>
                 <div className="bg-white p-5 mb-4 rounded-lg shadow-left-bottom-pink mx-auto max-w-md max-w-screen-sm relative">
                   {' '}
-                
                   <div className="absolute h-full border-l border-black left-2/3 top-0"></div>
                   <div className="flex flex-row items-center justify-between">
                     <div className="flex-1">
@@ -75,8 +74,7 @@ function CrewDashboard() {
                     <div className="flex-1 text-right">
                       {' '}
                       <p className="font-interBold text-lg">
-                        {' '}
-                        {formatEventDate(event.date)}{' '}
+                        {formatEventDate(event.date)}
                       </p>
                     </div>
                   </div>

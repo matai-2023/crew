@@ -6,7 +6,7 @@ export function up(knex) {
     table.string('address')
     table.string('location')
     table.string('description')
-    table.string('date')
+    table.integer('date')
     table.string('img')
     table.integer('crew_id').references('crews.id')
   })
