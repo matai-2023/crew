@@ -68,7 +68,7 @@ function DashboardHeader() {
       {navOpened && (
         <>
           <nav
-            className={`fixed inset-0 backdrop-filter backdrop-blur-md bg-primaryBackground bg-opacity-50 shadow-lg transition-all ease-in-out duration-200 ${
+            className={`fixed inset-0 backdrop-filter backdrop-blur-md bg-primaryBackground bg-opacity-50 shadow-lg transition-all ease-in-out duration-200 z-50 ${
               navOpened ? 'opacity-100' : 'hidden'
             }`}
           >
