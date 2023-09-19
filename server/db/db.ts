@@ -84,29 +84,31 @@ export async function getAllCrewMembers(crewId: number) {
     .distinct()
 }
 
-export async function getAllRSVPs(crewId: number, eventId: number) {
+export async function getAllRSVPs(auth0Id: string, eventId: number) {
+  const userId = await db('users').where('auth0id', auth0Id).pluck('id')
+
+  console.log(typeof userId[0])
+
   return await db('rsvps')
-    .join('crew_users as cu', 'crew_users_id', 'cu.id')
-    .join('crews ', 'cu.crew_id', 'crews.id')
-    .join('users', 'user_id', 'users.id')
-    .join('events as e', 'rsvps.event_id', 'e.id')
-    .where('crewId', crewId)
-    .where('e.id', eventId)
+    .join('crew_users', 'rsvps.crew_users_id', 'crew_users.id')
+    .where('crew_users.user_id', userId[0])
+    .where('rsvps.event_id', eventId)
     .select(
       'rsvps.id as rsvpId',
-      'users.id as userId',
-      'crews.id as crewId',
-      'users.username',
-      'users.email',
-      'e.name as eventName',
-      'e.time',
-      'e.location',
-      'e.description',
-      'e.date',
-      'e.img',
+      // 'users.id as userId',
+      // 'crews.id as crewId',
+      // 'users.username',
+      // 'users.email',
+      // 'e.name as eventName',
+      // 'e.time',
+      // 'e.location',
+      // 'e.description',
+      // 'e.date',
+      // 'e.img',
       'attending'
     )
-    .distinct()
+    .first()
+  // .distinct()
 }
 
 export async function updateRSVP(rsvpId: number, rsvp: AttendingStatus) {
