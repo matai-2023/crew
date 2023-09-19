@@ -48,6 +48,8 @@ function CrewDashboard() {
     setCrewMembers(response)
   }
 
+  console.log(crewMembers)
+
   async function handleClick() {
     if (!displayMembers) {
       await allCrewMembers()
@@ -123,6 +125,10 @@ function CrewDashboard() {
                     data-testid="crew-member"
                     className="font-interReg text-white"
                   >
+                    <img
+                      src={`${crewMember.avatar}`}
+                      alt={crewMember.username}
+                    />
                     {`${crewMember.username}`}
                   </li>
                 ))}
