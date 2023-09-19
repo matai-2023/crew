@@ -5,7 +5,6 @@ import Button from '../UI/Button/Button'
 import { useAuth0 } from '@auth0/auth0-react'
 import { NewEvent } from '../../../types/Event'
 import request from 'superagent'
-import Location from './Location'
 import { useState } from 'react'
 
 function EventDetails() {
@@ -33,7 +32,6 @@ function EventDetails() {
     },
   })
 
-  // }
 
   function locationClicked(url: string) {
     setIframeUrl(url)
@@ -46,9 +44,8 @@ function EventDetails() {
       {isAuthenticated &&
         data &&
         data.map((eventDetails) => (
-          <>
             <div className="relative h-[300px] w-full overflow-hidden">
-              <div className="absolute inset-0">
+              <div key={eventDetails.eventId} className="absolute inset-0">
                 <img
                   src={eventDetails.img}
                   alt={eventDetails.name}
@@ -74,7 +71,7 @@ function EventDetails() {
 
                 <p className="flex items-center text-white py-2 px-4 text-sm">
                   <img
-                    onClick={locationClicked(eventDetails.location)}
+                    onClick={() => locationClicked(eventDetails.location)}
                     src={locationPath}
                     alt="Event Time"
                     className="mr-2"
