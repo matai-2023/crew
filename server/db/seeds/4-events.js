@@ -40,7 +40,7 @@ export async function seed(knex) {
       description:
         'major upward only uh-huh brr fresh even empower strange deliberately blond',
       date: '13/10/2023',
-      img: '',
+      img: 'https://images.unsplash.com/photo-1590845947670-c009801ffa74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80',
       crew_id: 3,
     },
     {
@@ -53,7 +53,7 @@ export async function seed(knex) {
       description:
         'whoever now split rudely pizza copyright birdhouse clothing when than courageously iconify gah gah plus oversleep majestically bleakly noted',
       date: '20/08/2024',
-      img: '',
+      img: 'https://images.unsplash.com/photo-1590845947670-c009801ffa74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80',
       crew_id: 1,
     },
     {
@@ -66,7 +66,7 @@ export async function seed(knex) {
       description:
         'likewise the dense anti gah among uh-huh ferry acclaimed after but disagree deserted wavy as inasmuch ah satiate even graduation',
       date: '29/09/2023',
-      img: '',
+      img: 'https://images.unsplash.com/photo-1590845947670-c009801ffa74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80',
       crew_id: 5,
     },
     {
@@ -79,7 +79,7 @@ export async function seed(knex) {
       description:
         'distill wholly loudly speaker ew because flow offload unlike',
       date: '2/03/2024',
-      img: '',
+      img: 'https://images.unsplash.com/photo-1590845947670-c009801ffa74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80',
       crew_id: 1,
     },
     {
@@ -92,7 +92,7 @@ export async function seed(knex) {
       description:
         'beyond beautifully wise zowie innocently hm peony as sniveling impressive what fraction melody midst boring slowly except honestly infamous uh-huh',
       date: '30/09/2023',
-      img: '',
+      img: 'https://images.unsplash.com/photo-1590845947670-c009801ffa74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80',
       crew_id: 4,
     },
     {
@@ -105,7 +105,7 @@ export async function seed(knex) {
       description:
         'before sedately however better meanwhile nor than exude vaulting trained during what verb upwardly fickle roller',
       date: '29/12/2023',
-      img: '',
+      img: 'https://images.unsplash.com/photo-1590845947670-c009801ffa74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80',
       crew_id: 1,
     },
     {
@@ -118,7 +118,7 @@ export async function seed(knex) {
       description:
         'palatable although nor really sans reference unusual sometimes and',
       date: '12/06/2024',
-      img: '',
+      img: 'https://images.unsplash.com/photo-1590845947670-c009801ffa74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80',
       crew_id: 5,
     },
     {
@@ -131,7 +131,7 @@ export async function seed(knex) {
       description:
         'notwithstanding thief brr shocked what hot total forthright sternly gee softdrink',
       date: '9/12/2023',
-      img: '',
+      img: 'https://images.unsplash.com/photo-1590845947670-c009801ffa74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80',
       crew_id: 1,
     },
   ]
