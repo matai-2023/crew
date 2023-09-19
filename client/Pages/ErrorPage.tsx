@@ -11,7 +11,7 @@ function ErrorPage() {
             <img className="pb-10" alt="error logo" src={`./public/logo.png`} />
             <p>Something went wrong</p>
             <Button>
-              <Link to="/">Home</Link>
+              <Link to="/user-dashboard">Home</Link>
             </Button>
           </div>
         </div>
