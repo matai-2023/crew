@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useNavigate } from 'react-router-dom'
-import { upsertProfile } from '../../apis/api'
+import { updateRSVP, upsertProfile } from '../../apis/api'
 import { getUser } from '../../apis/api'
 import { Profile, ProfileDraft } from '../../../types/Profile'
 import { AttendingStatus } from '../../../types/Event'
@@ -27,8 +27,19 @@ function useProfile() {
   })
 
   const mutation = useMutation({
-    mutationFn: ({ form, token }: { form: AttendingStatus; token: string }) =>
-      updateRSVP(form, token),
+    mutationFn: ({
+      formData,
+      rsvpID,
+      accessToken,
+      cId,
+      eId,
+    }: {
+      formData: boolean
+      rsvpID: number
+      accessToken: string
+      cId: number
+      eId: number
+    }) => updateRSVP({ formData, rsvpID, accessToken, cId, eId }),
     onSuccess: () => {
       queryClient.invalidateQueries(['rsvps'])
       // navigate('/user-dashboard')

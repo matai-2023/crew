@@ -45,16 +45,15 @@ router.post(
   checkJwt,
   async (req: JwtRequest, res) => {
     const auth0Id = req.auth?.sub
-    const crewId = Number(req.params.crewId)
-    const eventId = Number(req.params.eventId)
-    const rsvp = req.body as AttendingStatus
+    const rsvpId = Number(req.body.rsvpId)
+    const rsvp = req.body.form as AttendingStatus
 
     if (!auth0Id) {
       res.status(400).json({ message: 'Missing auth0 id' })
       return
     }
     try {
-      await db.updateRSVP(crewId, eventId, rsvp)
+      await db.updateRSVP(rsvpId, rsvp)
       res.sendStatus(201)
     } catch (err) {
       console.log(err)

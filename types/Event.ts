@@ -30,3 +30,10 @@ export interface AttendanceData {
 export interface AttendingStatus {
   attending: boolean
 }
+
+export interface RSVPData extends AttendingStatus {
+  rsvpID: number
+  accessToken: string
+  cId: number
+  eId: number
+}

@@ -1,3 +1,4 @@
+import { AttendingStatus } from '../../types/Event.js'
 import { Profile } from '../../types/Profile.js'
 import db from './connection.js'
 
@@ -105,4 +106,9 @@ export async function getAllRSVPs(crewId: number, eventId: number) {
       'e.img',
       'attending'
     )
+    .distinct()
+}
+
+export async function updateRSVP(rsvpId: number, rsvp: AttendingStatus) {
+  return await db('rsvps').where('id', rsvpId).update(rsvp)
 }

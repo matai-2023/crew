@@ -78,16 +78,27 @@ export async function fetchAllRSVPs(
 }
 
 // POST rsvp to an event
-export async function updateRSVP(
-  token: string,
-  crewId: number,
-  eventId: number,
-  form: AttendingStatus
-) {
+export async function updateRSVP({
+  formData,
+  rsvpID,
+  accessToken,
+  cId,
+  eId,
+}: {
+  formData: boolean
+  rsvpID: number
+  accessToken: string
+  cId: number
+  eId: number
+}) {
+  const data = {
+    rsvpID,
+    formData,
+  }
   await request
-    .post(`${rootUrl}/crews/${crewId}/event-details/${eventId}/attending`)
-    .set('Authorization', `Bearer ${token}`)
-    .send(form)
+    .post(`${rootUrl}/crews/${cId}/event-details/${eId}/attending`)
+    .set('Authorization', `Bearer ${accessToken}`)
+    .send(data)
 }
 
 // GET CREW Members list
