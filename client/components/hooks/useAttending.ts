@@ -28,18 +28,18 @@ function useProfile() {
 
   const mutation = useMutation({
     mutationFn: ({
-      formData,
+      attending,
       rsvpID,
       accessToken,
       cId,
       eId,
     }: {
-      formData: boolean
+      attending: boolean
       rsvpID: number
       accessToken: string
       cId: number
       eId: number
-    }) => updateRSVP({ formData, rsvpID, accessToken, cId, eId }),
+    }) => updateRSVP({ attending, rsvpID, accessToken, cId, eId }),
     onSuccess: () => {
       queryClient.invalidateQueries(['rsvps'])
       // navigate('/user-dashboard')

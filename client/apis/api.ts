@@ -79,13 +79,13 @@ export async function fetchAllRSVPs(
 
 // POST rsvp to an event
 export async function updateRSVP({
-  formData,
+  attending,
   rsvpID,
   accessToken,
   cId,
   eId,
 }: {
-  formData: boolean
+  attending: boolean
   rsvpID: number
   accessToken: string
   cId: number
@@ -93,8 +93,9 @@ export async function updateRSVP({
 }) {
   const data = {
     rsvpID,
-    formData,
+    attending,
   }
+  console.log(data)
   await request
     .post(`${rootUrl}/crews/${cId}/event-details/${eId}/attending`)
     .set('Authorization', `Bearer ${accessToken}`)

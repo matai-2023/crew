@@ -110,5 +110,5 @@ export async function getAllRSVPs(crewId: number, eventId: number) {
 }
 
 export async function updateRSVP(rsvpId: number, rsvp: AttendingStatus) {
-  return await db('rsvps').where('id', rsvpId).update(rsvp)
+  return await db('rsvps').where('id', rsvpId).update({ attending: rsvp })
 }

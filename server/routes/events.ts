@@ -46,7 +46,7 @@ router.post(
   async (req: JwtRequest, res) => {
     const auth0Id = req.auth?.sub
     const rsvpId = Number(req.body.rsvpId)
-    const rsvp = req.body.form as AttendingStatus
+    const rsvp = req.body.attending as AttendingStatus
 
     if (!auth0Id) {
       res.status(400).json({ message: 'Missing auth0 id' })

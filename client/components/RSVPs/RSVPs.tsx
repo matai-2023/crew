@@ -1,9 +1,8 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { useQuery } from '@tanstack/react-query'
 import { fetchAllRSVPs } from '../../apis/api'
-import { AttendanceData, AttendingStatus } from '../../../types/Event'
+import { AttendanceData } from '../../../types/Event'
 import useAttending from '../hooks/useAttending'
-import { useParams } from 'react-router-dom'
 
 interface Props {
   eventId: number
@@ -26,19 +25,31 @@ function RSVPs(props: Props) {
     },
   })
 
-  const extractedId = data?.map((rsvp) => {
-    rsvp.rsvpId
-  })
+  const extractedId = data?.map((rsvp) => ({
+    rsvp: rsvp.rsvpId
+  }))
 
   const rsvpID = Number(extractedId)
 
-  async function handleSubmit(e) {
+  function convertToBoolean(rsvp: string) {
+    if (rsvp == '1') {
+      return true
+    }
+    return false
+  }
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
     const form = new FormData(e.currentTarget)
-    const formData = Boolean(form)
+    const rsvp = form.get('rsvp')?.valueOf() as string
+    const formData = convertToBoolean(rsvp)
+    console.log(formData)
     const cId = props.crewId
     const eId = props.eventId
     const accessToken = await getAccessTokenSilently()
-    mutation.mutate({ formData, rsvpID, accessToken, cId, eId })
+    if (formData) {
+      mutation.mutate({ attending: formData, rsvpID, accessToken, cId, eId })
+    }
   }
 
   return (
@@ -49,8 +60,17 @@ function RSVPs(props: Props) {
         data &&
         data.map((rsvps) => (
           <>
-            <p>{rsvps.username}</p>
-            <p>{rsvps.attending == true ? rsvps.username : ''}</p>
+            <p>Going: {rsvps.attending == true ? rsvps.username : ''}</p>
+            <form onSubmit={handleSubmit}>
+              <label htmlFor="rsvp">
+                <p>RSVP to this event:</p>
+              </label>
+              <select name="rsvp">
+                <option value="1">Going</option>
+                <option value="0">Not going</option>
+              </select>
+              <button>Submit</button>
+            </form>
           </>
         ))}
     </>

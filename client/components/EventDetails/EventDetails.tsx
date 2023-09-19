@@ -37,7 +37,7 @@ function EventDetails() {
       {isAuthenticated &&
         data &&
         data.map((eventDetails) => (
-          <>
+          <div key={eventDetails.name}>
             <div className="relative h-[300px] w-full overflow-hidden">
               <div className="absolute inset-0">
                 <img
@@ -81,7 +81,7 @@ function EventDetails() {
                 <br></br>
               </li>
             </div>
-          </>
+          </div>
         ))}
 
       <Link
