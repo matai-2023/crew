@@ -20,6 +20,7 @@ router.get('/', checkJwt, async (req: JwtRequest, res) => {
     const user = await db.getUser(auth0Id)
     res.status(200).json(user)
   } catch (error) {
+    console.error(error)
     res.status(500).json({ message: 'Unable to retrieve user from database' })
   }
 })
@@ -70,6 +71,7 @@ router.post(
         return
       }
     } catch (error) {
+      console.error(error)
       res.status(500).json({ message: 'Unable to insert new user to database' })
     }
   }
