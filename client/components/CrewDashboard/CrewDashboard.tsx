@@ -42,9 +42,13 @@ function CrewDashboard() {
 
   async function allCrewMembers() {
     const accessToken = await getAccessTokenSilently()
+
     const response = await fetchCrewMembers(accessToken, newId)
+
     setCrewMembers(response)
   }
+
+  console.log(crewMembers)
 
   async function handleClick() {
     if (!displayMembers) {
@@ -66,7 +70,14 @@ function CrewDashboard() {
           {data &&
             data.map((event) => (
               <li key={event.eventId}>
-                <div className="bg-white p-5 mb-4 rounded-lg shadow-left-bottom-pink mx-auto max-w-md max-w-screen-sm relative">
+                <div
+                  className="bg-white p-5 mb-4 rounded-lg shadow-left-bottom-pink mx-auto max-w-md max-w-screen-sm relative"
+                  onClick={() =>
+                    navigate(
+                      `/crew-dashboard/${newId}/event-details/${event.eventId}`
+                    )
+                  }
+                >
                   <div className="absolute h-full border-l border-black left-2/3 top-0"></div>
                   <div className="flex flex-row items-center justify-between">
                     <div className="flex-1">
@@ -114,6 +125,10 @@ function CrewDashboard() {
                     data-testid="crew-member"
                     className="font-interReg text-white"
                   >
+                    <img
+                      src={`${crewMember.avatar}`}
+                      alt={crewMember.username}
+                    />
                     {`${crewMember.username}`}
                   </li>
                 ))}

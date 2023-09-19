@@ -19,6 +19,7 @@
     "build:client": "vite build",
     "build:server": "esbuild --packages=external --platform=node --format=esm --outfile=dist/server.js --bundle server/index.ts",
     "build:css": "tailwindcss -i client/styles/input.css -o public/output.css",
+    "preview": "vite preview",
     "test": "NODE_ENV=test vitest",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "format": "prettier -w '**/*.{js,jsx,ts,tsx}'",
@@ -103,5 +104,8 @@
     "semi": false,
     "singleQuote": true
   },
-  "browserslist": "> 2%, not dead"
+  "browserslist": "> 2%, not dead",
+  "engine": {
+    "node": ">=18.0.0"
+  }
 }
