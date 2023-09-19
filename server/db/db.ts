@@ -81,6 +81,6 @@ export async function getAllCrewMembers(crewId: number) {
     .join('crews', 'crews.id', 'crew_users.crew_id')
     .join('users', 'users.id', 'crew_users.user_id')
     .where('crews.id', crewId)
-    .select('users.id as userId', 'users.username')
+    .select('users.id as userId', 'users.username', 'users.avatar')
     .distinct()
 }

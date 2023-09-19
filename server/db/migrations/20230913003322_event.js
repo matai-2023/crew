@@ -6,8 +6,8 @@ export function up(knex) {
     table.string('address')
     table.text('location')
     table.string('description')
-    table.string('date')
     table.text('img')
+    table.bigint('date')
     table.integer('crew_id').references('crews.id')
   })
 }
