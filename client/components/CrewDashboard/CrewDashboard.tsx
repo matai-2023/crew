@@ -42,7 +42,9 @@ function CrewDashboard() {
 
   async function allCrewMembers() {
     const accessToken = await getAccessTokenSilently()
+
     const response = await fetchCrewMembers(accessToken, newId)
+
     setCrewMembers(response)
   }
 
