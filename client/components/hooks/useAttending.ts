@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { upsertProfile } from '../../apis/api'
 import { getUser } from '../../apis/api'
 import { Profile, ProfileDraft } from '../../../types/Profile'
+import { AttendingStatus } from '../../../types/Event'
 
 // This component adds user rsvp to the database
 

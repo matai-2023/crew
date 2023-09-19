@@ -12,7 +12,7 @@ export interface NewEvent extends Event {
   eventId: number
 }
 
-export interface AttendanceData{
+export interface AttendanceData {
   rsvpId: number
   userId: number
   crewId: number
@@ -24,5 +24,9 @@ export interface AttendanceData{
   description: string
   date: number
   img: string
+  attending: boolean
+}
+
+export interface AttendingStatus {
   attending: boolean
 }

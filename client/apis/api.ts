@@ -2,6 +2,7 @@ import request from 'superagent'
 import { Profile, ProfileDraft } from '../../types/Profile'
 import { Crew } from '../../types/Crew'
 import { Blob } from 'buffer'
+import { AttendingStatus } from '../../types/Event'
 
 const rootUrl = '/api/v1'
 
@@ -74,6 +75,19 @@ export async function fetchAllRSVPs(
     .set('Content-Type', 'application/json')
 
   return res.body
+}
+
+// POST rsvp to an event
+export async function updateRSVP(
+  token: string,
+  crewId: number,
+  eventId: number,
+  form: AttendingStatus
+) {
+  await request
+    .post(`${rootUrl}/crews/${crewId}/event-details/${eventId}/attending`)
+    .set('Authorization', `Bearer ${token}`)
+    .send(form)
 }
 
 // GET CREW Members list
