@@ -19,6 +19,7 @@ function Nav(props: Props) {
     props.toggleMenu()
     navigate(link)
   }
+  console.log(isAuthenticated)
 
   return (
     <nav className=" text-white font-interReg text-right py-8 p-4">

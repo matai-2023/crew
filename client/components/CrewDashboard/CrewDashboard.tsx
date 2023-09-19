@@ -71,20 +71,20 @@ function CrewDashboard() {
             data.map((event) => (
               <li key={event.eventId}>
                 <div
-                  className="bg-white p-5 mb-4 rounded-lg shadow-left-bottom-pink mx-auto max-w-md max-w-screen-sm relative"
+                  className="bg-white p-5 mb-4 rounded-lg shadow-left-bottom-pink mx-auto max-w-md max-w-screen-sm "
                   onClick={() =>
                     navigate(
                       `/crew-dashboard/${newId}/event-details/${event.eventId}`
                     )
                   }
                 >
-                  <div className="absolute h-full border-l border-black left-2/3 top-0"></div>
+                  <div className="h-full border-l border-black left-2/3 top-0"></div>
                   <div className="flex flex-row items-center justify-between">
                     <div className="flex-1">
-                      <p className="font-interReg">{event.name}</p>
+                      <p className="font-interReg pe-10">{event.name}</p>
                     </div>
-                    <div className="flex-1 text-right">
-                      <p className="font-interBold text-lg font-bold mr-3">
+                    <div className="flex-2 text-right">
+                      <p className="font-interBold text-lg font-bold mr-3 px-3 border-solid border-l border-black">
                         {formatEventDate(event.date)}
                       </p>
                     </div>
