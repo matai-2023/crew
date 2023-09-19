@@ -18,7 +18,7 @@ function EventDetails() {
   const newCrewId = Number(crewId)
   const [iframeUrl, setIframeUrl] = useState('')
 
-  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0()
   const { data, isLoading } = useQuery({
     queryKey: ['events'],
     queryFn: async () => {

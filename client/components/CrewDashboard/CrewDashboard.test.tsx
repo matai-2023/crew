@@ -1,22 +1,27 @@
-//@vitest-environment jsdom
+//@vitest -environment jsdom
 
 import { describe, it, expect, vi } from 'vitest'
 import { renderComponent, renderWithRouter } from '../../test-utils'
 import nock from 'nock'
+import * as auth0 from '@auth0/auth0-react'
 import userEvent from '@testing-library/user-event'
 import {
   Route,
   RouterProvider,
-  Routes,
   createMemoryRouter,
   createRoutesFromElements,
 } from 'react-router-dom'
 
 import CrewDashboard from './CrewDashboard'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { waitFor } from '@testing-library/react'
 
 const user = userEvent.setup()
+vi.mock('@auth0/auth0-react')
+;(auth0 as auth0.User).useAuth0 = vi.fn().mockReturnValue({
+  isAuthenticated: true,
+  isLoading: false,
+  getAccessTokenSilently: vi.fn(),
+})
 
 describe('Crew Dashboard', () => {
   it('a list of members should be displayed when button is clicked', async () => {
@@ -28,9 +33,13 @@ describe('Crew Dashboard', () => {
           name: 'banana',
         },
       ])
-    const fakeCrew = {
-      id: 1,
-    }
+      .get('/api/v1/crews/4/members')
+      .reply(200, [
+        {
+          userId: 1,
+          username: 'banana',
+        },
+      ])
 
     const queryClient = new QueryClient()
     const screen = renderComponent(
@@ -38,20 +47,18 @@ describe('Crew Dashboard', () => {
         <RouterProvider
           router={createMemoryRouter(
             createRoutesFromElements(
-              <Route
-                path="/"
-                element={<CrewDashboard id={fakeCrew.id} />}
-              ></Route>
-            )
+              <Route path="/:crewId" element={<CrewDashboard />}></Route>
+            ),
+            { initialEntries: ['/4'] }
           )}
         />
       </QueryClientProvider>
     )
 
-    await waitFor(() => expect(scope.isDone()).toBeTruthy())
-
     await user.click(screen.getByTestId('display-button'))
-    const list = screen.getByTestId('crew-member')
+    const list = await screen.findByTestId('crew-member')
     expect(list).toBeInTheDocument()
+    const viewCrew = screen.getByRole('button', { name: 'View my Crew' })
+    expect(viewCrew).toBeInTheDocument()
   })
 })
