@@ -23,6 +23,7 @@ function ProfilePage() {
 
   async function handleSubmit(form: ProfileDraft | Profile) {
     const token = await getAccessTokenSilently()
+
     mutation.mutate({ form, token })
   }
 
@@ -31,6 +32,7 @@ function ProfilePage() {
     username: '',
     email: '',
     avatar: '',
+    image: null,
   }
 
   return (

@@ -32,6 +32,7 @@ function EventDetails() {
     },
   })
 
+
   function locationClicked(url: string) {
     setIframeUrl(url)
   }
@@ -43,9 +44,17 @@ function EventDetails() {
       {isAuthenticated &&
         data &&
         data.map((eventDetails) => (
-          <>
+            <div className="relative h-[300px] w-full overflow-hidden">
+              <div key={eventDetails.eventId} className="absolute inset-0">
+                <img
+                  src={eventDetails.img}
+                  alt={eventDetails.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
             <div>
-              <li key={eventDetails.eventId}>
+              <li key={eventDetails.eventId} className="list-none">
                 <p className=" text-white py-2 px-4 text-uppercase font-interBold text-xl">
                   {eventDetails.name}
                 </p>
@@ -91,7 +100,7 @@ function EventDetails() {
 
       <Link
         className="flex flex-col items-center h-screen"
-        to={'/crew-dashboard'}
+        to={`/crew-dashboard/${newCrewId}`}
       >
         <Button>Message crew</Button>
       </Link>

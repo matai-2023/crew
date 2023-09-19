@@ -1,6 +1,7 @@
 import request from 'superagent'
 import { Profile, ProfileDraft } from '../../types/Profile'
 import { Crew } from '../../types/Crew'
+import { Blob } from 'buffer'
 
 const rootUrl = '/api/v1'
 
@@ -9,10 +10,11 @@ export async function upsertProfile(
   form: ProfileDraft | Profile,
   token: string
 ) {
+  console.log('form avatar', form.avatar)
+  console.log('form img', form.image)
   await request
     .post(`${rootUrl}/users`)
     .set('Authorization', `Bearer ${token}`)
-    .set('Content-Type', 'application/json')
     .send(form)
 }
 
@@ -55,7 +57,6 @@ export async function fetchEventDetails(
     .get(`${rootUrl}/crews/${crewId}/event-details/${eventId}`)
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
-  console.log('APIIIIIII: ', res.body)
 
   return res.body
 }

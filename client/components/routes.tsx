@@ -16,6 +16,8 @@ import { IfAuthenticated, IfNotAuthenticated } from './Authenticated.tsx'
 import DashboardHeader from './UI/DashboardHeader/DashBoardHeader.tsx'
 import Header from './UI/Header/Header.tsx'
 import Background from './UI/Background/Background.tsx'
+import Footer from './UI/Footer/Footer.tsx'
+import ErrorPage from '../Pages/ErrorPage.tsx'
 // import ErrorPage from './ErrorPage/ErrorPage.tsx'
 
 function AppLayout() {
@@ -29,6 +31,7 @@ function AppLayout() {
           <Header />
         </IfNotAuthenticated>
         <Outlet />
+        <Footer />
       </Background>
     </>
   )
@@ -38,7 +41,7 @@ function AppLayout() {
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<AppLayout />}>
+    <Route path="/" element={<AppLayout />} errorElement={<ErrorPage />}>
       <Route index element={<LandingPage />} />
       <Route path="user-dashboard" element={<UserDashboard />} />
       <Route path="profile" element={<ProfilePage />} />
