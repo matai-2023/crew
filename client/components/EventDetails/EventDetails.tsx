@@ -15,7 +15,7 @@ function EventDetails() {
   const newEventId = Number(eventId)
   const newCrewId = Number(crewId)
 
-  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0()
   const { data, isLoading } = useQuery({
     queryKey: ['events'],
     queryFn: async () => {

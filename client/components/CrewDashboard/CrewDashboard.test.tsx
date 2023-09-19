@@ -6,18 +6,14 @@ import nock from 'nock'
 import * as auth0 from '@auth0/auth0-react'
 import userEvent from '@testing-library/user-event'
 import {
-  Link,
   Route,
   RouterProvider,
-  Routes,
   createMemoryRouter,
   createRoutesFromElements,
 } from 'react-router-dom'
 
 import CrewDashboard from './CrewDashboard'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { waitFor, screen } from '@testing-library/react'
-import Button from '../UI/Button/Button'
 
 const user = userEvent.setup()
 vi.mock('@auth0/auth0-react')
@@ -44,10 +40,6 @@ describe('Crew Dashboard', () => {
           username: 'banana',
         },
       ])
-
-    const fakeCrew = {
-      id: 1,
-    }
 
     const queryClient = new QueryClient()
     const screen = renderComponent(
