@@ -77,7 +77,7 @@ function EventDetails() {
                     className="mr-2"
                   />
                   <span className="font-interReg">{eventDetails.address}</span>
-                  {/* <Location location={eventDetails.location} /> */}
+
                   <div>
                     {iframeUrl === eventDetails.location && (
                       <iframe src={iframeUrl}></iframe>
