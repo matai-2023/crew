@@ -1,6 +1,7 @@
 import express from 'express'
 import * as db from '../db/db.ts'
 import checkJwt, { JwtRequest } from '../auth0.ts'
+import { AttendingStatus } from '../../types/Event.ts'
 
 const router = express.Router()
 
@@ -35,6 +36,29 @@ router.get(
     } catch (err) {
       console.log(err)
       res.status(500).send('Could not find rsvps')
+    }
+  }
+)
+
+router.post(
+  '/:crewId/event-details/:eventId/attending',
+  checkJwt,
+  async (req: JwtRequest, res) => {
+    const auth0Id = req.auth?.sub
+    const crewId = Number(req.params.crewId)
+    const eventId = Number(req.params.eventId)
+    const rsvp = req.body as AttendingStatus
+
+    if (!auth0Id) {
+      res.status(400).json({ message: 'Missing auth0 id' })
+      return
+    }
+    try {
+      await db.updateRSVP(crewId, eventId, rsvp)
+      res.sendStatus(201)
+    } catch (err) {
+      console.log(err)
+      res.status(500).send('Could not update rsvp')
     }
   }
 )
