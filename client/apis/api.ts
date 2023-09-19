@@ -11,8 +11,6 @@ export async function upsertProfile(
   form: ProfileDraft | Profile,
   token: string
 ) {
-  console.log('form avatar', form.avatar)
-  console.log('form img', form.image)
   await request
     .post(`${rootUrl}/users`)
     .set('Authorization', `Bearer ${token}`)
@@ -64,13 +62,9 @@ export async function fetchEventDetails(
 
 // GET all RSVPs to an event
 
-export async function fetchAllRSVPs(
-  token: string,
-  crewId: number,
-  eventId: number
-) {
+export async function fetchAllRSVPs(token: string, eventId: number) {
   const res = await request
-    .get(`${rootUrl}/crews/${crewId}/event-details/${eventId}/attending`)
+    .get(`${rootUrl}/crews/${eventId}/attending`)
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
 
@@ -82,24 +76,15 @@ export async function updateRSVP({
   attending,
   rsvpID,
   accessToken,
-  cId,
-  eId,
 }: {
   attending: boolean
   rsvpID: number
   accessToken: string
-  cId: number
-  eId: number
 }) {
-  const data = {
-    rsvpID,
-    attending,
-  }
-  console.log(data)
   await request
-    .post(`${rootUrl}/crews/${cId}/event-details/${eId}/attending`)
+    .post(`${rootUrl}/rsvps/${rsvpID}`)
     .set('Authorization', `Bearer ${accessToken}`)
-    .send(data)
+    .send({ attending })
 }
 
 // GET CREW Members list

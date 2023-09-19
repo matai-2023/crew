@@ -14,16 +14,8 @@ export interface NewEvent extends Event {
 
 export interface AttendanceData {
   rsvpId: number
-  userId: number
-  crewId: number
   username: string
-  email: string
-  eventName: string
-  time: string
-  location: string
-  description: string
-  date: number
-  img: string
+  avatar: string
   attending: boolean
 }
 

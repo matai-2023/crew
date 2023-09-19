@@ -87,8 +87,6 @@ export async function getAllCrewMembers(crewId: number) {
 export async function getAllRSVPs(auth0Id: string, eventId: number) {
   const userId = await db('users').where('auth0id', auth0Id).pluck('id')
 
-  console.log(typeof userId[0])
-
   return await db('rsvps')
     .join('crew_users', 'rsvps.crew_users_id', 'crew_users.id')
     .join('users', 'crew_users.user_id', 'users.id')
@@ -112,6 +110,6 @@ export async function getAllRSVPs(auth0Id: string, eventId: number) {
   // .distinct()
 }
 
-export async function updateRSVP(rsvpId: number, rsvp: AttendingStatus) {
-  return await db('rsvps').where('id', rsvpId).update({ attending: rsvp })
+export async function updateRSVP(rsvpId: number, attending: boolean) {
+  return await db('rsvps').where('id', rsvpId).update({ attending: attending })
 }

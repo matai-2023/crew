@@ -4,7 +4,7 @@ export async function seed(knex) {
 
   await knex('rsvps').insert([
     {
-      id: 0,
+      id: 1,
       crew_users_id: 2,
       event_id: 2,
       attending: false,

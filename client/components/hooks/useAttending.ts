@@ -31,15 +31,11 @@ function useProfile() {
       attending,
       rsvpID,
       accessToken,
-      cId,
-      eId,
     }: {
       attending: boolean
       rsvpID: number
       accessToken: string
-      cId: number
-      eId: number
-    }) => updateRSVP({ attending, rsvpID, accessToken, cId, eId }),
+    }) => updateRSVP({ attending, rsvpID, accessToken }),
     onSuccess: () => {
       queryClient.invalidateQueries(['rsvps'])
       // navigate('/user-dashboard')
