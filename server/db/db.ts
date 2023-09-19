@@ -22,7 +22,8 @@ export async function getEventsbyCrew(crewId: number) {
       'events.id as eventId',
       'events.name as name',
       'events.time as time',
-      'events.location as location',
+      'events.address as address',
+
       'events.description as description',
       'events.date as date',
       'events.img as image'
@@ -41,6 +42,7 @@ export async function getEventDetails(crewId: number, eventId: number) {
     .select(
       'events.name as name',
       'events.time as time',
+      'events.address as address',
       'events.location as location',
       'events.description as description',
       'events.date as date',
@@ -58,7 +60,7 @@ export async function addNewUser(profile: Profile) {
       auth0id: profile.auth0Id,
       username: profile.username,
       email: profile.email,
-      avatar: profile.avatar,
+      avatar: `images/avatars/${profile.avatar}`,
     })
     // This part means that if an auth0id is already detected in the db, the user details associated with that auth0id will be updated
     .onConflict('auth0id')

@@ -4,6 +4,9 @@ import { fetchEventDetails } from '../../apis/api'
 import Button from '../UI/Button/Button'
 import { useAuth0 } from '@auth0/auth0-react'
 import { NewEvent } from '../../../types/Event'
+import request from 'superagent'
+import Location from './Location'
+import { useState } from 'react'
 
 function EventDetails() {
   const timePath = '/time.png'
@@ -14,6 +17,7 @@ function EventDetails() {
   const { crewId, eventId } = useParams()
   const newEventId = Number(eventId)
   const newCrewId = Number(crewId)
+  const [iframeUrl, setIframeUrl] = useState('')
 
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
   const { data, isLoading } = useQuery({
@@ -28,8 +32,11 @@ function EventDetails() {
       return response as NewEvent[]
     },
   })
-  if (data) {
-    console.log('Event Details data: ', data)
+
+  // }
+
+  function locationClicked(url: string) {
+    setIframeUrl(url)
   }
 
   return (
@@ -50,7 +57,7 @@ function EventDetails() {
               </div>
             </div>
             <div>
-              <li key={eventDetails.eventId}>
+              <li key={eventDetails.eventId} className="list-none">
                 <p className=" text-white py-2 px-4 text-uppercase font-interBold text-xl">
                   {eventDetails.name}
                 </p>
@@ -66,8 +73,19 @@ function EventDetails() {
                 </p>
 
                 <p className="flex items-center text-white py-2 px-4 text-sm">
-                  <img src={locationPath} alt="Event Time" className="mr-2" />
-                  <span className="font-interReg">{eventDetails.location}</span>
+                  <img
+                    onClick={locationClicked(eventDetails.location)}
+                    src={locationPath}
+                    alt="Event Time"
+                    className="mr-2"
+                  />
+                  <span className="font-interReg">{eventDetails.address}</span>
+
+                  <div>
+                    {iframeUrl === eventDetails.location && (
+                      <iframe src={iframeUrl}></iframe>
+                    )}
+                  </div>
                 </p>
                 <div className="border-t border-white my-2"></div>
 
@@ -85,7 +103,7 @@ function EventDetails() {
 
       <Link
         className="flex flex-col items-center h-screen"
-        to={'/crew-dashboard'}
+        to={`/crew-dashboard/${newCrewId}`}
       >
         <Button>Message crew</Button>
       </Link>
