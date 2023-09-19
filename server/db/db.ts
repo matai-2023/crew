@@ -91,14 +91,15 @@ export async function getAllRSVPs(auth0Id: string, eventId: number) {
 
   return await db('rsvps')
     .join('crew_users', 'rsvps.crew_users_id', 'crew_users.id')
+    .join('users', 'crew_users.user_id', 'users.id')
     .where('crew_users.user_id', userId[0])
     .where('rsvps.event_id', eventId)
     .select(
       'rsvps.id as rsvpId',
       // 'users.id as userId',
       // 'crews.id as crewId',
-      // 'users.username',
-      // 'users.email',
+      'users.username',
+      'users.avatar',
       // 'e.name as eventName',
       // 'e.time',
       // 'e.location',
