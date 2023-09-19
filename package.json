@@ -13,6 +13,7 @@
     "knex": "knex --knexfile server/db/knexfile.js",
     "db-reset": "run-s db:*",
     "db:delete": "rm server/db/dev.sqlite3",
+    "drop:db": "tsx ./server/db/dropdb.ts",
     "db:migrate": "npm run knex migrate:latest",
     "db:seed": "npm run knex seed:run",
     "build": "run-s build:client build:server build:css",
