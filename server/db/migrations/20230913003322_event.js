@@ -3,6 +3,7 @@ export function up(knex) {
     table.increments('id').primary()
     table.string('name')
     table.string('time')
+    table.string('address')
     table.string('location')
     table.string('description')
     table.string('date')
