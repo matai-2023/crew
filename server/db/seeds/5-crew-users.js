@@ -1,17 +1,184 @@
-import { faker } from '@faker-js/faker'
 export async function seed(knex) {
-  faker.seed(123)
-
-  const userIds = await knex('users').pluck('id')
-  const eventIds = await knex('events').pluck('id')
-  const crewIds = await knex('crews').pluck('id')
-
-  const crewUsers = Array.from({ length: 10 }, (_, i) => ({
-    id: i + 1,
-    user_id: faker.helpers.arrayElement(userIds),
-    event_id: faker.helpers.arrayElement(eventIds),
-    crew_id: faker.helpers.arrayElement(crewIds),
-  }))
-
-  await knex('crew_users').insert(crewUsers)
+  await knex('crew_users').insert([
+    {
+      id: 1,
+      user_id: '1',
+      crew_id: '1',
+      event_id: '3',
+    },
+    {
+      id: 2,
+      user_id: '1',
+      crew_id: '2',
+      event_id: '2',
+    },
+    {
+      id: 3,
+      user_id: '1',
+      crew_id: '3',
+      event_id: '1',
+    },
+    {
+      id: 4,
+      user_id: '2',
+      crew_id: '1',
+      event_id: '6',
+    },
+    {
+      id: 5,
+      user_id: '2',
+      crew_id: '2',
+      event_id: '5',
+    },
+    {
+      id: 6,
+      user_id: '2',
+      crew_id: '3',
+      event_id: '4',
+    },
+    {
+      id: 7,
+      user_id: '3',
+      crew_id: '1',
+      event_id: '9',
+    },
+    {
+      id: 8,
+      user_id: '3',
+      crew_id: '2',
+      event_id: '8',
+    },
+    {
+      id: 9,
+      user_id: '3',
+      crew_id: '3',
+      event_id: '7',
+    },
+    {
+      id: 10,
+      user_id: '4',
+      crew_id: '1',
+      event_id: '3',
+    },
+    {
+      id: 10,
+      user_id: '4',
+      crew_id: '2',
+      event_id: '2',
+    },
+    {
+      id: 10,
+      user_id: '4',
+      crew_id: '3',
+      event_id: '10',
+    },
+    {
+      id: 10,
+      user_id: '5',
+      crew_id: '1',
+      event_id: '6',
+    },
+    {
+      id: 10,
+      user_id: '5',
+      crew_id: '2',
+      event_id: '5',
+    },
+    {
+      id: 10,
+      user_id: '5',
+      crew_id: '3',
+      event_id: '1',
+    },
+    {
+      id: 10,
+      user_id: '6',
+      crew_id: '1',
+      event_id: '9',
+    },
+    {
+      id: 10,
+      user_id: '6',
+      crew_id: '2',
+      event_id: '8',
+    },
+    {
+      id: 10,
+      user_id: '6',
+      crew_id: '3',
+      event_id: '4',
+    },
+    {
+      id: 10,
+      user_id: '7',
+      crew_id: '1',
+      event_id: '3',
+    },
+    {
+      id: 10,
+      user_id: '7',
+      crew_id: '2',
+      event_id: '2',
+    },
+    {
+      id: 10,
+      user_id: '7',
+      crew_id: '3',
+      event_id: '7',
+    },
+    {
+      id: 10,
+      user_id: '8',
+      crew_id: '1',
+      event_id: '6',
+    },
+    {
+      id: 10,
+      user_id: '8',
+      crew_id: '2',
+      event_id: '5',
+    },
+    {
+      id: 10,
+      user_id: '8',
+      crew_id: '3',
+      event_id: '10',
+    },
+    {
+      id: 10,
+      user_id: '9',
+      crew_id: '1',
+      event_id: '9',
+    },
+    {
+      id: 10,
+      user_id: '9',
+      crew_id: '2',
+      event_id: '8',
+    },
+    {
+      id: 10,
+      user_id: '9',
+      crew_id: '3',
+      event_id: '1',
+    },
+    {
+      id: 10,
+      user_id: '10',
+      crew_id: '1',
+      event_id: '3',
+    },
+    {
+      id: 10,
+      user_id: '10',
+      crew_id: '2',
+      event_id: '2',
+    },
+    {
+      id: 10,
+      user_id: '10',
+      crew_id: '3',
+      event_id: '4',
+    },
+  ])
 }
