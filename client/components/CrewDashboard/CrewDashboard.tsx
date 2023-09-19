@@ -58,22 +58,22 @@ function CrewDashboard() {
     <>
       <div className="flex flex-col items-center justify-start min-h-screen mt-10">
         {isLoading ? <p>data is loading...</p> : ''}
-        <div>{newId}</div>
+        <div className="font-interBold font-bold text-white text-lg">
+          <p>YOUR EVENTS</p>
+        </div>
 
         <ul className="p-5 mt-4">
           {data &&
             data.map((event) => (
               <li key={event.eventId}>
                 <div className="bg-white p-5 mb-4 rounded-lg shadow-left-bottom-pink mx-auto max-w-md max-w-screen-sm relative">
-                  {' '}
                   <div className="absolute h-full border-l border-black left-2/3 top-0"></div>
                   <div className="flex flex-row items-center justify-between">
                     <div className="flex-1">
-                      <p className="font-interBold font-bold">{event.name}</p>
+                      <p className="font-interReg">{event.name}</p>
                     </div>
                     <div className="flex-1 text-right">
-                      {' '}
-                      <p className="font-interBold text-lg">
+                      <p className="font-interBold text-lg font-bold mr-3">
                         {formatEventDate(event.date)}
                       </p>
                     </div>
@@ -103,7 +103,7 @@ function CrewDashboard() {
           </div>
         </div>
 
-        <div className="mt-8 ml-4">
+        <div className="t-8 ml-4 mt-6 text-left">
           {displayMembers && (
             <ul>
               {isAuthenticated &&
