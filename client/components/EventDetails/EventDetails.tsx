@@ -32,7 +32,6 @@ function EventDetails() {
     },
   })
 
-
   function locationClicked(url: string) {
     setIframeUrl(url)
   }
@@ -44,6 +43,8 @@ function EventDetails() {
       {isAuthenticated &&
         data &&
         data.map((eventDetails) => (
+          <>
+            {console.log({ eventDetails })}
             <div className="relative h-[300px] w-full overflow-hidden">
               <div key={eventDetails.eventId} className="absolute inset-0">
                 <img
