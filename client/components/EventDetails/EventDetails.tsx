@@ -33,7 +33,9 @@ function EventDetails() {
   if (data) {
     console.log('Event Details data: ', data)
   }
-
+  function locationClicked() {
+    return <iframe src={`${eventDetails.location}`}></iframe>
+  }
   return (
     <>
       {isLoading ? <p>data is loading...</p> : ''}
@@ -62,9 +64,14 @@ function EventDetails() {
                 </p>
 
                 <p className="flex items-center text-white py-2 px-4 text-sm">
-                  <img src={locationPath} alt="Event Time" className="mr-2" />
-                  <span className="font-interReg">{eventDetails.location}</span>
-                  <Location location={eventDetails.location} />
+                  <img
+                    src={locationPath}
+                    onClick={locationClicked}
+                    alt="Event Time"
+                    className="mr-2"
+                  />
+                  <span className="font-interReg">{eventDetails.address}</span>
+                  {/* <Location location={eventDetails.location} /> */}
                 </p>
                 <div className="border-t border-white my-2"></div>
 
