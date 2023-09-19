@@ -11,6 +11,7 @@ interface Props {
 function RSVPs(props: Props) {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
   const { data, isLoading } = useQuery({
+    
     queryKey: ['rsvps'],
     queryFn: async () => {
       const accessToken = await getAccessTokenSilently()
@@ -32,7 +33,7 @@ function RSVPs(props: Props) {
         data.map((rsvps) => (
           <>
             <p>{rsvps.username}</p>
-            <p>{rsvps.attending}</p>
+            <p>{rsvps.attending == true ? rsvps.username : ''}</p>
           </>
         ))}
     </>
