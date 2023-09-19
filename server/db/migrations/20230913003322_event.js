@@ -4,10 +4,10 @@ export function up(knex) {
     table.string('name')
     table.string('time')
     table.string('address')
-    table.string('location')
+    table.text('location')
     table.string('description')
     table.string('date')
-    table.string('img')
+    table.text('img')
     table.integer('crew_id').references('crews.id')
   })
 }
