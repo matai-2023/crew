@@ -116,7 +116,7 @@ export async function seed(knex) {
       description:
         "Dive into the world of packrafting safety with our Packraft Safety Workshop! Join us for an interactive and informative session where you'll learn essential skills and tips to make your packrafting adventures safer than ever. From river navigation to gear maintenance, this workshop has you covered. Don't miss out on this chance to enhance your packrafting know-how!",
       date: faker.date.future().getTime(),
-      img: '',
+      img: 'https://images.unsplash.com/photo-1668415871884-544555f93ffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
       crew_id: 1,
     },
     {
