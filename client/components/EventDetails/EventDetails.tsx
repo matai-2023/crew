@@ -91,7 +91,6 @@ function EventDetails() {
                 </p>
               </div>
               <div className="border-t border-white my-2"></div>
-
               <div>
                 <div className="pb-3">
                   <RSVPs eventId={newEventId} crewId={newCrewId} />
@@ -125,11 +124,13 @@ function EventDetails() {
                       <span className="font-interReg">
                         {eventDetails.address}
                       </span>
-                      <div>
-                        {iframeUrl === eventDetails.location && (
-                          <iframe src={iframeUrl}></iframe>
-                        )}
-                      </div>
+                      <section className=" flex-col items-center text-white py-2 px-4 text-sm">
+                  <div style={{ display: 'block' }}>
+                    {iframeUrl === eventDetails.location && (
+                      <iframe src={iframeUrl}></iframe>
+                    )}
+                  </div>
+                </section>
                     </section>
                     <div className="border-t border-white my-2"></div>
 
