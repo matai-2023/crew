@@ -124,13 +124,13 @@ function EventDetails() {
                       <span className="font-interReg">
                         {eventDetails.address}
                       </span>
-                      <section className=" flex-col items-center text-white py-2 px-4 text-sm">
-                  <div style={{ display: 'block' }}>
-                    {iframeUrl === eventDetails.location && (
-                      <iframe src={iframeUrl}></iframe>
-                    )}
-                  </div>
-                </section>
+                    </section>
+                    <section className=" flex-col items-center text-white py-2 px-4 text-sm">
+                      <div style={{ display: 'block' }}>
+                        {iframeUrl === eventDetails.location && (
+                          <iframe src={iframeUrl}></iframe>
+                        )}
+                      </div>
                     </section>
                     <div className="border-t border-white my-2"></div>
 
