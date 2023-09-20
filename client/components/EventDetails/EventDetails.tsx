@@ -57,6 +57,7 @@ function EventDetails() {
 
   return (
     <>
+      <div className="h-screen max-h-[calc(100vh-64px)] overflow-y-auto">
       {isLoading ? <p>data is loading...</p> : ''}
 
       {isAuthenticated &&
@@ -70,6 +71,7 @@ function EventDetails() {
                   alt={eventDetails.name}
                   className="w-full h-full object-cover"
                 />
+              </div>
               </div>
             </div>
             <div>

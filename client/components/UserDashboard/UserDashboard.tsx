@@ -26,6 +26,7 @@ function UserDashboard() {
 
   return (
     <>
+     <div className="h-screen max-h-[calc(100vh-64px)] overflow-y-auto">
       {/* <p>{isLoading ? 'please wait' : ''}</p> */}
       <ul>
         {!isLoading &&
@@ -47,6 +48,7 @@ function UserDashboard() {
                     {crew.name}
                   </p>
                 </div>
+               </div>
               </div>
             </li>
           ))}
