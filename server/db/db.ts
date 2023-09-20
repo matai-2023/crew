@@ -92,8 +92,9 @@ export async function getAllRSVPs(auth0Id: string, eventId: number) {
   return await db('rsvps')
     .join('crew_users', 'rsvps.crew_users_id', 'crew_users.id')
     .join('users', 'crew_users.user_id', 'users.id')
-    .where('crew_users.user_id', userId[0])
+    // .where('crew_users.user_id', userId[0])
     .where('rsvps.event_id', eventId)
+    .where('rsvps.attending', true)
     .select(
       'rsvps.id as rsvpId',
       // 'users.id as userId',
@@ -108,8 +109,16 @@ export async function getAllRSVPs(auth0Id: string, eventId: number) {
       // 'e.img',
       'attending'
     )
-    .first()
-  // .distinct()
+    .distinct()
+}
+
+export async function getAllMemberRSVPSGoing(eventId: number) {
+  return await db('rsvps')
+    .join('crew_users', 'rsvps.crew_users_id', 'crew_users.id')
+    .join('users', 'crew_users.user_id', 'users.id')
+    .where('rsvps.event_id', eventId)
+    .where('rsvps.attending', true)
+    .select('rsvps.id as rsvpId', 'users.username', 'users.avatar', 'attending')
 }
 
 export async function updateRSVP(rsvpId: number, attending: boolean) {
