@@ -83,14 +83,21 @@ function EventDetails() {
                 </div>
               </div>
               <div>
-                <div>
+                <p
+                  key={`${eventDetails.eventId}1`}
+                  className=" text-white py-2 px-4 text-uppercase font-interBold text-xl mt-2"
+                >
+                  {eventDetails.name}
+                </p>
+              </div>
+              <div className="border-t border-white my-2"></div>
+
+              <div>
+                <div className="pb-3">
                   <RSVPs eventId={newEventId} crewId={newCrewId} />
                 </div>
                 <ul>
                   <li key={`${eventDetails.eventId}1`} className="list-none">
-                    <p className=" text-white py-2 px-4 text-uppercase font-interBold text-xl">
-                      {eventDetails.name}
-                    </p>
                     <div className="border-t border-white my-2"></div>
                     <p className="flex items-center text-white py-2 px-4 text-sm">
                       <img src={timePath} alt="Event Time" className="mr-2" />
