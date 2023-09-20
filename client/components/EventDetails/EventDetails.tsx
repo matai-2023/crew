@@ -4,7 +4,6 @@ import { fetchEventDetails } from '../../apis/api'
 import Button from '../UI/Button/Button'
 import { useAuth0 } from '@auth0/auth0-react'
 import { NewEvent } from '../../../types/Event'
-import request from 'superagent'
 import { useState } from 'react'
 import RSVPs from '../RSVPs/RSVPs'
 
@@ -128,7 +127,7 @@ function EventDetails() {
 
       <Link
         className="flex flex-col items-center h-screen"
-        to={`/crew-dashboard/${newCrewId}`}
+        to={`/crew-dashboard/`}
       >
         <Button>Message crew</Button>
       </Link>
