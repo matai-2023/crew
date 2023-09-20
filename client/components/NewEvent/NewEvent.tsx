@@ -1,12 +1,13 @@
-import { Link } from 'react-router-dom'
-import Background from '../UI/Background/Background'
-import DashboardHeader from '../UI/DashboardHeader/DashBoardHeader'
+import { Link, useNavigate } from 'react-router-dom'
 import Button from '../UI/Button/Button'
 
 function NewEvent() {
   //TODO: Create a function to handle the date selection
 
   //TODO: Create a function to handle the Add Event form
+
+  const navigate = useNavigate()
+
   return (
     <>
       <div className="h-screen max-h-[calc(100vh-64px)] overflow-y-auto">
@@ -77,6 +78,19 @@ function NewEvent() {
             Cancel
           </Link>
         </div>
+        <div className="mt-4 flex flex-col space-y-4 p-9">
+          <Button onClick={() => navigate('/crew-dashboard')}>
+            Create Event
+          </Button>
+        </div>
+      </form>
+      <div className="mt-4 flex flex-col space-y-4 ">
+        <Link
+          to={'/user-dashboard'}
+          className="text-center text-white font-interReg"
+        >
+          Cancel
+        </Link>
       </div>
     </>
   )

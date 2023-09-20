@@ -4,6 +4,8 @@ import Background from '../components/UI/Background/Background'
 import DashboardHeader from '../components/UI/DashboardHeader/DashBoardHeader'
 
 function ErrorPage() {
+  const errorMsg = `Don't worry, you didn't break the internet, but we can't find what
+  you're looking for.`
   return (
     <>
       <Background>
@@ -15,8 +17,7 @@ function ErrorPage() {
                 OOPS!
               </p>
               <p className="text-interReg text-lg font-bold text-white p-7">
-                Don't worry, you didn't break the internet, but we can't find
-                what you're looking for.
+                {errorMsg}
               </p>
               <Button className="mt-10">
                 <Link to="/user-dashboard">Go Home</Link>

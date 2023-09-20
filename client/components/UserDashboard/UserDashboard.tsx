@@ -5,6 +5,7 @@ import { fetchCrewList } from '../../apis/api.ts'
 import { useNavigate } from 'react-router-dom'
 import Button from '../UI/Button/Button.tsx'
 import { Crew } from '../../../types/Crew.ts'
+import ErrorPage from '../../Pages/ErrorPage.tsx'
 
 function UserDashboard() {
   // Note: 'ADD CREW' is just a button for MVP
@@ -22,37 +23,43 @@ function UserDashboard() {
   })
 
   const navigate = useNavigate()
+
   return (
     <>
-      <div className="h-screen max-h-[calc(100vh-64px)] overflow-y-auto">
-        {/* <p>{isLoading ? 'please wait' : ''}</p> */}
-        <ul>
-          {!isLoading &&
-            isAuthenticated &&
-            data &&
-            data.map((crew) => (
-              <li
-                key={crew.id}
-                onClick={() => navigate(`/crew-dashboard/${crew.id}`)}
-              >
-                <div className="bg-white p-3 mb-4 m-6 rounded-lg shadow-left-bottom-pink">
-                  <div className="flex flex-col items-center justify-center">
-                    <img
-                      src={crew.image}
-                      alt={crew.name}
-                      className="w-80 h-32 object-cover"
-                    />
-                    <p className=" text-black text-center mt-2 font-interBold text-sm">
-                      {crew.name}
-                    </p>
-                  </div>
+     <div className="h-screen max-h-[calc(100vh-64px)] overflow-y-auto">
+      {/* <p>{isLoading ? 'please wait' : ''}</p> */}
+      <ul>
+        {!isLoading &&
+          isAuthenticated &&
+          data &&
+          data.map((crew) => (
+            <li
+              key={crew.id}
+              onClick={() => navigate(`/crew-dashboard/${crew.id}`)}
+            >
+              <div className="bg-white p-3 mb-4 m-6 rounded-lg shadow-left-bottom-pink">
+                <div className="flex flex-col items-center justify-center">
+                  <img
+                    src={crew.image}
+                    alt={crew.name}
+                    className="w-80 h-32 object-cover"
+                  />
+                  <p className=" text-black text-center mt-2 font-interBold text-sm">
+                    {crew.name}
+                  </p>
                 </div>
-              </li>
-            ))}
-        </ul>
-        <div className="flex justify-center items-center p-7">
-          <Button data-testid="display-button">ADD CREW</Button>
-        </div>
+               </div>
+              </div>
+            </li>
+          ))}
+      </ul>
+      <div className="flex justify-center items-center p-7">
+        <Button
+          data-testid="display-button"
+          onClick={() => navigate(`/add-new-crew`)}
+        >
+          ADD CREW
+        </Button>
       </div>
     </>
   )

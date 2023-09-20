@@ -1,3 +1,4 @@
+import { AttendingStatus } from '../../types/Event.js'
 import { Profile } from '../../types/Profile.js'
 import db from './connection.js'
 
@@ -83,4 +84,26 @@ export async function getAllCrewMembers(crewId: number) {
     .where('crews.id', crewId)
     .select('users.id as userId', 'users.username', 'users.avatar')
     .distinct()
+}
+
+export async function getAllRSVPs(auth0Id: string, eventId: number) {
+  const userId = await db('users').where('auth0id', auth0Id).pluck('id')
+
+  return await db('rsvps')
+    .join('crew_users', 'rsvps.crew_users_id', 'crew_users.id')
+    .join('users', 'crew_users.user_id', 'users.id')
+    .where('rsvps.event_id', eventId)
+    .select(
+      'rsvps.id as rsvpId',
+      'users.username',
+      'users.avatar',
+      'users.auth0id as auth0Id',
+      'attending'
+    )
+    .distinct()
+}
+
+
+export async function updateRSVP(rsvpId: number, attending: boolean) {
+  return await db('rsvps').where('id', rsvpId).update({ attending: attending })
 }

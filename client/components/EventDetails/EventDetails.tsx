@@ -4,8 +4,8 @@ import { fetchEventDetails } from '../../apis/api'
 import Button from '../UI/Button/Button'
 import { useAuth0 } from '@auth0/auth0-react'
 import { NewEvent } from '../../../types/Event'
-import request from 'superagent'
 import { useState } from 'react'
+import RSVPs from '../RSVPs/RSVPs'
 
 function EventDetails() {
   const timePath = '/time.png'
@@ -58,20 +58,25 @@ function EventDetails() {
   return (
     <>
       <div className="h-screen max-h-[calc(100vh-64px)] overflow-y-auto">
-        {isLoading ? <p>data is loading...</p> : ''}
+      {isLoading ? <p>data is loading...</p> : ''}
 
-        {isAuthenticated &&
-          data &&
-          data.map((eventDetails) => (
-            <div key={eventDetails.eventId}>
-              <div className="relative h-[300px] w-full overflow-hidden">
-                <div className="absolute inset-0">
-                  <img
-                    src={eventDetails.img}
-                    alt={eventDetails.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+      {isAuthenticated &&
+        data &&
+        data.map((eventDetails) => (
+          <div key={eventDetails.eventId}>
+            <div className="relative h-[300px] w-full overflow-hidden">
+              <div className="absolute inset-0">
+                <img
+                  src={eventDetails.img}
+                  alt={eventDetails.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              </div>
+            </div>
+            <div>
+              <div>
+                <RSVPs eventId={newEventId} crewId={newCrewId} />
               </div>
               <ul>
                 <li key={`${eventDetails.eventId}1`} className="list-none">
@@ -101,7 +106,6 @@ function EventDetails() {
                     <span className="font-interReg">
                       {eventDetails.address}
                     </span>
-
                     <div>
                       {iframeUrl === eventDetails.location && (
                         <iframe src={iframeUrl}></iframe>
@@ -120,15 +124,15 @@ function EventDetails() {
                 </li>
               </ul>
             </div>
-          ))}
+          </div>
+        ))}
 
-        <Link
-          className="flex flex-col items-center h-screen"
-          to={`/crew-dashboard/${newCrewId}`}
-        >
-          <Button>Message crew</Button>
-        </Link>
-      </div>
+      <Link
+        className="flex flex-col items-center h-screen"
+        to={`/crew-dashboard/`}
+      >
+        <Button>Message crew</Button>
+      </Link>
     </>
   )
 }

@@ -2,6 +2,7 @@ import request from 'superagent'
 import { Profile, ProfileDraft } from '../../types/Profile'
 import { Crew } from '../../types/Crew'
 import { Blob } from 'buffer'
+import { AttendingStatus } from '../../types/Event'
 
 const rootUrl = '/api/v1'
 
@@ -10,8 +11,6 @@ export async function upsertProfile(
   form: ProfileDraft | Profile,
   token: string
 ) {
-  console.log('form avatar', form.avatar)
-  console.log('form img', form.image)
   await request
     .post(`${rootUrl}/users`)
     .set('Authorization', `Bearer ${token}`)
@@ -59,6 +58,33 @@ export async function fetchEventDetails(
     .set('Content-Type', 'application/json')
 
   return res.body
+}
+
+// GET all RSVPs to an event
+
+export async function fetchAllRSVPs(token: string, eventId: number) {
+  const res = await request
+    .get(`${rootUrl}/crews/${eventId}/attending`)
+    .set('Authorization', `Bearer ${token}`)
+    .set('Content-Type', 'application/json')
+
+  return res.body
+}
+
+// POST rsvp to an event
+export async function updateRSVP({
+  attending,
+  rsvpID,
+  accessToken,
+}: {
+  attending: boolean
+  rsvpID: number
+  accessToken: string
+}) {
+  await request
+    .post(`${rootUrl}/rsvps/${rsvpID}`)
+    .set('Authorization', `Bearer ${accessToken}`)
+    .send({ attending })
 }
 
 // GET CREW Members list
