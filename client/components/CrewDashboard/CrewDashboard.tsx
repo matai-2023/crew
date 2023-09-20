@@ -60,12 +60,13 @@ function CrewDashboard() {
   const navigate = useNavigate()
   return (
     <>
-      <div className="flex flex-col items-center justify-start min-h-screen mt-10">
+      <div style={{ maxHeight: '80vh', overflowY: 'auto' }}>
         {isLoading ? <p>data is loading...</p> : ''}
         <div className="font-interBold font-bold text-white text-lg">
-          <p>YOUR EVENTS</p>
+          <div className="text-center mt-8">
+            <p>YOUR EVENTS</p>
+          </div>
         </div>
-
         <ul className="p-5 mt-4">
           {data &&
             data.map((event) => (
@@ -93,11 +94,10 @@ function CrewDashboard() {
               </li>
             ))}
         </ul>
-
         <div className="flex mt-4">
           <div className="mr-2">
             <Button
-              className="mt-4"
+              className="mt-4 ml-2"
               onClick={handleClick}
               data-testid="display-button"
             >
@@ -113,10 +113,9 @@ function CrewDashboard() {
             </div>
           </div>
         </div>
-
-        <div className="t-8 ml-4 mt-6 text-left">
+        <div className="t-8 ml-4 mt-6">
           {displayMembers && (
-            <ul>
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center">
               {isAuthenticated &&
                 crewMembers &&
                 crewMembers.map((crewMember) => (
@@ -126,10 +125,11 @@ function CrewDashboard() {
                     className="font-interReg text-white"
                   >
                     <img
+                      className="rounded-full w-20 h-20 mx-auto mt-8"
                       src={`${crewMember.avatar}`}
                       alt={crewMember.username}
                     />
-                    {`${crewMember.username}`}
+                    <p className="text-center">{`${crewMember.username}`}</p>
                   </li>
                 ))}
             </ul>
