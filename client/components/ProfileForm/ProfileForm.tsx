@@ -18,7 +18,7 @@ function ProfileForm(props: Props) {
   }
 
   return (
-    <div>
+    <div className="h-screen max-h-[calc(100vh-64px)] overflow-y-auto">
       <form
         onSubmit={handleSubmit}
         encType="multipart/form-data"

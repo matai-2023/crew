@@ -57,74 +57,78 @@ function EventDetails() {
 
   return (
     <>
-      {isLoading ? <p>data is loading...</p> : ''}
+      <div className="h-screen max-h-[calc(100vh-64px)] overflow-y-auto">
+        {isLoading ? <p>data is loading...</p> : ''}
 
-      {isAuthenticated &&
-        data &&
-        data.map((eventDetails) => (
-          <div key={eventDetails.eventId}>
-            <div className="relative h-[300px] w-full overflow-hidden">
-              <div className="absolute inset-0">
-                <img
-                  src={eventDetails.img}
-                  alt={eventDetails.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-            <ul>
-              <li key={`${eventDetails.eventId}1`} className="list-none">
-                <p className=" text-white py-2 px-4 text-uppercase font-interBold text-xl">
-                  {eventDetails.name}
-                </p>
-                <div className="border-t border-white my-2"></div>
-                <p className="flex items-center text-white py-2 px-4 text-sm">
-                  <img src={timePath} alt="Event Time" className="mr-2" />
-                  <span className="font-interReg">{eventDetails.time}</span>
-                </p>
-
-                <p className="flex items-center text-white py-2 px-4 text-sm">
-                  <img src={calendarPath} alt="Event Time" className="mr-2" />
-                  <span className="font-interReg">
-                    {formatEventDate(eventDetails.date)}
-                  </span>
-                </p>
-
-                <section className="flex items-center text-white py-2 px-4 text-sm">
+        {isAuthenticated &&
+          data &&
+          data.map((eventDetails) => (
+            <div key={eventDetails.eventId}>
+              <div className="relative h-[300px] w-full overflow-hidden">
+                <div className="absolute inset-0">
                   <img
-                    onClick={() => locationClicked(eventDetails.location)}
-                    src={locationPath}
-                    alt="Event Time"
-                    className="mr-2"
+                    src={eventDetails.img}
+                    alt={eventDetails.name}
+                    className="w-full h-full object-cover"
                   />
-                  <span className="font-interReg">{eventDetails.address}</span>
-
-                  <div>
-                    {iframeUrl === eventDetails.location && (
-                      <iframe src={iframeUrl}></iframe>
-                    )}
-                  </div>
-                </section>
-                <div className="border-t border-white my-2"></div>
-
-                <div className="flex items-start text-white py-2 px-4 text-base">
-                  <img src={detailsPath} alt="Event Time" className="mr-2" />
-                  <span className="font-interReg">
-                    {eventDetails.description}
-                  </span>
                 </div>
-                <br></br>
-              </li>
-            </ul>
-          </div>
-        ))}
+              </div>
+              <ul>
+                <li key={`${eventDetails.eventId}1`} className="list-none">
+                  <p className=" text-white py-2 px-4 text-uppercase font-interBold text-xl">
+                    {eventDetails.name}
+                  </p>
+                  <div className="border-t border-white my-2"></div>
+                  <p className="flex items-center text-white py-2 px-4 text-sm">
+                    <img src={timePath} alt="Event Time" className="mr-2" />
+                    <span className="font-interReg">{eventDetails.time}</span>
+                  </p>
 
-      <Link
-        className="flex flex-col items-center h-screen"
-        to={`/crew-dashboard/${newCrewId}`}
-      >
-        <Button>Message crew</Button>
-      </Link>
+                  <p className="flex items-center text-white py-2 px-4 text-sm">
+                    <img src={calendarPath} alt="Event Time" className="mr-2" />
+                    <span className="font-interReg">
+                      {formatEventDate(eventDetails.date)}
+                    </span>
+                  </p>
+
+                  <section className="flex items-center text-white py-2 px-4 text-sm">
+                    <img
+                      onClick={() => locationClicked(eventDetails.location)}
+                      src={locationPath}
+                      alt="Event Time"
+                      className="mr-2"
+                    />
+                    <span className="font-interReg">
+                      {eventDetails.address}
+                    </span>
+
+                    <div>
+                      {iframeUrl === eventDetails.location && (
+                        <iframe src={iframeUrl}></iframe>
+                      )}
+                    </div>
+                  </section>
+                  <div className="border-t border-white my-2"></div>
+
+                  <div className="flex items-start text-white py-2 px-4 text-base">
+                    <img src={detailsPath} alt="Event Time" className="mr-2" />
+                    <span className="font-interReg">
+                      {eventDetails.description}
+                    </span>
+                  </div>
+                  <br></br>
+                </li>
+              </ul>
+            </div>
+          ))}
+
+        <Link
+          className="flex flex-col items-center h-screen"
+          to={`/crew-dashboard/${newCrewId}`}
+        >
+          <Button>Message crew</Button>
+        </Link>
+      </div>
     </>
   )
 }
