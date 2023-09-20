@@ -16,6 +16,7 @@ export interface NewEvent extends Event {
 
 export interface AttendanceData {
   rsvpId: number
+  auth0Id: string
   username: string
   avatar: string
   attending: boolean

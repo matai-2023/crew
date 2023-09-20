@@ -10,14 +10,16 @@ interface Props {
 }
 
 function RSVPs(props: Props) {
+  console.log('props and event id', props)
   const { mutation } = useAttending()
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
+
   const { data, isLoading } = useQuery({
     queryKey: ['rsvps'],
     queryFn: async () => {
       const accessToken = await getAccessTokenSilently()
       const response = await fetchAllRSVPs(accessToken, props.eventId)
-      return response as AttendanceData
+      return response as AttendanceData[]
     },
   })
 
@@ -37,16 +39,20 @@ function RSVPs(props: Props) {
     const cId = props.crewId
     const eId = props.eventId
     const accessToken = await getAccessTokenSilently()
-    console.log('clicked')
 
-    if (data?.rsvpId) {
-      console.log('hi')
-      mutation.mutate({
-        attending: formData,
-        rsvpID: data?.rsvpId,
-        accessToken,
-      })
-    }
+    const userRSVP = data && data.find((rsvp) => rsvp.auth0Id == user?.sub)
+
+    console.log('data to mutate', {
+      attending: formData,
+      rsvpID: Number(userRSVP?.rsvpId),
+      accessToken,
+    })
+
+    mutation.mutate({
+      attending: formData,
+      rsvpID: Number(userRSVP?.rsvpId),
+      accessToken,
+    })
   }
 
   return (
@@ -55,7 +61,14 @@ function RSVPs(props: Props) {
 
       {isAuthenticated && data && (
         <>
-          <p>Going: {data.attending == true ? data.username : ''}</p>
+          <p>Going:</p>
+          {data
+            .filter((rsvp) => rsvp.attending)
+            .map((rsvp) => (
+              <>
+                <img src={`${rsvp.avatar}`} alt={rsvp.username} />
+              </>
+            ))}
           <form onSubmit={handleSubmit}>
             <label htmlFor="rsvp">
               <p>RSVP to this event:</p>

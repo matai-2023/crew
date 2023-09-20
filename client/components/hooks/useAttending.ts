@@ -1,14 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useNavigate } from 'react-router-dom'
-import { updateRSVP, upsertProfile } from '../../apis/api'
+import { updateRSVP} from '../../apis/api'
 import { getUser } from '../../apis/api'
-import { Profile, ProfileDraft } from '../../../types/Profile'
-import { AttendingStatus } from '../../../types/Event'
+
 
 // This component adds user rsvp to the database
 
-function useProfile() {
+function useAttending() {
   const navigate = useNavigate()
   const { getAccessTokenSilently, isAuthenticated } = useAuth0()
 
@@ -45,4 +44,4 @@ function useProfile() {
   return { data, isLoading, mutation }
 }
 
-export default useProfile
+export default useAttending
