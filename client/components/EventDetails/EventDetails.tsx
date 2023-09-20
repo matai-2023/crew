@@ -62,10 +62,9 @@ function EventDetails() {
       {isAuthenticated &&
         data &&
         data.map((eventDetails) => (
-          <>
-            {console.log({ eventDetails })}
+          <div key={eventDetails.eventId}>
             <div className="relative h-[300px] w-full overflow-hidden">
-              <div key={eventDetails.eventId} className="absolute inset-0">
+              <div className="absolute inset-0">
                 <img
                   src={eventDetails.img}
                   alt={eventDetails.name}
@@ -73,8 +72,8 @@ function EventDetails() {
                 />
               </div>
             </div>
-            <div>
-              <li key={eventDetails.eventId} className="list-none">
+            <ul>
+              <li key={`${eventDetails.eventId}1`} className="list-none">
                 <p className=" text-white py-2 px-4 text-uppercase font-interBold text-xl">
                   {eventDetails.name}
                 </p>
@@ -91,7 +90,7 @@ function EventDetails() {
                   </span>
                 </p>
 
-                <p className="flex items-center text-white py-2 px-4 text-sm">
+                <section className="flex items-center text-white py-2 px-4 text-sm">
                   <img
                     onClick={() => locationClicked(eventDetails.location)}
                     src={locationPath}
@@ -105,7 +104,7 @@ function EventDetails() {
                       <iframe src={iframeUrl}></iframe>
                     )}
                   </div>
-                </p>
+                </section>
                 <div className="border-t border-white my-2"></div>
 
                 <div className="flex items-start text-white py-2 px-4 text-base">
@@ -116,8 +115,8 @@ function EventDetails() {
                 </div>
                 <br></br>
               </li>
-            </div>
-          </>
+            </ul>
+          </div>
         ))}
 
       <Link
