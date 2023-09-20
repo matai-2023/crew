@@ -31,7 +31,6 @@ function AppLayout() {
           <Header />
         </IfNotAuthenticated>
         <Outlet />
-        <Footer />
       </Background>
     </>
   )
