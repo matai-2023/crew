@@ -105,8 +105,9 @@ function EventDetails() {
                     className="mr-2"
                   />
                   <span className="font-interReg">{eventDetails.address}</span>
-
-                  <div>
+                </section>
+                <section className=" flex-col items-center text-white py-2 px-4 text-sm">
+                  <div style={{ display: 'block' }}>
                     {iframeUrl === eventDetails.location && (
                       <iframe src={iframeUrl}></iframe>
                     )}
