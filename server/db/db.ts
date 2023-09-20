@@ -23,7 +23,8 @@ export async function getEventsbyCrew(crewId: number) {
       'events.id as eventId',
       'events.name as name',
       'events.time as time',
-      'events.location as location',
+      'events.address as address',
+
       'events.description as description',
       'events.date as date',
       'events.img as image'
@@ -42,6 +43,7 @@ export async function getEventDetails(crewId: number, eventId: number) {
     .select(
       'events.name as name',
       'events.time as time',
+      'events.address as address',
       'events.location as location',
       'events.description as description',
       'events.date as date',
@@ -80,7 +82,7 @@ export async function getAllCrewMembers(crewId: number) {
     .join('crews', 'crews.id', 'crew_users.crew_id')
     .join('users', 'users.id', 'crew_users.user_id')
     .where('crews.id', crewId)
-    .select('users.id as userId', 'users.username')
+    .select('users.id as userId', 'users.username', 'users.avatar')
     .distinct()
 }
 
