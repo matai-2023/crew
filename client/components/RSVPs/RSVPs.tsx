@@ -61,24 +61,35 @@ function RSVPs(props: Props) {
 
       {isAuthenticated && data && (
         <>
-          <p>Going:</p>
-          {data
-            .filter((rsvp) => rsvp.attending)
-            .map((rsvp) => (
-              <>
-                <img src={`${rsvp.avatar}`} alt={rsvp.username} />
-              </>
-            ))}
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="rsvp">
-              <p>RSVP to this event:</p>
-            </label>
-            <select name="rsvp">
-              <option value="1">Going</option>
-              <option value="0">Not going</option>
-            </select>
-            <button>Submit</button>
-          </form>
+          <div className="flex justify-between items-center mb-4">
+            <div className="ml-4 mt-4 bg-black text-white py-2 px-4 rounded-lg shadow-left-bottom-pink">
+              <form onSubmit={handleSubmit}>
+                <label htmlFor="rsvp"></label>
+                <select
+                  className="mr-2 ml-3 font-interReg text-charcoalNotBlack p-2 py-2 text-sm font-bold bg-pinkDropShadow"
+                  name="rsvp"
+                >
+                  <option value="1">GOING</option>
+                  <option value="0">NOT GOING</option>
+                </select>
+                <button className="mr-2 ml-3 font-interReg text-white text-sm font-bold">
+                  SUBMIT
+                </button>
+              </form>
+            </div>
+            <div className="flex justify-end pr-6 pt-6">
+              {data
+                .filter((rsvp) => rsvp.attending)
+                .map((rsvp, index) => (
+                  <img
+                    key={index}
+                    className={`rounded-full w-[40px] h-[40px] mx-[-5px]`}
+                    src={`${rsvp.avatar}`}
+                    alt={rsvp.username}
+                  />
+                ))}
+            </div>
+          </div>
         </>
       )}
     </>

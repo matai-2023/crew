@@ -60,7 +60,7 @@ function CrewDashboard() {
   const navigate = useNavigate()
   return (
     <>
-      <div style={{ maxHeight: '80vh', overflowY: 'auto' }}>
+      <div style={{ maxHeight: '90vh', overflowY: 'auto' }}>
         {isLoading ? <p>data is loading...</p> : ''}
         <div className="font-interBold font-bold text-white text-lg">
           <div className="text-center mt-8">
