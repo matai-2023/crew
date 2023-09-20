@@ -11,7 +11,7 @@ export async function seed(knex) {
       location:
         'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3192.075021184813!2d174.77345137579252!3d-36.86462307222876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d47c43b7c00a3%3A0x4abe94b659ab7fb0!2sDev%20Academy%20Aotearoa%20-%20Auckland%20Campus!5e0!3m2!1sen!2snz!4v1695079204423!5m2!1sen!2snz',
       description:
-        'Get ready to Hack-it Hackathon, where code meets caffeine, and programmers battle bugs with a side of pizza! Join us for a coding showdown that is more fun than a syntax error. Bring your A-game and your appetite for adventure in the world of 1s and 0s. Lets hack and roll!',
+        "Get ready to Hack-it Hackathon, where code meets caffeine, and programmers battle bugs with a side of pizza! Join us for a coding showdown that's more fun than a syntax error. Bring your A-game and your appetite for adventure in the world of 1s and 0s. Let's hack and roll!",
       date: faker.date.future().getTime(),
       img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGNvZGluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
       crew_id: 3,
@@ -23,7 +23,7 @@ export async function seed(knex) {
       location:
         'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3192.3722923641462!2d174.7607441757921!3d-36.85750667223087!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d47e7d3ca8329%3A0xf9a5df1893d30918!2sCordis%2C%20Auckland!5e0!3m2!1sen!2snz!4v1695079346687!5m2!1sen!2snz',
       description:
-        'Get ready to party like a Libra, because we are throwing the Libra Party that is going to balance your world and tickle your scales! Join us for a night of sassy dance moves, cosmic cocktails, and vibes that are so in tune, even the planets would be jealous. Its all about balance, baby, and we are here to prove that Libras do it best! 🌟✨💃🍸 #LibraPartyGoals',
+        "Get ready to party like a Libra, because we're throwing the Libra Party that is going to balance your world and tickle your scales! Join us for a night of sassy dance moves, cosmic cocktails, and vibes that are so in tune, even the planets would be jealous. It's all about balance, baby, and we're here to prove that Libras do it best! 🌟✨💃🍸 #LibraPartyGoals",
       date: faker.date.future().getTime(),
       img: 'https://images.unsplash.com/photo-1609951651467-713256d1a3be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80',
       crew_id: 2,
@@ -36,7 +36,7 @@ export async function seed(knex) {
       location:
         'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3192.5693738318027!2d174.76065097579195!3d-36.852788072232094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d47ef851153cb%3A0x1ba38349d16dca93!2sAuckland%20Town%20Hall!5e0!3m2!1sen!2snz!4v1695079414955!5m2!1sen!2snz',
       description:
-        'Get ready to lace up your hiking boots and unleash your inner mountain goat at the Copeland Send! We are taking the trails by storm in a quest for the most epic views and the silliest hiking selfies. Meet us at the Auckland Town Hall, where the adventure begins, and remember, the only thing steeper than the hills is our sense of humor! 🏞️😄 #CopelandSend #HikingHilarity',
+        "Get ready to lace up your hiking boots and unleash your inner mountain goat at the Copeland Send! We're taking the trails by storm in a quest for the most epic views and the silliest hiking selfies. Meet us at the Auckland Town Hall, where the adventure begins, and remember, the only thing steeper than the hills is our sense of humor! 🏞️😄",
       date: faker.date.future().getTime(),
       img: 'https://images.unsplash.com/photo-1604419688742-6ded8cb99b71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80',
       crew_id: 1,
@@ -49,7 +49,7 @@ export async function seed(knex) {
       location:
         'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3186.729998086644!2d174.87022159678955!3d-36.9923776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d4dc1967ed76d%3A0xbcc9f97f4ecdb0e!2sHayman%20Park!5e0!3m2!1sen!2snz!4v1695079494887!5m2!1sen!2snz',
       description:
-        'Join us for "Learn Go!" – an outdoor coding learning event that will take your programming skills to the next level. Embrace the fresh air, soak up the sun, and live your best digital nomad life as we explore the world of Go programming language together. Do not miss this opportunity to code in the great outdoors!',
+        "Join us for 'Learn Go!', an outdoor coding learning event that will take your programming skills to the next level. Embrace the fresh air, soak up the sun, and live your best digital nomad life as we explore the world of Go programming language together. Don't miss this opportunity to code in the great outdoors!",
       date: faker.date.future().getTime(),
       img: 'https://images.unsplash.com/photo-1599792092050-63b1834bb89f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
       crew_id: 3,
@@ -62,7 +62,7 @@ export async function seed(knex) {
       location:
         'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3192.750630386251!2d174.7573200843715!3d-36.84844790063923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d47f06d4bdc25%3A0x2d1b5c380ad9387!2sSky%20Tower!5e0!3m2!1sen!2snz!4v1695079562593!5m2!1sen!2snz',
       description:
-        "Rise and shine, party animals! Get ready to break a leg (but not your alarm clock) at Morning People Rave! 🕺🌅 We're serving up beats hotter than your morning coffee and kombucha fresher than your dance moves, all before the sun's even out of bed! So grab your dancing shoes and let's boogie before breakfast – it's the early bird's bass that gets the worm! ",
+        "Rise and shine, party animals! Get ready to break a leg (but not your alarm clock) at Morning People Rave! 🕺🌅 We're serving up beats hotter than your morning coffee and kombucha fresher than your dance moves, all before the sun's even out of bed! So grab your dancing shoes and let's boogie before breakfast. It's the early bird's bass that gets the worm! ",
       date: faker.date.future().getTime(),
       img: 'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
       crew_id: 2,
