@@ -17,6 +17,7 @@ function EventDetails() {
   const newEventId = Number(eventId)
   const newCrewId = Number(crewId)
   const [iframeUrl, setIframeUrl] = useState('')
+  const [displayMap, setDisplayMap] = useState(false)
 
   const { isAuthenticated, getAccessTokenSilently } = useAuth0()
   const { data, isLoading } = useQuery({
@@ -32,8 +33,14 @@ function EventDetails() {
     },
   })
 
-  function locationClicked(url: string) {
-    setIframeUrl(url)
+  async function locationClicked(url: string) {
+    if (!displayMap) {
+      await setIframeUrl(url)
+    } else {
+      setIframeUrl('')
+    }
+
+    setDisplayMap(!displayMap)
   }
 
   function formatEventDate(dateValue: number) {
