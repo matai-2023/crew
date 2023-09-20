@@ -4,8 +4,8 @@ import { fetchEventDetails } from '../../apis/api'
 import Button from '../UI/Button/Button'
 import { useAuth0 } from '@auth0/auth0-react'
 import { NewEvent } from '../../../types/Event'
-import request from 'superagent'
 import { useState } from 'react'
+import RSVPs from '../RSVPs/RSVPs'
 
 function EventDetails() {
   const timePath = '/time.png'
@@ -64,75 +64,100 @@ function EventDetails() {
 
   return (
     <>
-      {isLoading ? <p>data is loading...</p> : ''}
+      <div className="h-screen max-h-[calc(100vh-64px)] overflow-y-auto">
+        {isLoading ? <p>data is loading...</p> : ''}
 
-      {isAuthenticated &&
-        data &&
-        data.map((eventDetails) => (
-          <div key={eventDetails.eventId}>
-            <div className="relative h-[300px] w-full overflow-hidden">
-              <div className="absolute inset-0">
-                <img
-                  src={eventDetails.img}
-                  alt={eventDetails.name}
-                  className="w-full h-full object-cover"
-                />
+        {isAuthenticated &&
+          data &&
+          data.map((eventDetails) => (
+            <>
+              <div key={eventDetails.eventId}>
+                <div className="relative h-[300px] w-full overflow-hidden">
+                  <div className="absolute inset-0">
+                    <img
+                      src={eventDetails.img}
+                      alt={eventDetails.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-            <ul>
-              <li key={`${eventDetails.eventId}1`} className="list-none">
-                <p className=" text-white py-2 px-4 text-uppercase font-interBold text-xl">
+              <div>
+                <p
+                  key={`${eventDetails.eventId}1`}
+                  className=" text-white py-2 px-4 text-uppercase font-interBold text-xl mt-2"
+                >
                   {eventDetails.name}
                 </p>
-                <div className="border-t border-white my-2"></div>
-                <p className="flex items-center text-white py-2 px-4 text-sm">
-                  <img src={timePath} alt="Event Time" className="mr-2" />
-                  <span className="font-interReg">{eventDetails.time}</span>
-                </p>
+              </div>
+              <div className="border-t border-white my-2"></div>
+              <div>
+                <div className="pb-3">
+                  <RSVPs eventId={newEventId} crewId={newCrewId} />
+                </div>
+                <ul>
+                  <li key={`${eventDetails.eventId}1`} className="list-none">
+                    <div className="border-t border-white my-2"></div>
+                    <p className="flex items-center text-white py-2 px-4 text-sm">
+                      <img src={timePath} alt="Event Time" className="mr-2" />
+                      <span className="font-interReg">{eventDetails.time}</span>
+                    </p>
 
-                <p className="flex items-center text-white py-2 px-4 text-sm">
-                  <img src={calendarPath} alt="Event Time" className="mr-2" />
-                  <span className="font-interReg">
-                    {formatEventDate(eventDetails.date)}
-                  </span>
-                </p>
+                    <p className="flex items-center text-white py-2 px-4 text-sm">
+                      <img
+                        src={calendarPath}
+                        alt="Event Time"
+                        className="mr-2"
+                      />
+                      <span className="font-interReg">
+                        {formatEventDate(eventDetails.date)}
+                      </span>
+                    </p>
 
-                <section className="flex items-center text-white py-2 px-4 text-sm">
-                  <img
-                    onClick={() => locationClicked(eventDetails.location)}
-                    src={locationPath}
-                    alt="Event Time"
-                    className="mr-2"
-                  />
-                  <span className="font-interReg">{eventDetails.address}</span>
-                </section>
-                <section className=" flex-col items-center text-white py-2 px-4 text-sm">
+                    <section className="flex items-center text-white py-2 px-4 text-sm">
+                      <img
+                        onClick={() => locationClicked(eventDetails.location)}
+                        src={locationPath}
+                        alt="Event Time"
+                        className="mr-2"
+                      />
+                      <span className="font-interReg">
+                        {eventDetails.address}
+                      </span>
+                      <section className=" flex-col items-center text-white py-2 px-4 text-sm">
                   <div style={{ display: 'block' }}>
                     {iframeUrl === eventDetails.location && (
                       <iframe src={iframeUrl}></iframe>
                     )}
                   </div>
                 </section>
-                <div className="border-t border-white my-2"></div>
+                    </section>
+                    <div className="border-t border-white my-2"></div>
 
-                <div className="flex items-start text-white py-2 px-4 text-base">
-                  <img src={detailsPath} alt="Event Time" className="mr-2" />
-                  <span className="font-interReg">
-                    {eventDetails.description}
-                  </span>
-                </div>
-                <br></br>
-              </li>
-            </ul>
-          </div>
-        ))}
+                    <div className="flex items-start text-white py-2 px-4 text-base">
+                      <img
+                        src={detailsPath}
+                        alt="Event Time"
+                        className="mr-2"
+                      />
+                      <span className="font-interReg">
+                        {eventDetails.description}
+                      </span>
+                    </div>
+                    <br></br>
+                  </li>
+                </ul>
+              </div>
+            </>
+          ))}
 
-      <Link
-        className="flex flex-col items-center h-screen"
-        to={`/crew-dashboard/${newCrewId}`}
-      >
-        <Button>Message crew</Button>
-      </Link>
+        <Link
+          className="flex flex-col items-center h-screen"
+          to={`/crew-dashboard/`}
+        >
+          <Button>Message crew</Button>
+        </Link>
+      </div>
     </>
   )
 }
