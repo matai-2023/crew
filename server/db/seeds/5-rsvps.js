@@ -1,13 +1,185 @@
-import { faker } from '@faker-js/faker'
 export async function seed(knex) {
-  faker.seed(123)
-
   await knex('rsvps').insert([
     {
       id: 1,
+      crew_users_id: 1,
+      event_id: 3,
+      attending: true,
+    },
+    {
+      id: 2,
       crew_users_id: 2,
       event_id: 2,
       attending: false,
     },
+    {
+      id: 3,
+      crew_users_id: 3,
+      event_id: 1,
+      attending: true,
+    },
+    {
+      id: 4,
+      crew_users_id: 4,
+      event_id: 6,
+      attending: true,
+    },
+    {
+      id: 5,
+      crew_users_id: 5,
+      event_id: 5,
+      attending: true,
+    },
+    {
+      id: 6,
+      crew_users_id: 6,
+      event_id: 4,
+      attending: false,
+    },
+    {
+      id: 7,
+      crew_users_id: 7,
+      event_id: 9,
+      attending: true,
+    },
+    {
+      id: 8,
+      crew_users_id: 8,
+      event_id: 8,
+      attending: false,
+    },
+    {
+      id: 9,
+      crew_users_id: 9,
+      event_id: 7,
+      attending: true,
+    },
+    {
+      id: 10,
+      crew_users_id: 10,
+      event_id: 3,
+      attending: true,
+    },
+    {
+      id: 11,
+      crew_users_id: 11,
+      event_id: 2,
+      attending: false,
+    },
+    {
+      id: 12,
+      crew_users_id: 12,
+      event_id: 10,
+      attending: false,
+    },
+    {
+      id: 13,
+      crew_users_id: 13,
+      event_id: 6,
+      attending: true,
+    },
+    {
+      id: 14,
+      crew_users_id: 14,
+      event_id: 5,
+      attending: true,
+    },
+    {
+      id: 15,
+      crew_users_id: 15,
+      event_id: 1,
+      attending: false,
+    },
+    {
+      id: 16,
+      crew_users_id: 16,
+      event_id: 9,
+      attending: false,
+    },
+    {
+      id: 17,
+      crew_users_id: 17,
+      event_id: 8,
+      attending: true,
+    },
+    {
+      id: 18,
+      crew_users_id: 18,
+      event_id: 4,
+      attending: false,
+    },
+    {
+      id: 19,
+      crew_users_id: 19,
+      event_id: 3,
+      attending: true,
+    },
+    {
+      id: 20,
+      crew_users_id: 20,
+      event_id: 2,
+      attending: true,
+    },
+    {
+      id: 21,
+      crew_users_id: 21,
+      event_id: 7,
+      attending: false,
+    },
+    {
+      id: 22,
+      crew_users_id: 22,
+      event_id: 6,
+      attending: true,
+    },
+    {
+      id: 23,
+      crew_users_id: 23,
+      event_id: 5,
+      attending: true,
+    },
+    {
+      id: 24,
+      crew_users_id: 24,
+      event_id: 10,
+      attending: false,
+    },
+    {
+      id: 25,
+      crew_users_id: 25,
+      event_id: 9,
+      attending: true,
+    },
+    {
+      id: 26,
+      crew_users_id: 26,
+      event_id: 8,
+      attending: true,
+    },
+    {
+      id: 27,
+      crew_users_id: 27,
+      event_id: 1,
+      attending: false,
+    },
+    {
+      id: 28,
+      crew_users_id: 28,
+      event_id: 3,
+      attending: false,
+    },
+    {
+      id: 29,
+      crew_users_id: 29,
+      event_id: 2,
+      attending: false,
+    },
+    {
+      id: 30,
+      crew_users_id: 30,
+      event_id: 4,
+      attending: true,
+    },
   ])
 }
+
