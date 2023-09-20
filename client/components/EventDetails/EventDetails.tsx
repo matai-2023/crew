@@ -63,9 +63,9 @@ function EventDetails() {
       {isAuthenticated &&
         data &&
         data.map((eventDetails) => (
-          <>
+          <div key={eventDetails.eventId}>
             <div className="relative h-[300px] w-full overflow-hidden">
-              <div key={eventDetails.eventId} className="absolute inset-0">
+              <div className="absolute inset-0">
                 <img
                   src={eventDetails.img}
                   alt={eventDetails.name}
@@ -77,49 +77,53 @@ function EventDetails() {
               <div>
                 <RSVPs eventId={newEventId} crewId={newCrewId} />
               </div>
-              <li key={eventDetails.eventId} className="list-none">
-                <p className=" text-white py-2 px-4 text-uppercase font-interBold text-xl">
-                  {eventDetails.name}
-                </p>
-                <div className="border-t border-white my-2"></div>
-                <p className="flex items-center text-white py-2 px-4 text-sm">
-                  <img src={timePath} alt="Event Time" className="mr-2" />
-                  <span className="font-interReg">{eventDetails.time}</span>
-                </p>
+              <ul>
+                <li key={`${eventDetails.eventId}1`} className="list-none">
+                  <p className=" text-white py-2 px-4 text-uppercase font-interBold text-xl">
+                    {eventDetails.name}
+                  </p>
+                  <div className="border-t border-white my-2"></div>
+                  <p className="flex items-center text-white py-2 px-4 text-sm">
+                    <img src={timePath} alt="Event Time" className="mr-2" />
+                    <span className="font-interReg">{eventDetails.time}</span>
+                  </p>
 
-                <p className="flex items-center text-white py-2 px-4 text-sm">
-                  <img src={calendarPath} alt="Event Time" className="mr-2" />
-                  <span className="font-interReg">
-                    {formatEventDate(eventDetails.date)}
-                  </span>
-                </p>
+                  <p className="flex items-center text-white py-2 px-4 text-sm">
+                    <img src={calendarPath} alt="Event Time" className="mr-2" />
+                    <span className="font-interReg">
+                      {formatEventDate(eventDetails.date)}
+                    </span>
+                  </p>
 
-                <p className="flex items-center text-white py-2 px-4 text-sm">
-                  <img
-                    onClick={() => locationClicked(eventDetails.location)}
-                    src={locationPath}
-                    alt="Event Time"
-                    className="mr-2"
-                  />
-                  <span className="font-interReg">{eventDetails.address}</span>
-                  <div>
-                    {iframeUrl === eventDetails.location && (
-                      <iframe src={iframeUrl}></iframe>
-                    )}
+                  <section className="flex items-center text-white py-2 px-4 text-sm">
+                    <img
+                      onClick={() => locationClicked(eventDetails.location)}
+                      src={locationPath}
+                      alt="Event Time"
+                      className="mr-2"
+                    />
+                    <span className="font-interReg">
+                      {eventDetails.address}
+                    </span>
+                    <div>
+                      {iframeUrl === eventDetails.location && (
+                        <iframe src={iframeUrl}></iframe>
+                      )}
+                    </div>
+                  </section>
+                  <div className="border-t border-white my-2"></div>
+
+                  <div className="flex items-start text-white py-2 px-4 text-base">
+                    <img src={detailsPath} alt="Event Time" className="mr-2" />
+                    <span className="font-interReg">
+                      {eventDetails.description}
+                    </span>
                   </div>
-                </p>
-                <div className="border-t border-white my-2"></div>
-
-                <div className="flex items-start text-white py-2 px-4 text-base">
-                  <img src={detailsPath} alt="Event Time" className="mr-2" />
-                  <span className="font-interReg">
-                    {eventDetails.description}
-                  </span>
-                </div>
-                <br></br>
-              </li>
+                  <br></br>
+                </li>
+              </ul>
             </div>
-          </>
+          </div>
         ))}
 
       <Link
