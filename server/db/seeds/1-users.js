@@ -5,7 +5,7 @@ export async function seed(knex) {
       auth0id: 'auth0|6502325ffee50bd6057c4e09',
       username: 'bananarama',
       email: 'banana@example.com',
-      avatar: '/images/avatars/shazza.jpg',
+      avatar: '/images/avatars/banana.gif',
     },
     {
       id: 2,
@@ -19,7 +19,7 @@ export async function seed(knex) {
       auth0id: 'auth0|650a310abc4a2acbef2ace66',
       username: 'Shazza',
       email: 'shazza@example.com',
-      avatar: '/images/avatars/simon.jpg',
+      avatar: '/images/avatars/shazza.jpg',
     },
     {
       id: 4,
