@@ -3,7 +3,9 @@
 
 Crew is a Dev Academy Aotearoa final group project created by Laura, Sharon, Hannah and Rodolfo (team Crew). 
 
-As a social media app, Crew is all about the connections we forge with different groups of friends. Whether it's your hiking buddies, your soccer team, or your close friend group, Crew provides a space for you and your crew to hang out and organise events together. 
+As a social media app, Crew is all about the connections we forge with different groups of friends. Whether it's your hiking buddies, your soccer team, or your close friend group, Crew provides a space for you and your crew to hang out and organise events together.
+
+---------
 
 ### A user can: 
 - Log in or register using Auth0's authentication platform
