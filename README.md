@@ -5,25 +5,6 @@ Crew is a Dev Academy Aotearoa final group project created by Laura, Sharon, Han
 
 As a social media app, Crew is all about the connections we forge with different groups of friends. Whether it's your hiking buddies, your soccer team, or your close friend group, Crew provides a space for you and your crew to hang out and organise events together. 
 
---------
-#### MVP Goals (all achieved)
-- Show all crews in user dashboard
-- Show all events for a crew
-- Show all details for an event
-- View all members of a crew 
-- Set up user login/register and authentication
-- Allow user to edit their profile details
-
-#### Stretch Goals 
-- Allow users to RSVP to an event, and see other crew members who are going (achieved)
-- Embed a dynamic Google Maps location into event details, using the Google Maps external API (achieved)
-- Add a new crew
-- Invite members to a crew
-- Add new event
-- Group chat for a crew's members 
-
----------
-
 ### A user can: 
 - Log in or register using Auth0's authentication platform
 - View all the crews they are a part of
@@ -48,7 +29,26 @@ As a social media app, Crew is all about the connections we forge with different
 - Vitest
 - Multer
 
-------------
+--------
+
+#### MVP Goals (all achieved)
+- Show all crews in user dashboard
+- Show all events for a crew
+- Show all details for an event
+- View all members of a crew 
+- Set up user login/register and authentication
+- Allow user to edit their profile details
+
+#### Stretch Goals 
+- Allow users to RSVP to an event, and see other crew members who are going (achieved)
+- Embed a dynamic Google Maps location into event details, using the Google Maps external API (achieved)
+- Add a new crew
+- Invite members to a crew
+- Add new event
+- Group chat for a crew's members 
+
+---------
+
 ### Key Learnings 
 
 **Technical**
